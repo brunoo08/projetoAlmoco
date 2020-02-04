@@ -22,7 +22,7 @@ CREATE PROCEDURE [dbo].[InsCliente]
 		Ex: EXEC InsCliente ...
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Usuario WHERE Nom_Login = @Nom_Login) < 1)
+		IF((SELECT COUNT(*) FROM Usuario WHERE Nom_Login = @Nom_Login) > 1)
 			BEGIN PRINT 'Usuario já existe'
 			RETURN 1 END
 		ELSE
@@ -63,5 +63,66 @@ CREATE PROCEDURE [dbo].[UpdCliente]
 				Nom_Senha = @Nom_Senha
 			WHERE Nom_Login = @Nom_Login AND
 				  Nom_Senha = @Nom_Senha
+	END
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[DelCliente]') AND objectproperty(id, N'IsPROCEDURE')=1)
+	DROP PROCEDURE [dbo].[DelCliente] 
+GO
+
+CREATE PROCEDURE [dbo].[DelCliente]
+	@Nom_Login		varchar(50) = NULL,
+	@Nom_Senha		varchar(50) = NULL,
+	@Nom_Nome		varchar(50) = NULL,
+	@Nom_Sobrenome	varchar(50) = NULL
+	AS
+	/*
+		Documentação
+		Arquivo Fonte: Clientes
+		Objetivo: Excluir clientes
+		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Data: 03/02/2020
+		Retornos: 0 - Exclusão Realizada
+				  1 - Erro na edição
+		Ex: EXEC InsCliente ...
+	*/
+	BEGIN
+		IF((SELECT COUNT(*) FROM Usuario WHERE Nom_Login = @Nom_Login AND Nom_Senha = @Nom_Senha) < 1)
+			BEGIN PRINT 'Usuario não existente'
+			RETURN 1 END
+		ELSE
+			DELETE
+			FROM	Usuario
+			WHERE	Nom_Login = @Nom_Login AND
+					Nom_Nome = @Nom_Nome AND
+					Nom_Sobrenome = @Nom_Sobrenome
+	END
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[SelCliente]') AND objectproperty(id, N'IsPROCEDURE')=1)
+	DROP PROCEDURE [dbo].[SelCliente] 
+GO
+
+CREATE PROCEDURE [dbo].[SelCliente] 
+	AS
+	/*
+		Documentação
+		Arquivo Fonte: Clientes
+		Objetivo: Mostrar clientes
+		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Data: 03/02/2020
+		Retornos: 0 - OK
+				  1 - Erro
+		Ex: EXEC SelCliente
+	*/
+	BEGIN
+		IF((SELECT COUNT(*) FROM Usuario) < 1)
+			BEGIN PRINT 'Sem usuarios cadastrados'
+			RETURN 1 END
+		ELSE
+			SELECT	Nom_Nome,
+					Nom_Sobrenome,
+					Nom_Login
+			FROM Usuario
 	END
 GO
