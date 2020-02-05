@@ -1,0 +1,125 @@
+body{
+        background-color: rgb(207, 207, 186);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a{
+            color: #707070;
+            font-size: 14px;
+} 
+
+
+.main-inicial{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    /* height: 60%; */
+    width: fit-content;
+    height: fit-content;
+    padding: 20px 60px;
+    border-radius: 25px;
+    background-color: #ffffff;
+
+    /*para centralizar*/
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+        
+    width: 80%;
+    height: 80%;
+
+    /* padding: 20px 60px; */
+    border: none;
+    border-radius: 25px;
+    background-color: #ffffff;
+
+    /*para centralizar*/
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+
+.botao{
+        color: #ffffff;
+        background-color: #FF9306;
+        border: none;
+        border-radius: 12px;
+        padding: 5px 15px;
+        font-size: 16px;
+        margin-top: 20px;
+        
+}
+
+.logo{
+        width: 60px;
+        height: 60px;
+        opacity: 40%;
+        margin-bottom: 20px;
+}
+
+.input{
+        color: #707070;
+        border: 0.5px solid #707070;
+        border-radius: 12px;
+        padding: 5px 15px;
+        font-size: 16px;
+        margin: 10px 0;
+}
+
+
+    
+    ::-webkit-input-placeholder  { 
+        color: #707070;
+        font-size: 14px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding-left: 15px;
+     }
+
+
+
+
+     #usuario{
+         display: flex;
+         flex-direction: row;
+         /* position: relative; */
+     }
+
+     #nome{
+        background-image: url('../imagens/usuario.png');
+        position: left;
+        padding-left: 10px;
+        background-size: 30px;
+        opacity: 80%;
+        background-repeat: no-repeat;  
+     }
+
+     #senha{
+        background-image: url('../imagens/lock.png');
+        position: left; 
+        padding-left: 10px;
+        background-size: 30px;
+        opacity: 80%;
+        background-repeat: no-repeat; 
+     }
+
+
+
+     /* i{
+        position: absolute;
+        margin-left: 5px;
+        margin-top: 14px;
+        z-index: 1;
+     } */
+

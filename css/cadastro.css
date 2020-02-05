@@ -1,0 +1,88 @@
+body{
+    background-color: rgb(207, 207, 186);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-inicial{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    /* height: 60%; */
+    width: fit-content;
+    height: fit-content;
+    padding: 20px 60px;
+    border-radius: 25px;
+    background-color: #ffffff;
+
+    /*para centralizar*/
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+/* Estilos Cadastro 
+*/
+    .botao{
+        color: #ffffff;
+        background-color: #FF9306;
+        border: none;
+        border-radius: 12px;
+        padding: 5px 15px;
+        font-size: 16px;
+        margin: 5px 0;
+        margin: 20px 0;
+    }
+
+    .input{
+        color: #707070;
+        border: 0.5px solid #707070;
+        border-radius: 12px;
+        padding: 5px 15px;
+        font-size: 16px;
+        margin: 10px 0;
+        opacity: 80%;
+    }
+   
+    .logo{
+        color: #FF9306;
+        font-size: 32px;
+        margin: 0;
+    }
+
+    .texto{
+        color: #707070;
+        font-size: 14px;
+        margin: 5px 0 20px 0;
+        text-align: justify;
+        text-indent: 0.5em;
+    }
+
+    ::-webkit-input-placeholder  { 
+        color: #707070;
+        font-size: 14px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     }
+
+     .close-button {
+        text-decoration: none;
+        position: absolute;
+        color: white;
+        font-size: 24px;
+        background-color: #FF9306;
+        border: none;
+        border-radius: 50%;
+        padding: 0.8px 10px;
+        right: -12px;
+        top: -12px;
+        transition: 0.7s;
+    }
+
+    .close-button:hover {
+        text-decoration: none;
+        opacity: 70%;
+        transform: rotate(360deg);
+    }
+
