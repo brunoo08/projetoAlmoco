@@ -19,11 +19,11 @@ CREATE PROCEDURE [dbo].[InsCliente]
 		Data: 03/02/2020
 		Retornos: 0 - Cadastro Realizado
 				  1 - Erro no Cadastro
-		Ex: EXEC InsCliente ...
+		Ex: EXEC InsCliente 'Bruno','Silveira','bruno','123'
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Usuario WHERE Nom_Login = @Nom_Login) > 1)
-			BEGIN PRINT 'Usuario já existe'
+		IF((SELECT COUNT(*) FROM Usuario WHERE Nom_Login = @Nom_Login) > 0)
+			BEGIN PRINT 'Nome de usuario já existe'
 			RETURN 1 END
 		ELSE
 			INSERT INTO Usuario (Nom_Nome, Nom_Sobrenome, Nom_Login, Nom_Senha)
@@ -49,10 +49,10 @@ CREATE PROCEDURE [dbo].[UpdCliente]
 		Data: 03/02/2020
 		Retornos: 0 - Edição Realizada
 				  1 - Erro na edição
-		Ex: EXEC InsCliente ...
+		Ex: EXEC UpdCliente 'bruno','123','Bruno','Lustosa'
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Usuario WHERE Nom_Login = @Nom_Login AND Nom_Senha = @Nom_Senha) < 1)
+		IF((SELECT COUNT(*) FROM Usuario WHERE Nom_Login = @Nom_Login) < 1)
 			BEGIN PRINT 'Usuario não existente'
 			RETURN 1 END
 		ELSE
@@ -61,8 +61,7 @@ CREATE PROCEDURE [dbo].[UpdCliente]
 				Nom_Sobrenome = @Nom_Sobrenome,
 				Nom_Login = @Nom_Login,
 				Nom_Senha = @Nom_Senha
-			WHERE Nom_Login = @Nom_Login AND
-				  Nom_Senha = @Nom_Senha
+			WHERE Nom_Login = @Nom_Login 
 	END
 GO
 
@@ -71,10 +70,7 @@ IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[DelCliente
 GO
 
 CREATE PROCEDURE [dbo].[DelCliente]
-	@Nom_Login		varchar(50) = NULL,
-	@Nom_Senha		varchar(50) = NULL,
-	@Nom_Nome		varchar(50) = NULL,
-	@Nom_Sobrenome	varchar(50) = NULL
+	@Nom_Login		varchar(50) = NULL
 	AS
 	/*
 		Documentação
@@ -84,18 +80,16 @@ CREATE PROCEDURE [dbo].[DelCliente]
 		Data: 03/02/2020
 		Retornos: 0 - Exclusão Realizada
 				  1 - Erro na edição
-		Ex: EXEC InsCliente ...
+		Ex: EXEC DelCliente 'bruno'
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Usuario WHERE Nom_Login = @Nom_Login AND Nom_Senha = @Nom_Senha) < 1)
+		IF((SELECT COUNT(*) FROM Usuario WHERE Nom_Login = @Nom_Login) < 1)
 			BEGIN PRINT 'Usuario não existente'
 			RETURN 1 END
 		ELSE
 			DELETE
 			FROM	Usuario
-			WHERE	Nom_Login = @Nom_Login AND
-					Nom_Nome = @Nom_Nome AND
-					Nom_Sobrenome = @Nom_Sobrenome
+			WHERE	Nom_Login = @Nom_Login
 	END
 GO
 
