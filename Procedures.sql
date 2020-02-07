@@ -130,7 +130,7 @@ CREATE PROCEDURE [dbo].[SelPedido]
 		Objetivo: Mostra pedidos
 		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
 		Data: 03/02/2020
-		Retornos: 0 - Exclusão Realizado
+		Retornos: 0 - Ok
 				  1 - Erro no Cadastro
 		Ex: EXEC SelPedido
 	*/
@@ -143,6 +143,32 @@ CREATE PROCEDURE [dbo].[SelPedido]
 					Nom_Sobrenome,
 					Dat_Date,
 					Num_IdAlimento
+			FROM Pedidos
+	END
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[DelTodosPedido]') AND objectproperty(id, N'IsPROCEDURE')=1)
+	DROP PROCEDURE [dbo].[DelTodosPedido] 
+GO
+
+CREATE PROCEDURE [dbo].[DelTodosPedido]
+	AS
+	/*
+		Documentação
+		Arquivo Fonte: Pedidos
+		Objetivo: Apaga todos os pedidos
+		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Data: 03/02/2020
+		Retornos: 0 - Exclusão Realizado
+				  1 - Erro no Cadastro
+		Ex: EXEC SelPedido
+	*/
+	BEGIN
+		IF((SELECT COUNT(*) FROM Pedidos) < 1)
+			BEGIN PRINT 'Sem pedidos cadastrados'
+			RETURN 1 END
+		ELSE
+			DELETE 
 			FROM Pedidos
 	END
 GO

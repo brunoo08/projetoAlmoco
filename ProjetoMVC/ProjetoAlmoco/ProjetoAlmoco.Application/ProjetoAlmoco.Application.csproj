@@ -42,6 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsuarioAplicacao.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProjetoAlmoco.Repository\ProjetoAlmoco.Repository.csproj">
+      <Project>{64d267a0-c224-4223-b937-f0145bba921a}</Project>
+      <Name>ProjetoAlmoco.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

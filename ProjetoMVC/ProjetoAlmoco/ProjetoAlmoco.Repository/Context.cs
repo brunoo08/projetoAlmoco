@@ -1,11 +1,9 @@
-﻿using ProjetoAlmoco.Domain.Entities;
-using System;
+﻿using System;
 using System.Data;
-using System.Data.Entity;
 using System.Data.SqlClient;
 
-namespace ProjetoAlmoco.Repository.Context
-{ 
+namespace ProjetoAlmoco.Repository
+{
     public class Context : IDisposable
     {
         private readonly SqlConnection minhaConexao;
@@ -17,8 +15,20 @@ namespace ProjetoAlmoco.Repository.Context
             minhaConexao = new SqlConnection(_connectionString);
             minhaConexao.Open();
         }
-        
 
+        public void executaComando(SqlCommand cmdComando)
+        {
+            cmdComando.CommandType = System.Data.CommandType.StoredProcedure;
+            cmdComando.Connection = minhaConexao;
+            cmdComando.ExecuteNonQuery();
+        }
+
+        public SqlDataReader executaComandoComRetorno(SqlCommand cmdComando)
+        {
+            cmdComando.CommandType = System.Data.CommandType.StoredProcedure;
+            cmdComando.Connection = minhaConexao;
+            return cmdComando.ExecuteReader();
+        }
 
         public void Dispose()
         {
