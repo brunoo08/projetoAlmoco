@@ -106,8 +106,13 @@ main {
     background-image: radial-gradient(circle at 5% 40%, transparent 70%, #555 20%);
 }
 
+.cardapio p {
+    color: #FF9306;
+    text-align: center;
+}
+
+/*BOTOES*/
 .botao{
-    /* width: 30%; */
     color: #ffffff;
     background-color: #FF9306;
     border: none;
@@ -117,17 +122,23 @@ main {
     margin-top: 30px;
 }
 
-.cardapio p {
-    color: #FF9306;
-    text-align: center;
-}
+/* .envio{
+    margin-left: 40px;
+    width: 200px;
+} */
+
 
 /*PEDIDOS*/
+.pedidos{
+    width: 100%;
+}
+
 .pedido{
     background-color: rgb(252, 244, 176);
     border-radius: 10px;
     padding: 5px 10px;
-    height: 102px;
+    width: fit-content;
+    /* height: 70px; */
     width: 85%;
     margin: 5px;
 }
@@ -137,3 +148,31 @@ main {
     margin-top: 30px;
     margin-bottom: 10px;
 }
+
+.nome-pedido{
+    font-size: 18px;
+    font-weight: 470;
+}
+
+/*BARRA DE ROLAGEM*/
+.scroll {
+    width: 90%;
+    height: 350px;
+    overflow: auto;
+    float: right;
+    margin: 0 5px;
+  }
+
+  .scroll4::-webkit-scrollbar {
+    width: 10px;
+  }
+   
+  .scroll4::-webkit-scrollbar-thumb {
+    background: #FF9306;
+    border-radius: 20px;
+  }
+  
+  .scroll4::-webkit-scrollbar-track {
+    background: #ddd;
+    border-radius: 20px;
+  }
