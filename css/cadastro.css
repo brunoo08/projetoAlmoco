@@ -32,8 +32,7 @@ body{
         border-radius: 12px;
         padding: 5px 15px;
         font-size: 16px;
-        margin: 5px 0;
-        margin: 20px 0;
+        margin: 20px 0 12px 60px;  
     }
 
     .input{
