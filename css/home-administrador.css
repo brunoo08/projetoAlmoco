@@ -1,13 +1,18 @@
 body {
-    background-color: rgb(207, 207, 186);
+    background-image: url("../imagens/background.jpg");
+    background-color: rgba(255, 255, 255, 0.6);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
 }
 
 main {
-    display: flex; /* flex-direction: row; */
+    display: flex;
 
-    width: fit-content;
+    width: 75%;
+    /* height: 80%; */
     height: fit-content;
 
     border: none;
@@ -39,11 +44,87 @@ main {
     margin: 0;
 }
 
+/*BOTOES*/
+.botao{
+    color: #ffffff;
+    background-color: #FF9306;
+    border: none;
+    border-radius: 12px;
+    padding: 5px 15px;
+    font-size: 16px;
+    margin-top: 30px;
+}
 
-/*USUÁRIO*/
-.usuario{
+/*PEDIDOS*/
+.pedidos {
+    width: 100%;
+}
+
+.pedido {
+    background-color: rgb(252, 244, 176);
+    border-radius: 10px;
+    padding: 10px;
+    width: fit-content;
+    width: 85%;
+    margin: 5px;
+}
+
+.pedido i {
+    font-size: 18px;
+    float: right;
+}
+
+.titulo {
+    width: 82%;
+    font-size: 20px;
+    margin: 30px 0 10px 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.titulo i{
+    font-size: 30px;
+    float: right;
+}
+
+.nome-pedido {
+    font-size: 18px;
+    font-weight: 470;
+}
+
+.conteudo-pedidos {
     display: flex;
-    /* transform: translate(0%, -70%); */
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+/*BARRA DE ROLAGEM*/
+.scroll {
+    width: 95%;
+    height: 350px;
+    overflow: auto;
+    float: right;
+    margin: 0 5px;
+  }
+
+  .scroll4::-webkit-scrollbar {
+    width: 10px;
+  }
+   
+  .scroll4::-webkit-scrollbar-thumb {
+    background: #FF9306;
+    border-radius: 20px;
+  }
+  
+  .scroll4::-webkit-scrollbar-track {
+    background: #ddd;
+    border-radius: 20px;
+  }
+
+  .usuario{
+    display: flex;
     margin: 0 0 30px 30px;
 }
 
@@ -66,7 +147,12 @@ main {
     font-size: 16px;
 }
 
-/*CARDÁPIO*/
+#sair i{
+    font-size: 22px;
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
 .cardapio {
     display: flex;
     flex-direction: column;
@@ -110,70 +196,3 @@ main {
     color: #FF9306;
     text-align: center;
 }
-
-/*BOTOES*/
-.botao{
-    color: #ffffff;
-    background-color: #FF9306;
-    border: none;
-    border-radius: 12px;
-    padding: 5px 15px;
-    font-size: 16px;
-    margin-top: 30px;
-}
-
-
-/*PEDIDOS*/
-.pedidos {
-    width: 100%;
-}
-
-.pedido {
-    background-color: rgb(252, 244, 176);
-    border-radius: 10px;
-    padding: 10px;
-    width: fit-content;
-    width: 85%;
-    margin: 5px;
-}
-
-.titulo {
-    font-size: 20px;
-    margin: 30px 0 10px 20px;
-}
-
-.nome-pedido {
-    font-size: 18px;
-    font-weight: 470;
-}
-
-.conteudo-pedidos {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-}
-
-/*BARRA DE ROLAGEM*/
-.scroll {
-    width: 95%;
-    height: 350px;
-    overflow: auto;
-    float: right;
-    margin: 0 5px;
-  }
-
-  .scroll4::-webkit-scrollbar {
-    width: 10px;
-  }
-   
-  .scroll4::-webkit-scrollbar-thumb {
-    background: #FF9306;
-    border-radius: 20px;
-  }
-  
-  .scroll4::-webkit-scrollbar-track {
-    background: #ddd;
-    border-radius: 20px;
-  }

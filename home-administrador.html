@@ -7,6 +7,7 @@
     <title>Home - Sistema de Pedido de Marmita</title>
     <link rel="stylesheet" href="css/home-administrador.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -20,12 +21,15 @@
                     <span class="nome">Nome</span> <br>
                     <span>administrador</span>
                 </div>
+                <div id="sair">
+                    <i class="material-icons" onclick="sair()">exit_to_app</i>
+                </div>
             </div>
             <div class="cardapio">
                 <div class="notebook">
                     <p>Cardápio do dia</p>
                 </div>
-                <input class="botao" type="button" value="Atualizar cardápio">
+                <input class="botao" type="button" value="Atualizar cardápio" onclick="atualizarCardapio()">
             </div>
         </div>
 
@@ -35,58 +39,67 @@
 
             <span class="titulo">
                 Pedidos
+                <i class="material-icons" onclick="addPedido()">add_circle_outline</i>
             </span>
 
             <div class="conteudo-pedidos">
                 <div class="pedidos scroll scroll4">
                     <div class="pedido">
+                        <i class="material-icons" onclick="editarPedido()">edit</i>
                         <span class="nome-pedido">Laura</span> <br>
                         <span>arroz, feijão, batata</span>
                     </div>
         
                     <div class="pedido">
+                        <i class="material-icons" onclick="editarPedido()">edit</i>
                         <span class="nome-pedido">Laura</span> <br>
                         <span>arroz, feijão, batata</span>
                     </div>
         
                     <div class="pedido">
+                        <i class="material-icons" onclick="editarPedido()">edit</i>
                         <span class="nome-pedido">Laura</span> <br>
                         <span>arroz, feijão, batata</span>
                     </div>
         
                     <div class="pedido">
+                        <i class="material-icons" onclick="editarPedido()">edit</i>
                         <span class="nome-pedido">Laura</span> <br>
                         <span>arroz, feijão, batata</span>
                     </div>
         
                     <div class="pedido">
+                        <i class="material-icons" onclick="editarPedido()">edit</i>
                         <span class="nome-pedido">Laura</span> <br>
                         <span>arroz, feijão, batata</span>
                     </div>
     
                     <div class="pedido">
+                        <i class="material-icons" onclick="editarPedido()">edit</i>
                         <span class="nome-pedido">Laura</span> <br>
                         <span>arroz, feijão, batata</span>
                     </div>
     
                     <div class="pedido">
+                        <i class="material-icons" onclick="editarPedido()">edit</i>
                         <span class="nome-pedido">Laura</span> <br>
                         <span>arroz, feijão, batata</span>
                     </div>
     
                     <div class="pedido">
+                        <i class="material-icons" onclick="editarPedido()">edit</i>
                         <span class="nome-pedido">Laura</span> <br>
                         <span>arroz, feijão, batata</span>
                     </div>
     
                     <div class="pedido">
+                        <i class="material-icons" onclick="editarPedido()">edit</i>
                         <span class="nome-pedido">Laura</span> <br>
                         <span>arroz, feijão, batata</span>
                     </div>
                 </div>
             
-                
-                <input class="botao envio" type="button" value="Enviar Pedido">
+                <input class="botao envio" type="button" value="Enviar Pedido" onclick="enviarPedidos()">
             </div>
             
             
