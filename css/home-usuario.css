@@ -18,14 +18,18 @@ main {
     border: none;
     border-radius: 25px;
     background-color: rgba(255,255,255,0.95);
+    box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.9);
     padding: 20px;
-    box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.9);
 
     /*para centralizar*/
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
+}
+
+form{
+    margin: 20px 0 0 40px;
 }
 
 .esquerda {
@@ -55,6 +59,18 @@ main {
     font-size: 16px;
     margin-top: 30px;
     cursor: pointer;
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.2);
+}
+
+.input{
+    background-color: #f9f9f9;
+    color: #707070;
+    border: 0.5px solid #b8b8b8;
+    border-radius: 12px;
+    padding: 5px 15px;
+    font-size: 16px;
+    margin: 10px 0;
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.2);
 }
 
 /*PEDIDOS*/
@@ -74,13 +90,20 @@ main {
 .pedido i {
     font-size: 18px;
     float: right;
-    cursor: pointer;
 }
 
 .titulo {
+    color: #FF9306;
+    font-size: 28px;
+    margin-top: 40px;
+    float: right;
+}
+
+.sub-titulo{
     width: 82%;
-    font-size: 20px;
-    margin: 30px 0 10px 20px;
+    font-size: 16px;
+    margin-top: 10px;
+    /* margin-left: 20px; */
     align-items: center;
     justify-content: center;
 }
@@ -88,7 +111,6 @@ main {
 .titulo i{
     font-size: 30px;
     float: right;
-    cursor: pointer;
 }
 
 .nome-pedido {
@@ -96,18 +118,18 @@ main {
     font-weight: 470;
 }
 
-.conteudo-pedidos {
+.conteudo {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0;
-    margin: 0;
+    margin-top: 20px;
 }
 
 /*BARRA DE ROLAGEM*/
 .scroll {
     width: 95%;
-    height: 350px;
+    height: 300px;
     overflow: auto;
     float: right;
     margin: 0 5px;
@@ -116,6 +138,7 @@ main {
 
   .scroll4::-webkit-scrollbar {
     width: 10px;
+    /* box-shadow: 45px 8px 8px 8px rgba(170, 44, 44, 0.2);      */
   }
    
   .scroll4::-webkit-scrollbar-thumb {
@@ -126,11 +149,15 @@ main {
   .scroll4::-webkit-scrollbar-track {
     background: #ddd;
     border-radius: 20px;
+    /* box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.2); */
   }
 
-  .usuario{
+.usuario{
     display: flex;
     margin: 0 0 30px 30px;
+    height: 20%;
+    /* top: 0; */
+    align-items: center;
 }
 
 .usuario div {
@@ -165,9 +192,9 @@ main {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: auto;
+    height: 80%;
     border-radius: 10px;
-    /* top: 0; */
+    top: 0;
 }
 
 /*espiral*/
@@ -202,3 +229,47 @@ main {
     color: #FF9306;
     text-align: center;
 }
+
+
+/*Dropdown*/
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 100%;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #f1f1f1}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  /* .dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+  } */
