@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace ProjetoAlmoco.API
+namespace ProjetoAlmoco.Api
 {
     public class RouteConfig
     {

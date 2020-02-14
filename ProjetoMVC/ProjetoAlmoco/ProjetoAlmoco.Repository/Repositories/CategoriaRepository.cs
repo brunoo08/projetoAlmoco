@@ -1,67 +1,69 @@
-﻿using System.Data.SqlClient;
+﻿using ProjetoAlmoco.Domain.Categoria;
+using ProjetoAlmoco.Domain.Categoria.Dto;
+using System;
+using System.Collections.Generic;
 
 namespace ProjetoAlmoco.Repository.Repositories
 {
-    class CategoriaRepository
+    public class CategoriaRepository : Connection, ICategoriaRepository
     {
-        public void InsCategoria(string Nom_Nome)
+        public void post(CategoriaDto categoria)
         {
-            SqlCommand cmdComando;
-            using (cmdComando = new SqlCommand())
-            {
-                cmdComando.CommandText = "InsCategoria";
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Nome", Nom_Nome));
-                using (var Context = new Context())
-                {
-                    Context.executaComando(cmdComando);
-                }
-            }
-
+            ExecuteProcedure("InsCategoria");
+            AddParameter("@Nom_Nome", categoria.Nom_Nome);
+            ExecuteNonQuery();
         }
 
-        public void UpdCategoria(string Nom_Nome, string Nom_NovoNome)
+        public void put(CategoriaDto categoria)
         {
-            SqlCommand cmdComando;
-            using (cmdComando = new SqlCommand())
-            {
-                cmdComando.CommandText = "UpdCategoria";
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Nome", Nom_Nome));
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_NovoNome", Nom_NovoNome));
-                using (var Context = new Context())
-                {
-                    Context.executaComando(cmdComando);
-                }
-            }
-
+            ExecuteProcedure("UpdCategoria");
+            AddParameter("@Num_Id", categoria.Num_IdCategoria);
+            AddParameter("@Nom_Nome",categoria.Nom_Nome);
+            ExecuteNonQuery();
         }
 
-        public void DelCategoria(string Nom_Nome)
+        public void delete(CategoriaDto categoria)
         {
-            SqlCommand cmdComando;
-            using (cmdComando = new SqlCommand())
-            {
-                cmdComando.CommandText = "DelCategoria";
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Nome", Nom_Nome));
-                using (var Context = new Context())
-                {
-                    Context.executaComando(cmdComando);
-                }
-            }
-
+            ExecuteProcedure("DelCategoria");
+            AddParameter("@Num_Id", categoria.Num_IdCategoria);
+            ExecuteNonQuery();
         }
 
-        public void SelCategoria()
+        public IEnumerable<CategoriaDto> getAll()
         {
-            SqlCommand cmdComando;
-            using (cmdComando = new SqlCommand())
-            {
-                cmdComando.CommandText = "SelCategoria";
-                using (var Context = new Context())
-                {
-                    Context.executaComandoComRetorno(cmdComando);
-                }
-            }
+            ExecuteProcedure("SelCategoria");
 
+            var allUsersData = new List<CategoriaDto>();
+            using (var reader = ExecuteReader())
+                while (reader.Read())
+                    allUsersData.Add(new CategoriaDto
+                    {
+                        Num_IdCategoria = Convert.ToInt16(reader["Num_IdCategoria"].ToString()),
+                        Nom_Nome = reader["Nom_Nome"].ToString()
+                    });
+
+            return allUsersData;
+        }
+
+        public CategoriaDto get(int Num_Id)
+        {
+            ExecuteProcedure("SelCategoriaId");
+            AddParameter("@Num_Id", Num_Id);
+
+            using (var reader = ExecuteReader())
+                if (reader.Read())
+                    return new CategoriaDto
+                    {
+                        Num_IdCategoria = Convert.ToInt16(reader["Num_IdCategoria"].ToString()),
+                        Nom_Nome = reader["Nom_Nome"].ToString()
+                    };
+
+            return null;
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

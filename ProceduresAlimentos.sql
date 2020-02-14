@@ -10,7 +10,7 @@ CREATE PROCEDURE [dbo].[InsAlimento]
 	@Num_IdCategoria	int
 	AS
 	/*
-		Documentação
+		Documentaï¿½ï¿½o
 		Arquivo Fonte: Clientes
 		Objetivo: Cadastrar Alimentos
 		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
@@ -20,8 +20,8 @@ CREATE PROCEDURE [dbo].[InsAlimento]
 		Ex: EXEC InsAlimento 'Arroz Carreteiro','1',1
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Alimentos WHERE Nom_NomeAlimento = @Nom_Nome) > 1)
-			BEGIN PRINT 'Alimento já cadastrado'
+		IF((SELECT COUNT(*) FROM Alimentos WITH(NOLOCK) WHERE Nom_NomeAlimento = @Nom_Nome) > 1)
+			BEGIN PRINT 'Alimento jï¿½ cadastrado'
 			RETURN 1 END
 		ELSE
 			INSERT INTO Alimentos(Nom_NomeAlimento,Ind_Disponivel, Num_IdCategoria)
@@ -34,29 +34,29 @@ IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[UpdAliment
 GO
 
 CREATE PROCEDURE [dbo].[UpdAlimento]
+	@Num_Id				int,
 	@Nom_Nome			VARCHAR(50),
-	@Nom_NovoNome		VARCHAR(50),
 	@Ind_Disponivel		char(1)
 	AS
 	/*
-		Documentação
+		Documentaï¿½ï¿½o
 		Arquivo Fonte: Clientes
 		Objetivo: Alterar Alimentos
 		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
 		Data: 03/02/2020
-		Retornos: 0 - Alteração Realizada
+		Retornos: 0 - Alteraï¿½ï¿½o Realizada
 				  1 - Erro 
 		Ex: EXEC UpdAlimento 'Arroz Branco','Arroz','0'
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Alimentos WHERE Nom_NomeAlimento = @Nom_Nome) < 1)
-			BEGIN PRINT 'Alimento não existe'
+		IF((SELECT COUNT(*) FROM Alimentos WITH(NOLOCK) WHERE Num_IdAlimentos = @Num_Id) < 1)
+			BEGIN PRINT 'Alimento nï¿½o existe'
 			RETURN 1 END
 		ELSE
 			UPDATE	Alimentos
-			SET	Nom_NomeAlimento = @Nom_NovoNome,
+			SET	Nom_NomeAlimento = @Nom_Nome,
 				Ind_Disponivel = @Ind_Disponivel
-			WHERE Nom_NomeAlimento = @Nom_Nome
+			WHERE Num_IdAlimentos = @Num_Id
 	END
 GO
 
@@ -65,26 +65,26 @@ IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[DelAliment
 GO
 
 CREATE PROCEDURE [dbo].[DelAlimento]
-	@Nom_Nome			VARCHAR(50)
+	@Num_Id			int
 	AS
 	/*
-		Documentação
+		DocumentaÃ§Ã£o
 		Arquivo Fonte: Clientes
 		Objetivo: Excluir Alimentos
 		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
 		Data: 03/02/2020
-		Retornos: 0 - Exclusão Realizada
+		Retornos: 0 - ExclusÃ£o Realizada
 				  1 - Erro 
 		Ex: EXEC DelAlimento 'Arroz Carreteiro'
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Alimentos WHERE Nom_NomeAlimento = @Nom_Nome) < 1)
-			BEGIN PRINT 'Alimento não existe'
+		IF((SELECT COUNT(*) FROM Alimentos WITH(NOLOCK) WHERE Num_IdAlimentos = @Num_Id) < 1)
+			BEGIN PRINT 'Alimento nÃ£o existe'
 			RETURN 1 END
 		ELSE
 			DELETE 
-			FROM Alimentos
-			WHERE Nom_NomeAlimento = @Nom_Nome
+			FROM Alimentos 
+			WHERE Num_IdAlimentos = @Num_Id
 	END
 GO
 
@@ -95,7 +95,7 @@ GO
 CREATE PROCEDURE [dbo].[SelAlimento]
 	AS
 	/*
-		Documentação
+		Documentaï¿½ï¿½o
 		Arquivo Fonte: Clientes
 		Objetivo: Mostrar Alimentos
 		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
@@ -105,13 +105,45 @@ CREATE PROCEDURE [dbo].[SelAlimento]
 		Ex: EXEC SelAlimento
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Alimentos) < 1)
+		IF((SELECT COUNT(*) FROM Alimentos WITH(NOLOCK)) < 1)
 			BEGIN PRINT 'Sem alimentos cadastrados'
 			RETURN 1 END
 		ELSE
-			SELECT	Nom_NomeAlimento,
+			SELECT	Num_IdAlimentos,
+					Nom_NomeAlimento,
 					Ind_Disponivel,
 					Num_IdCategoria
-			FROM Alimentos
+			FROM Alimentos WITH(NOLOCK)
+	END
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[SelAlimentoId]') AND objectproperty(id, N'IsPROCEDURE')=1)
+	DROP PROCEDURE [dbo].[SelAlimentoId] 
+GO
+
+CREATE PROCEDURE [dbo].[SelAlimentoId] 
+	@Num_id  int
+	AS
+	/*
+		DocumentaÃ§Ã£o
+		Arquivo Fonte: Clientes
+		Objetivo: Mostrar clientes por nome
+		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Data: 03/02/2020
+		Retornos: 0 - OK
+				  1 - Erro
+		Ex: EXEC SelCliente
+	*/
+	BEGIN
+		IF((SELECT COUNT(*) FROM Alimentos WITH(NOLOCK) WHERE Num_IdAlimentos = @Num_id) < 1)
+			BEGIN PRINT 'Sem alimentos cadastrados'
+			RETURN 1 END
+		ELSE
+			SELECT	Num_IdAlimentos,
+					Nom_NomeAlimento,
+					Ind_Disponivel,
+					Num_IdCategoria
+			FROM Alimentos WITH(NOLOCK)
+			WHERE Num_IdAlimentos = @Num_id
 	END
 GO

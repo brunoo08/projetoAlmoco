@@ -1,72 +1,83 @@
-﻿using System.Data.SqlClient;
+﻿using ProjetoAlmoco.Domain.Usuario;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace ProjetoAlmoco.Repository.Repositories
 {
-    public class UsuarioRepository
+    public class UsuarioRepository : Connection, IUsuarioRepository
     {
-        public void SelCliente()
+        public IEnumerable<UsuarioDto> getAll()
         {
-            SqlCommand cmdComando;
-            using (cmdComando = new SqlCommand())
-            {
-                cmdComando.CommandText = "SelCliente";
-                using (var Context = new Context())
-                {
-                    Context.executaComandoComRetorno(cmdComando);
-                }
-            }
-  
+            ExecuteProcedure("SelCliente");
+
+            var allUsersData = new List<UsuarioDto>();
+            using (var reader = ExecuteReader())
+                while (reader.Read())
+                    allUsersData.Add(new UsuarioDto
+                    {
+                        Num_Id = Convert.ToInt16(reader["Num_id"].ToString()),
+                        Nom_Nome = reader["Nom_Nome"].ToString(),
+                        Nom_Sobrenome = reader["Nom_Sobrenome"].ToString(),
+                        Nom_Login = reader["Nom_Login"].ToString(),
+                    });
+
+            return allUsersData;
         }
 
-        public void DelCliente(string Nom_Login)
+        public UsuarioDto get(int Num_Id)
         {
-            SqlCommand cmdComando;
-            using (cmdComando = new SqlCommand())
-            {
-                cmdComando.CommandText = "DelCliente";
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Login", Nom_Login));
-                using (var Context = new Context())
-                {
-                    Context.executaComando(cmdComando);
-                }
-            }
+            ExecuteProcedure("SelClienteId");
+            AddParameter("@Num_Id",Num_Id);
+
+            using (var reader = ExecuteReader())
+                if (reader.Read())
+                    return new UsuarioDto
+                    {
+                        Num_Id = Convert.ToInt16(reader["Num_Id"].ToString()),
+                        Nom_Nome = reader["Nom_Nome"].ToString(),
+                        Nom_Sobrenome = reader["Nom_Sobrenome"].ToString(),
+                        Nom_Login = reader["Nom_Login"].ToString()
+                    };
+
+            return null;
+        }
+
+        public void delete(UsuarioDto usuario)
+        {
+            
+            ExecuteProcedure("DelCliente");
+            AddParameter("@Num_Id", usuario.Num_Id);
+            ExecuteNonQuery();
 
         }
 
-        public void UpdCliente(string Nom_Login, string Nom_Senha, string Nom_Nome, string Nom_Sobrenome)
+        public void put(UsuarioDto usuario)
         {
-            SqlCommand cmdComando;
-            using (cmdComando = new SqlCommand())
-            {
-                cmdComando.CommandText = "UpdCliente";
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Login", Nom_Login));
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Senha", Nom_Senha));
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Nome", Nom_Nome));
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Sobrenome", Nom_Sobrenome));
-                using (var Context = new Context())
-                {
-                    Context.executaComando(cmdComando);
-                }
-            }
-
+            ExecuteProcedure("UpdCliente");
+             AddParameter("@Num_Id", usuario.Num_Id);
+            AddParameter("@Nom_Login", usuario.Nom_Login);
+            AddParameter("@Nom_Senha", usuario.Nom_Senha);
+            AddParameter("@Nom_Nome", usuario.Nom_Nome);
+            AddParameter("@Nom_Sobrenome", usuario.Nom_Sobrenome);
+            ExecuteNonQuery();
         }
 
-        public void InsCliente(string Nom_Nome, string Nom_Sobrenome, string Nom_Login, string Nom_Senha)
+        public void post(UsuarioDto usuario)
         {
-            SqlCommand cmdComando;
-            using (cmdComando = new SqlCommand())
-            {
-                cmdComando.CommandText = "InsCliente";
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Nome", Nom_Nome));
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Sobrenome", Nom_Sobrenome));
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Login", Nom_Login));
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Senha", Nom_Senha));
-                using (var Context = new Context())
-                {
-                    Context.executaComando(cmdComando);
-                }
-            }
-
+            ExecuteProcedure("InsCliente");
+            AddParameter("@Nom_Nome", usuario.Nom_Nome);
+            AddParameter("@Nom_Sobrenome", usuario.Nom_Sobrenome);
+            AddParameter("@Nom_Login", usuario.Nom_Login);
+            AddParameter("@Nom_Senha", usuario.Nom_Senha);
+            ExecuteNonQuery();
         }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+      
     }
 }

@@ -1,5 +1,5 @@
 USE [ProjetoAlmoco]
-
+/*
 CREATE TABLE Usuario(
 	Num_Id				int				identity,
 	Nom_Nome		varchar(50),
@@ -28,14 +28,15 @@ CREATE TABLE Alimentos(
 	CONSTRAINT FK_Categoria_Alimentos	FOREIGN KEY (Num_IdCategoria) REFERENCES Categoria(Num_IdCategoria)
 
 )
-
+*/
 CREATE TABLE Pedidos(
 	Num_IdPedidos				int				identity,
-	Nom_Nome					varchar(50),
-	Nom_Sobrenome				varchar(50),
-	Dat_Date					date,
+	Num_IdUsuario				int,
 	Num_IdAlimento				int,
+	Dat_Date					date,
+	
 
 	CONSTRAINT PK_Pedidos			PRIMARY KEY (Num_IdPedidos),
+	CONSTRAINT FK_Usuario_Pedido	FOREIGN KEY (Num_IdUsuario)	 REFERENCES Usuario(Num_Id),
 	CONSTRAINT FK_Alimentos_Pedido	FOREIGN KEY (Num_IdAlimento) REFERENCES Alimentos(Num_IdAlimentos)
 )

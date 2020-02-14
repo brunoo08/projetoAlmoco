@@ -22,7 +22,7 @@ CREATE PROCEDURE [dbo].[InsCategoria]
 			BEGIN PRINT 'Categoria já existe'
 			RETURN 1 END
 		ELSE
-			INSERT INTO Usuario (Nom_Nome)
+			INSERT INTO Categoria (Nom_Nome)
 					VALUES (@Nom_Nome)
 	END
 GO
@@ -32,8 +32,8 @@ IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[UpdCategor
 GO
 
 CREATE PROCEDURE [dbo].[UpdCategoria]
-	@Nom_Nome		VARCHAR(50),
-	@Nom_NovoNome	VARCHAR(50)
+	@Num_Id			int,
+	@Nom_Nome	VARCHAR(50)
 	AS
 	/*
 		Documentação
@@ -46,13 +46,13 @@ CREATE PROCEDURE [dbo].[UpdCategoria]
 		Ex: EXEC 
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Categoria WHERE Nom_Nome = @Nom_Nome) < 0)
+		IF((SELECT COUNT(*) FROM Categoria WHERE Num_IdCategoria = @Num_Id) < 1)
 			BEGIN PRINT 'Categoria não existe'
 			RETURN 1 END
 		ELSE
 			UPDATE Categoria
-			SET Nom_Nome = @Nom_NovoNome
-			WHERE Nom_Nome = @Nom_Nome
+			SET Nom_Nome = @Nom_Nome
+			WHERE Num_IdCategoria = @Num_Id 
 	END
 GO
 
@@ -61,7 +61,7 @@ IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[DelCategor
 GO
 
 CREATE PROCEDURE [dbo].[DelCategoria]
-	@Nom_Nome		VARCHAR(50)
+	@Num_Id		int
 	AS
 	/*
 		Documentação
@@ -74,13 +74,13 @@ CREATE PROCEDURE [dbo].[DelCategoria]
 		Ex: EXEC 
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Categoria WHERE Nom_Nome = @Nom_Nome) < 0)
+		IF((SELECT COUNT(*) FROM Categoria WITH(NOLOCK) WHERE Num_IdCategoria = @Num_Id) < 0)
 			BEGIN PRINT 'Categoria não existe'
 			RETURN 1 END
 		ELSE
 			DELETE
 			FROM Categoria
-			WHERE Nom_Nome = @Nom_Nome
+			WHERE Num_IdCategoria = @Num_Id
 	END
 GO
 
@@ -105,7 +105,37 @@ CREATE PROCEDURE [dbo].[SelCategoria]
 			BEGIN PRINT 'Não existem categorias cadastradas'
 			RETURN 1 END
 		ELSE
-			SELECT Nom_Nome
+			SELECT  Nom_Nome,
+					Num_IdCategoria
 			FROM Categoria
+	END
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[SelCategoriaId]') AND objectproperty(id, N'IsPROCEDURE')=1)
+	DROP PROCEDURE [dbo].[SelCategoriaId] 
+GO
+
+CREATE PROCEDURE [dbo].[SelCategoriaId] 
+	@Num_Id	int
+	AS
+	/*
+		Documentação
+		Arquivo Fonte: Clientes
+		Objetivo: Mostrar clientes por nome
+		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Data: 03/02/2020
+		Retornos: 0 - OK
+				  1 - Erro
+		Ex: EXEC SelCliente
+	*/
+	BEGIN
+		IF((SELECT COUNT(*) FROM Categoria WITH(NOLOCK) WHERE Num_IdCategoria = @Num_Id) < 1)
+			BEGIN PRINT 'Sem categorias cadastradas'
+			RETURN 1 END
+		ELSE
+			SELECT	Nom_Nome,
+					Num_IdCategoria
+			FROM Categoria WITH(NOLOCK)
+			WHERE Num_IdCategoria = @Num_Id
 	END
 GO

@@ -12,7 +12,7 @@ CREATE PROCEDURE [dbo].[InsCliente]
 
 	AS
 	/*
-		Documentação
+		Documentaï¿½ï¿½o
 		Arquivo Fonte: Clientes
 		Objetivo: Cadastrar clientes
 		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
@@ -22,8 +22,8 @@ CREATE PROCEDURE [dbo].[InsCliente]
 		Ex: EXEC InsCliente 'Bruno','Silveira','bruno','123'
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Usuario WHERE Nom_Login = @Nom_Login) > 0)
-			BEGIN PRINT 'Nome de usuario já existe'
+		IF((SELECT COUNT(*) FROM Usuario WITH(NOLOCK) WHERE Nom_Login = @Nom_Login) > 0)
+			BEGIN PRINT 'Nome de usuario jï¿½ existe'
 			RETURN 1 END
 		ELSE
 			INSERT INTO Usuario (Nom_Nome, Nom_Sobrenome, Nom_Login, Nom_Senha)
@@ -36,24 +36,25 @@ IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[UpdCliente
 GO
 
 CREATE PROCEDURE [dbo].[UpdCliente]
+	@Num_Id			int,
 	@Nom_Login		varchar(50) = NULL,
 	@Nom_Senha		varchar(50) = NULL,
 	@Nom_Nome		varchar(50) = NULL,
 	@Nom_Sobrenome	varchar(50) = NULL
 	AS
 	/*
-		Documentação
+		DocumentaÃ§Ã£o
 		Arquivo Fonte: Clientes
 		Objetivo: Editar clientes
 		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
 		Data: 03/02/2020
-		Retornos: 0 - Edição Realizada
-				  1 - Erro na edição
+		Retornos: 0 - EdiÃ§Ã£o Realizada
+				  1 - Erro na ediÃ§Ã£o
 		Ex: EXEC UpdCliente 'bruno','123','Bruno','Lustosa'
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Usuario WHERE Nom_Login = @Nom_Login) < 1)
-			BEGIN PRINT 'Usuario não existente'
+		IF((SELECT COUNT(*) FROM Usuario WITH(NOLOCK) WHERE Num_Id = @Num_Id ) < 1)
+			BEGIN PRINT 'Usuario nÃ£o existente'
 			RETURN 1 END
 		ELSE
 			UPDATE Usuario
@@ -61,7 +62,7 @@ CREATE PROCEDURE [dbo].[UpdCliente]
 				Nom_Sobrenome = @Nom_Sobrenome,
 				Nom_Login = @Nom_Login,
 				Nom_Senha = @Nom_Senha
-			WHERE Nom_Login = @Nom_Login 
+			WHERE Num_Id = @Num_Id 
 	END
 GO
 
@@ -70,26 +71,26 @@ IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[DelCliente
 GO
 
 CREATE PROCEDURE [dbo].[DelCliente]
-	@Nom_Login		varchar(50) = NULL
+	@Num_Id		int
 	AS
 	/*
-		Documentação
+		DocumentaÃ§Ã£o
 		Arquivo Fonte: Clientes
 		Objetivo: Excluir clientes
 		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
 		Data: 03/02/2020
-		Retornos: 0 - Exclusão Realizada
-				  1 - Erro na edição
+		Retornos: 0 - ExclusÃ£o Realizada
+				  1 - Erro na exclusÃ£o
 		Ex: EXEC DelCliente 'bruno'
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Usuario WHERE Nom_Login = @Nom_Login) < 1)
-			BEGIN PRINT 'Usuario não existente'
+		IF((SELECT COUNT(*) FROM Usuario WITH(NOLOCK) WHERE Num_Id = @Num_Id) < 1)
+			BEGIN PRINT 'Usuario nÃ£o existente'
 			RETURN 1 END
 		ELSE
 			DELETE
 			FROM	Usuario
-			WHERE	Nom_Login = @Nom_Login
+			WHERE	Num_Id = @Num_Id
 	END
 GO
 
@@ -100,7 +101,7 @@ GO
 CREATE PROCEDURE [dbo].[SelCliente] 
 	AS
 	/*
-		Documentação
+		DocumentaÃ§Ã£o
 		Arquivo Fonte: Clientes
 		Objetivo: Mostrar clientes
 		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
@@ -110,13 +111,46 @@ CREATE PROCEDURE [dbo].[SelCliente]
 		Ex: EXEC SelCliente
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Usuario) < 1)
+		IF((SELECT COUNT(*) FROM Usuario WITH(NOLOCK)) < 1)
 			BEGIN PRINT 'Sem usuarios cadastrados'
 			RETURN 1 END
 		ELSE
-			SELECT	Nom_Nome,
+			SELECT	Num_Id,
+					Nom_Nome,
 					Nom_Sobrenome,
 					Nom_Login
-			FROM Usuario
+			FROM Usuario WITH(NOLOCK)
+	END
+GO
+
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[SelClienteId]') AND objectproperty(id, N'IsPROCEDURE')=1)
+	DROP PROCEDURE [dbo].[SelClienteId] 
+GO
+
+CREATE PROCEDURE [dbo].[SelClienteId] 
+	@Num_Id			int
+	AS
+	/*
+		DocumentaÃ§Ã£o
+		Arquivo Fonte: Clientes
+		Objetivo: Mostrar clientes por nome
+		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Data: 03/02/2020
+		Retornos: 0 - OK
+				  1 - Erro
+		Ex: EXEC SelClienteId 14
+	*/
+	BEGIN
+		IF((SELECT COUNT(*) FROM Usuario WITH(NOLOCK)) < 1)
+			BEGIN PRINT 'Sem usuarios cadastrados'
+			RETURN 1 END
+		ELSE
+			SELECT	Num_Id,
+					Nom_Nome,
+					Nom_Sobrenome,
+					Nom_Login
+			FROM Usuario WITH(NOLOCK)
+			WHERE	Num_Id = @Num_Id
 	END
 GO

@@ -1,71 +1,76 @@
-﻿using System.Data.SqlClient;
-
+﻿using ProjetoAlmoco.Domain.Alimento;
+using System;
+using System.Collections.Generic;
 namespace ProjetoAlmoco.Repository.Repositories
 {
-    class AlimentoRepository
+    public class AlimentoRepository : Connection , IAlimentoRepository
     {
-        public void InsAlimento(string Nom_Nome, char Ind_Disponivel, int Num_Categoria)
+        public IEnumerable<AlimentosDto> getAll()
         {
-            SqlCommand cmdComando;
-            using (cmdComando = new SqlCommand())
-            {
-                cmdComando.CommandText = "InsAlimento";
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Nome", Nom_Nome));
-                cmdComando.Parameters.Add(new SqlParameter("@Ind_Disponivel", Ind_Disponivel));
-                cmdComando.Parameters.Add(new SqlParameter("@Num_Categoria", Num_Categoria));
-                using (var Context = new Context())
-                {
-                    Context.executaComando(cmdComando);
-                }
-            }
+            ExecuteProcedure("SelAlimento");
+
+            var allUsersData = new List<AlimentosDto>();
+            using (var reader = ExecuteReader())
+                while (reader.Read())
+                    allUsersData.Add(new AlimentosDto
+                    {
+                        Num_IdAlimentos = Convert.ToInt16(reader["Num_IdAlimentos"].ToString()),
+                        Nom_NomeAlimento = reader["Nom_NomeAlimento"].ToString(),
+                        Ind_Disponivel = Convert.ToChar(reader["Ind_Disponivel"].ToString()),
+                        Num_IdCategoria = Convert.ToInt16(reader["Num_IdCategoria"].ToString())
+                    });
+
+            return allUsersData;
+        }
+
+        public AlimentosDto get(int Num_Id)
+        {
+            ExecuteProcedure("SelAlimentoId");
+            AddParameter("@Num_id", Num_Id);
+
+            using (var reader = ExecuteReader())
+                if (reader.Read())
+                    return new AlimentosDto
+                    {
+                        Num_IdAlimentos = Convert.ToInt16(reader["Num_IdAlimentos"].ToString()),
+                        Nom_NomeAlimento = reader["Nom_NomeAlimento"].ToString(),
+                        Ind_Disponivel = Convert.ToChar(reader["Ind_Disponivel"].ToString()),
+                        Num_IdCategoria = Convert.ToInt16(reader["Num_IdCategoria"].ToString())
+                    };
+
+            return null;
+        }
+
+        public void delete(AlimentosDto alimentos)
+        {
+
+            ExecuteProcedure("DelAlimento");
+            AddParameter("@Num_Id", alimentos.Num_IdAlimentos);
+            ExecuteNonQuery();
 
         }
 
-        public void UpdAlimento(string Nom_Nome, string Nom_NovoNome, char Ind_Disponivel)
+        public void put(AlimentosDto alimentos)
         {
-            SqlCommand cmdComando;
-            using (cmdComando = new SqlCommand())
-            {
-                cmdComando.CommandText = "UpdAlimento";
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Nome", Nom_Nome));
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_NovoNome", Nom_NovoNome));
-                cmdComando.Parameters.Add(new SqlParameter("@Ind_Disponivel", Ind_Disponivel));
-                using (var Context = new Context())
-                {
-                    Context.executaComando(cmdComando);
-                }
-            }
-
+            ExecuteProcedure("UpdAlimento");
+            AddParameter("@Num_Id", alimentos.Num_IdAlimentos);
+            AddParameter("@Nom_Nome", alimentos.Nom_NomeAlimento);
+            AddParameter("@Ind_Disponivel", alimentos.Ind_Disponivel);
+            ExecuteNonQuery();
         }
 
-        public void DelAlimento(string Nom_Nome)
+        public void post(AlimentosDto alimentos)
         {
-            SqlCommand cmdComando;
-            using (cmdComando = new SqlCommand())
-            {
-                cmdComando.CommandText = "DelAlimento";
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Nome", Nom_Nome));
-                using (var Context = new Context())
-                {
-                    Context.executaComando(cmdComando);
-                }
-            }
-
+            ExecuteProcedure("InsAlimento");
+            AddParameter("@Nom_Nome", alimentos.Nom_NomeAlimento);
+            AddParameter("@Ind_Disponivel", alimentos.Ind_Disponivel);
+            AddParameter("@Num_IdCategoria", alimentos.Num_IdCategoria);
+            ExecuteNonQuery();
         }
 
-        public void SelAlimento()
+        public void Dispose()
         {
-            SqlCommand cmdComando;
-            using (cmdComando = new SqlCommand())
-            {
-                cmdComando.CommandText = "SelAlimento";
-                using (var Context = new Context())
-                {
-                    Context.executaComando(cmdComando);
-                }
-            }
-
+            throw new NotImplementedException();
         }
-
     }
 }

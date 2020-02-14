@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoAlmoco.Application",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoAlmoco.MVC", "ProjetoAlmoco.MVC\ProjetoAlmoco.MVC.csproj", "{E79223A6-6EDD-49E6-A7AF-6597FE1BEA14}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoAlmoco.Api", "ProjetoAlmoco.Api\ProjetoAlmoco.Api.csproj", "{216239E2-D42F-4EDB-869D-51C4327BE8C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{E79223A6-6EDD-49E6-A7AF-6597FE1BEA14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E79223A6-6EDD-49E6-A7AF-6597FE1BEA14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E79223A6-6EDD-49E6-A7AF-6597FE1BEA14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{216239E2-D42F-4EDB-869D-51C4327BE8C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{216239E2-D42F-4EDB-869D-51C4327BE8C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{216239E2-D42F-4EDB-869D-51C4327BE8C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{216239E2-D42F-4EDB-869D-51C4327BE8C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

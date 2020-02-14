@@ -31,15 +31,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Entities\Alimentos.cs" />
-    <Compile Include="Entities\Categoria.cs" />
-    <Compile Include="Entities\Pedidos.cs" />
-    <Compile Include="Entities\Usuario.cs" />
+    <Compile Include="Alimento\Dto\AlimentosDto.cs" />
+    <Compile Include="Categoria\Dto\CategoriaDto.cs" />
+    <Compile Include="Pedidos\Dto\PedidosDto.cs" />
+    <Compile Include="Usuario\Dto\UsuarioDto.cs" />
+    <Compile Include="Alimento\IAlimentoRepository.cs" />
+    <Compile Include="Categoria\ICategoriaRepository.cs" />
+    <Compile Include="Pedidos\IPedidosRepository.cs" />
+    <Compile Include="Usuario\IUsuarioRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

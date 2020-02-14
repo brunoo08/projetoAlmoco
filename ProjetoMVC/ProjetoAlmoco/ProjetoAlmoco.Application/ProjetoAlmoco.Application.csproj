@@ -41,10 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UsuarioApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UsuarioAplicacao.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ProjetoAlmoco.Domain\ProjetoAlmoco.Domain.csproj">
+      <Project>{2156D347-6AD3-4ED9-8C60-78683DBF4663}</Project>
+      <Name>ProjetoAlmoco.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProjetoAlmoco.Repository\ProjetoAlmoco.Repository.csproj">
       <Project>{64d267a0-c224-4223-b937-f0145bba921a}</Project>
       <Name>ProjetoAlmoco.Repository</Name>

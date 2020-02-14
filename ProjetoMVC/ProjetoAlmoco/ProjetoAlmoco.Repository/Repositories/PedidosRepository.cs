@@ -1,86 +1,79 @@
-﻿using System.Data.SqlClient;
+﻿using ProjetoAlmoco.Domain.Alimento;
+using ProjetoAlmoco.Domain.Pedidos;
+using ProjetoAlmoco.Domain.Pedidos.Dto;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace ProjetoAlmoco.Repository.Repositories
 {
-    class PedidosRepository
+    public class PedidosRepository : Connection , IPedidosRepository
     {
-        public void InsPedido(string Nom_Nome, string Nom_Sobrenome, string Nom_Alimento)
+        public IEnumerable<PedidosDto> getAll()
         {
-            SqlCommand cmdComando;
-            using (cmdComando = new SqlCommand())
-            {
-                cmdComando.CommandText = "InsPedido";
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Nome", Nom_Nome));
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Sobrenome", Nom_Sobrenome));
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Alimento", Nom_Alimento));
-                using (var Context = new Context())
-                {
-                    Context.executaComando(cmdComando);
-                }
-            }
+            ExecuteProcedure("SelPedido");
+
+            var allUsersData = new List<PedidosDto>();
+            using (var reader = ExecuteReader())
+                while (reader.Read())
+                    allUsersData.Add(new PedidosDto
+                    {
+                        Num_IdPedidos = Convert.ToInt16(reader["Num_IdPedidos"].ToString()),
+                        Num_IdUsuario = Convert.ToInt16(reader["Num_IdUsuario"].ToString()),
+                        Dat_Date = Convert.ToDateTime(reader["Dat_Date"].ToString()),
+                        Num_IdAlimento = Convert.ToInt16(reader["Num_IdAlimento"].ToString()),
+                    });
+
+            return allUsersData;
+        }
+
+        public PedidosDto get(int Num_Id)
+        {
+            ExecuteProcedure("SelPedidoId");
+            AddParameter("@Num_Id", Num_Id);
+
+            using (var reader = ExecuteReader())
+                if (reader.Read())
+                    return new PedidosDto
+                    {
+                        Num_IdPedidos = Convert.ToInt16(reader["Num_IdPedidos"].ToString()),
+                        Num_IdUsuario = Convert.ToInt16(reader["Num_IdUsuario"].ToString()),
+                        Dat_Date = Convert.ToDateTime(reader["Dat_Date"].ToString()),
+                        Num_IdAlimento = Convert.ToInt16(reader["Num_IdAlimento"].ToString()),
+                    };
+
+            return null;
+        }
+
+        public void delete(PedidosDto pedidos)
+        {
+
+            ExecuteProcedure("DelPedido");
+            AddParameter("@Num_Id", pedidos.Num_IdPedidos);
+            ExecuteNonQuery();
 
         }
 
-        public void UpdPedido(string Nom_Nome, string Nom_Sobrenome, string Nom_Alimento, string Nom_NovoAlimento)
+        public void put(PedidosDto pedidos)
         {
-            SqlCommand cmdComando;
-            using (cmdComando = new SqlCommand())
-            {
-                cmdComando.CommandText = "UpdPedido";
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Nome", Nom_Nome));
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Sobrenome", Nom_Sobrenome));
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_NomeAlimento", Nom_Alimento));
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_NomeAlimento", Nom_NovoAlimento));
-                using (var Context = new Context())
-                {
-                    Context.executaComando(cmdComando);
-                }
-            }
-
+            ExecuteProcedure("UpdPedido");
+            AddParameter("@Num_IdPedido", pedidos.Num_IdPedidos);
+            AddParameter("@Num_IdUsuario", pedidos.Num_IdUsuario);
+            AddParameter("@Num_IdAlimento", pedidos.Num_IdAlimento);
+            ExecuteNonQuery();
         }
 
-        public void DelPedido(string Nom_Nome, string Nom_Sobrenome)
+        public void post(PedidosDto pedidos)
         {
-            SqlCommand cmdComando;
-            using (cmdComando = new SqlCommand())
-            {
-                cmdComando.CommandText = "DelPedido";
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Nome", Nom_Nome));
-                cmdComando.Parameters.Add(new SqlParameter("@Nom_Sobrenome", Nom_Sobrenome));
-                using (var Context = new Context())
-                {
-                    Context.executaComando(cmdComando);
-                }
-            }
-
+            ExecuteProcedure("InsPedido");
+            AddParameter("@Num_Id", pedidos.Num_IdUsuario);
+            AddParameter("@Num_IdAlimento", pedidos.Num_IdAlimento);
+            ExecuteNonQuery();
         }
 
-        public void SelPedido()
+        public void Dispose()
         {
-            SqlCommand cmdComando;
-            using (cmdComando = new SqlCommand())
-            {
-                cmdComando.CommandText = "SelPedido";
-                using (var Context = new Context())
-                {
-                    Context.executaComandoComRetorno(cmdComando);
-                }
-            }
-
-        }
-
-        public void DelTodosPedido()
-        {
-            SqlCommand cmdComando;
-            using (cmdComando = new SqlCommand())
-            {
-                cmdComando.CommandText = "DelTodosPedido";
-                using (var Context = new Context())
-                {
-                    Context.executaComando(cmdComando);
-                }
-            }
-
+            throw new NotImplementedException();
         }
     }
 }
