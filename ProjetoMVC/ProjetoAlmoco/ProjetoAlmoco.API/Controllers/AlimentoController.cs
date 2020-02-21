@@ -30,6 +30,19 @@ namespace ProjetoAlmoco.Api.Controllers
             }
         }
 
+        [HttpGet, Route(template: "API/Alimento/GetDisp")]
+        public IHttpActionResult GetDisp()
+        {
+            try
+            {
+                return Ok(_alimentoRepository.getDisp());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         public IHttpActionResult Get(int Num_Id)
         {
             try

@@ -23,6 +23,24 @@ namespace ProjetoAlmoco.Repository.Repositories
             return allUsersData;
         }
 
+        public IEnumerable<AlimentosDto> getDisp()
+        {
+            ExecuteProcedure("SelAlimentosDisponiveis");
+
+            var allUsersData = new List<AlimentosDto>();
+            using (var reader = ExecuteReader())
+                while (reader.Read())
+                    allUsersData.Add(new AlimentosDto
+                    {
+                        Num_IdAlimentos = Convert.ToInt16(reader["Num_IdAlimentos"].ToString()),
+                        Nom_NomeAlimento = reader["Nom_NomeAlimento"].ToString(),
+                        Ind_Disponivel = Convert.ToChar(reader["Ind_Disponivel"].ToString()),
+                        Num_IdCategoria = Convert.ToInt16(reader["Num_IdCategoria"].ToString())
+                    });
+
+            return allUsersData;
+        }
+
         public AlimentosDto get(int Num_Id)
         {
             ExecuteProcedure("SelAlimentoId");

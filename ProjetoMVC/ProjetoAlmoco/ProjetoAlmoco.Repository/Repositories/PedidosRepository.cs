@@ -54,6 +54,14 @@ namespace ProjetoAlmoco.Repository.Repositories
 
         }
 
+        public void deleteAll(PedidosDto pedidos)
+        {
+
+            ExecuteProcedure("DelPedidoAll");
+            ExecuteNonQuery();
+
+        }
+
         public void put(PedidosDto pedidos)
         {
             ExecuteProcedure("UpdPedido");

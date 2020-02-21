@@ -58,6 +58,21 @@ namespace ProjetoAlmoco.Api.Controllers
 
         }
 
+        [HttpGet, Route(template: "API/Pedidos/DeleteAll")]
+        public IHttpActionResult DeleteAll(PedidosDto pedidos)
+        {
+            try
+            {
+                _pedidosRepository.deleteAll(pedidos);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
         [HttpPut]
         public IHttpActionResult Put(PedidosDto pedidos)
         {

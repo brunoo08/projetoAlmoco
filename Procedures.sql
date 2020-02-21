@@ -15,15 +15,9 @@ CREATE PROCEDURE [dbo].[InsPedido]
 		Objetivo: Cadastrar pedidos
 		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
 		Data: 03/02/2020
-		Retornos: 0 - Cadastro Realizado
-				  1 - Erro no Cadastro
-		Ex: EXEC InsPedido 17, 1
+		Ex: EXEC InsPedido 17, 5
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Alimentos WITH(NOLOCK) WHERE Num_IdAlimentos = @Num_IdAlimento) < 1)
-			BEGIN PRINT 'Alimento não existe'
-			RETURN 1 END
-		ELSE
 			DECLARE
 				@Dat_Date		date
 
@@ -48,23 +42,17 @@ CREATE PROCEDURE [dbo].[UpdPedido]
 		Documenta��o
 		Arquivo Fonte: Pedidos
 		Objetivo: Cadastrar pedidos
-		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Autor: Bruno Silveira
 		Data: 03/02/2020
-		Retornos: 0 - Cadastro Realizado
-				  1 - Erro no Cadastro
 		Ex: EXEC UpdPedido 6,17,5
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Pedidos WITH(NOLOCK) WHERE Num_IdPedidos = @Num_IdPedido) < 1)
-			BEGIN PRINT 'Pedido não existe'
-			RETURN 1 END
-		ELSE
-			DECLARE
-			@Dat_Date				date
+		DECLARE
+		@Dat_Date				date
 
-			SELECT @Dat_Date = GETDATE() 
+		SELECT @Dat_Date = GETDATE() 
 	
-			UPDATE Pedidos
+		UPDATE Pedidos
 			SET	Num_IdUsuario = @Num_IdUsuario,
 				Dat_Date = @Dat_Date,
 				Num_IdAlimento = @Num_IdAlimento
@@ -83,20 +71,31 @@ CREATE PROCEDURE [dbo].[DelPedido]
 		Documentação
 		Arquivo Fonte: Pedidos
 		Objetivo: Exclui pedidos
-		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Autor: Bruno Silveira
 		Data: 03/02/2020
-		Retornos: 0 - Exclusão Realizado
-				  1 - Erro no Cadastro
 		Ex: EXEC DelPedido 8
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Pedidos WITH(NOLOCK) WHERE Num_IdPedidos = @Num_Id) < 1)
-			BEGIN PRINT 'Usuario não existente'
-			RETURN 1 END
-		ELSE
-			DELETE
-			FROM Pedidos 
-			WHERE Num_IdPedidos = @Num_Id
+			DELETE FROM Pedidos WHERE Num_IdPedidos = @Num_Id
+	END
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[DelPedidoAll]') AND objectproperty(id, N'IsPROCEDURE')=1)
+	DROP PROCEDURE [dbo].[DelPedidoAll] 
+GO
+
+CREATE PROCEDURE [dbo].[DelPedidoAll]
+	AS
+	/*
+		Documentação
+		Arquivo Fonte: Pedidos
+		Objetivo: Exclui pedidos
+		Autor: Bruno Silveira
+		Data: 03/02/2020
+		Ex: EXEC DelPedido 8
+	*/
+	BEGIN
+			DELETE FROM Pedidos
 	END
 GO
 
@@ -107,24 +106,18 @@ GO
 CREATE PROCEDURE [dbo].[SelPedido]
 	AS
 	/*
-		Documenta��o
+		Documentação
 		Arquivo Fonte: Pedidos
 		Objetivo: Mostra pedidos
-		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Autor: Bruno Silveira
 		Data: 03/02/2020
-		Retornos: 0 - Exclus�o Realizado
-				  1 - Erro no Cadastro
 		Ex: EXEC SelPedido
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Pedidos WITH(NOLOCK)) < 1)
-			BEGIN PRINT 'Sem pedidos cadastrados'
-			RETURN 1 END
-		ELSE
-			SELECT	Num_IdPedidos,
-					Num_IdUsuario,
-					Dat_Date,
-					Num_IdAlimento
+		SELECT	Num_IdPedidos,
+				Num_IdUsuario,
+				Dat_Date,
+				Num_IdAlimento
 			FROM Pedidos WITH(NOLOCK)
 	END
 GO
@@ -137,25 +130,43 @@ CREATE PROCEDURE [dbo].[SelPedidoId]
 	@Num_Id	int
 	AS
 	/*
-		Documenta��o
+		Documentação
 		Arquivo Fonte: Pedidos
-		Objetivo: Mostra pedidos
-		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Objetivo: Mostra pedidos por Id
+		Autor: Bruno Silveira
 		Data: 03/02/2020
-		Retornos: 0 - Exclus�o Realizado
-				  1 - Erro no Cadastro
-		Ex: EXEC SelPedido
+		Ex: EXEC SelPedidoId 17
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Pedidos WITH(NOLOCK)) < 1)
-			BEGIN PRINT 'Sem pedidos cadastrados'
-			RETURN 1 END
-		ELSE
-			SELECT	Num_IdPedidos,
-					Num_IdUsuario,
-					Dat_Date,
-					Num_IdAlimento
+		SELECT	Num_IdPedidos,
+				Num_IdUsuario,
+				Dat_Date,
+				Num_IdAlimento
 			FROM Pedidos WITH(NOLOCK)
 			WHERE Num_IdPedidos = @Num_Id
+	END
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[SelPedidoAlimento]') AND objectproperty(id, N'IsPROCEDURE')=1)
+	DROP PROCEDURE [dbo].[SelPedidoAlimento] 
+GO
+
+CREATE PROCEDURE [dbo].[SelPedidoAlimento] 
+	@Num_Id			int
+	AS
+	/*
+		Documentação
+		Arquivo Fonte: Pedidos
+		Objetivo: Mostra os alimentos dos pedidos
+		Autor: Bruno Silveira
+		Data: 03/02/2020
+		Ex: EXEC SelPedidoAlimento	17
+	*/
+	BEGIN
+		SELECT Nom_NomeAlimento
+			FROM Alimentos A 
+				INNER JOIN Pedidos P 
+					ON A.Num_IdAlimentos = P.Num_IdAlimento
+			WHERE P.Num_IdUsuario = @Num_Id
 	END
 GO

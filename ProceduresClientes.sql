@@ -12,22 +12,16 @@ CREATE PROCEDURE [dbo].[InsCliente]
 
 	AS
 	/*
-		Documenta��o
+		Documentação
 		Arquivo Fonte: Clientes
 		Objetivo: Cadastrar clientes
-		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Autor: Bruno Silveira
 		Data: 03/02/2020
-		Retornos: 0 - Cadastro Realizado
-				  1 - Erro no Cadastro
 		Ex: EXEC InsCliente 'Bruno','Silveira','bruno','123'
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Usuario WITH(NOLOCK) WHERE Nom_Login = @Nom_Login) > 0)
-			BEGIN PRINT 'Nome de usuario j� existe'
-			RETURN 1 END
-		ELSE
-			INSERT INTO Usuario (Nom_Nome, Nom_Sobrenome, Nom_Login, Nom_Senha)
-					VALUES (@Nom_Nome, @Nom_Sobrenome, @Nom_Login, @Nom_Senha)
+		INSERT INTO Usuario (Nom_Nome, Nom_Sobrenome, Nom_Login, Nom_Senha)
+			VALUES (@Nom_Nome, @Nom_Sobrenome, @Nom_Login, @Nom_Senha)
 	END
 GO
 
@@ -46,11 +40,9 @@ CREATE PROCEDURE [dbo].[UpdCliente]
 		Documentação
 		Arquivo Fonte: Clientes
 		Objetivo: Editar clientes
-		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Autor: Bruno Silveira
 		Data: 03/02/2020
-		Retornos: 0 - Edição Realizada
-				  1 - Erro na edição
-		Ex: EXEC UpdCliente 'bruno','123','Bruno','Lustosa'
+		Ex: EXEC UpdCliente 1,'bruno','123','Bruno','Lustosa'
 	*/
 	BEGIN
 		IF((SELECT COUNT(*) FROM Usuario WITH(NOLOCK) WHERE Num_Id = @Num_Id ) < 1)
@@ -77,20 +69,12 @@ CREATE PROCEDURE [dbo].[DelCliente]
 		Documentação
 		Arquivo Fonte: Clientes
 		Objetivo: Excluir clientes
-		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Autor: Bruno Silveira
 		Data: 03/02/2020
-		Retornos: 0 - Exclusão Realizada
-				  1 - Erro na exclusão
-		Ex: EXEC DelCliente 'bruno'
+		Ex: EXEC DelCliente 7
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Usuario WITH(NOLOCK) WHERE Num_Id = @Num_Id) < 1)
-			BEGIN PRINT 'Usuario não existente'
-			RETURN 1 END
-		ELSE
-			DELETE
-			FROM	Usuario
-			WHERE	Num_Id = @Num_Id
+		DELETE FROM	Usuario WHERE Num_Id = @Num_Id
 	END
 GO
 
@@ -104,21 +88,15 @@ CREATE PROCEDURE [dbo].[SelCliente]
 		Documentação
 		Arquivo Fonte: Clientes
 		Objetivo: Mostrar clientes
-		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Autor: Bruno Silveira
 		Data: 03/02/2020
-		Retornos: 0 - OK
-				  1 - Erro
 		Ex: EXEC SelCliente
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Usuario WITH(NOLOCK)) < 1)
-			BEGIN PRINT 'Sem usuarios cadastrados'
-			RETURN 1 END
-		ELSE
-			SELECT	Num_Id,
-					Nom_Nome,
-					Nom_Sobrenome,
-					Nom_Login
+		SELECT	Num_Id,
+				Nom_Nome,
+				Nom_Sobrenome,
+				Nom_Login
 			FROM Usuario WITH(NOLOCK)
 	END
 GO
@@ -135,21 +113,15 @@ CREATE PROCEDURE [dbo].[SelClienteId]
 		Documentação
 		Arquivo Fonte: Clientes
 		Objetivo: Mostrar clientes por nome
-		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Autor: Bruno Silveira
 		Data: 03/02/2020
-		Retornos: 0 - OK
-				  1 - Erro
 		Ex: EXEC SelClienteId 14
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Usuario WITH(NOLOCK)) < 1)
-			BEGIN PRINT 'Sem usuarios cadastrados'
-			RETURN 1 END
-		ELSE
-			SELECT	Num_Id,
-					Nom_Nome,
-					Nom_Sobrenome,
-					Nom_Login
+		SELECT	Num_Id,
+				Nom_Nome,
+				Nom_Sobrenome,
+				Nom_Login
 			FROM Usuario WITH(NOLOCK)
 			WHERE	Num_Id = @Num_Id
 	END

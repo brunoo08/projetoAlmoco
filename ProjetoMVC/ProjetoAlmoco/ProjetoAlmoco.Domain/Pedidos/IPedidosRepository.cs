@@ -9,6 +9,7 @@ namespace ProjetoAlmoco.Domain.Pedidos
         void post(PedidosDto pedidos);
         void put(PedidosDto pedidos);
         void delete(PedidosDto pedidos);
+        void deleteAll(PedidosDto pedidos);
         IEnumerable<PedidosDto> getAll();
         PedidosDto get(int Num_Id);
     }

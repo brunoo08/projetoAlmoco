@@ -10,22 +10,16 @@ CREATE PROCEDURE [dbo].[InsAlimento]
 	@Num_IdCategoria	int
 	AS
 	/*
-		Documenta��o
+		Documentação
 		Arquivo Fonte: Clientes
 		Objetivo: Cadastrar Alimentos
-		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Autor: Bruno Silveira
 		Data: 03/02/2020
-		Retornos: 0 - Cadastro Realizado
-				  1 - Erro no Cadastro
 		Ex: EXEC InsAlimento 'Arroz Carreteiro','1',1
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Alimentos WITH(NOLOCK) WHERE Nom_NomeAlimento = @Nom_Nome) > 1)
-			BEGIN PRINT 'Alimento j� cadastrado'
-			RETURN 1 END
-		ELSE
-			INSERT INTO Alimentos(Nom_NomeAlimento,Ind_Disponivel, Num_IdCategoria)
-					VALUES (@Nom_Nome,@Ind_Disponivel, @Num_IdCategoria)
+		INSERT INTO Alimentos(Nom_NomeAlimento,Ind_Disponivel, Num_IdCategoria)
+				VALUES (@Nom_Nome,@Ind_Disponivel, @Num_IdCategoria)
 	END
 GO
 
@@ -39,21 +33,15 @@ CREATE PROCEDURE [dbo].[UpdAlimento]
 	@Ind_Disponivel		char(1)
 	AS
 	/*
-		Documenta��o
+		Documentação
 		Arquivo Fonte: Clientes
 		Objetivo: Alterar Alimentos
-		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Autor: Bruno Silveira
 		Data: 03/02/2020
-		Retornos: 0 - Altera��o Realizada
-				  1 - Erro 
-		Ex: EXEC UpdAlimento 'Arroz Branco','Arroz','0'
+		Ex: EXEC UpdAlimento 1,'Arroz','0'
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Alimentos WITH(NOLOCK) WHERE Num_IdAlimentos = @Num_Id) < 1)
-			BEGIN PRINT 'Alimento n�o existe'
-			RETURN 1 END
-		ELSE
-			UPDATE	Alimentos
+		UPDATE	Alimentos
 			SET	Nom_NomeAlimento = @Nom_Nome,
 				Ind_Disponivel = @Ind_Disponivel
 			WHERE Num_IdAlimentos = @Num_Id
@@ -71,20 +59,12 @@ CREATE PROCEDURE [dbo].[DelAlimento]
 		Documentação
 		Arquivo Fonte: Clientes
 		Objetivo: Excluir Alimentos
-		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Autor: Bruno Silveira
 		Data: 03/02/2020
-		Retornos: 0 - Exclusão Realizada
-				  1 - Erro 
-		Ex: EXEC DelAlimento 'Arroz Carreteiro'
+		Ex: EXEC DelAlimento 8
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Alimentos WITH(NOLOCK) WHERE Num_IdAlimentos = @Num_Id) < 1)
-			BEGIN PRINT 'Alimento não existe'
-			RETURN 1 END
-		ELSE
-			DELETE 
-			FROM Alimentos 
-			WHERE Num_IdAlimentos = @Num_Id
+		DELETE FROM Alimentos WHERE Num_IdAlimentos = @Num_Id
 	END
 GO
 
@@ -95,25 +75,19 @@ GO
 CREATE PROCEDURE [dbo].[SelAlimento]
 	AS
 	/*
-		Documenta��o
+		Documentação
 		Arquivo Fonte: Clientes
 		Objetivo: Mostrar Alimentos
-		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Autor: Bruno Silveira
 		Data: 03/02/2020
-		Retornos: 0 - OK
-				  1 - Erro 
 		Ex: EXEC SelAlimento
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Alimentos WITH(NOLOCK)) < 1)
-			BEGIN PRINT 'Sem alimentos cadastrados'
-			RETURN 1 END
-		ELSE
-			SELECT	Num_IdAlimentos,
-					Nom_NomeAlimento,
-					Ind_Disponivel,
-					Num_IdCategoria
-			FROM Alimentos WITH(NOLOCK)
+		SELECT	Num_IdAlimentos,
+				Nom_NomeAlimento,
+				Ind_Disponivel,
+				Num_IdCategoria
+		FROM Alimentos WITH(NOLOCK)
 	END
 GO
 
@@ -128,22 +102,40 @@ CREATE PROCEDURE [dbo].[SelAlimentoId]
 		Documentação
 		Arquivo Fonte: Clientes
 		Objetivo: Mostrar clientes por nome
-		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Autor: Bruno Silveira
 		Data: 03/02/2020
-		Retornos: 0 - OK
-				  1 - Erro
 		Ex: EXEC SelCliente
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Alimentos WITH(NOLOCK) WHERE Num_IdAlimentos = @Num_id) < 1)
-			BEGIN PRINT 'Sem alimentos cadastrados'
-			RETURN 1 END
-		ELSE
-			SELECT	Num_IdAlimentos,
-					Nom_NomeAlimento,
-					Ind_Disponivel,
-					Num_IdCategoria
+		SELECT	Num_IdAlimentos,
+				Nom_NomeAlimento,
+				Ind_Disponivel,
+				Num_IdCategoria
 			FROM Alimentos WITH(NOLOCK)
 			WHERE Num_IdAlimentos = @Num_id
+	END
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[SelAlimentosDisponiveis]') AND objectproperty(id, N'IsPROCEDURE')=1)
+	DROP PROCEDURE [dbo].[SelAlimentosDisponiveis] 
+GO
+
+CREATE PROCEDURE [dbo].[SelAlimentosDisponiveis]
+	AS
+	/*
+		Documentação
+		Arquivo Fonte: Alimentos
+		Objetivo: Seecionar Alimentos disponiveis
+		Autor: Bruno Silveira
+		Data: 03/02/2020
+		Ex: EXEC SelAlimentosDisponiveis
+	*/
+	BEGIN
+		SELECT  Num_IdAlimentos,
+				Nom_NomeAlimento,
+				Ind_Disponivel,
+				Num_IdCategoria
+			FROM Alimentos
+			WHERE Ind_Disponivel = '1'
 	END
 GO

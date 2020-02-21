@@ -6,7 +6,7 @@ namespace ProjetoAlmoco.MVC.Controllers
     public class HomeController : Controller
     {
         // GET: Home
-        public ActionResult Index()
+        public ActionResult IndexAdmin()
         {
             return View();
         }

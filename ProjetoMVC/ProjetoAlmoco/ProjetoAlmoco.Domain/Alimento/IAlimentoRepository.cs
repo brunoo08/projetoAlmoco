@@ -8,6 +8,7 @@ namespace ProjetoAlmoco.Domain.Alimento
         void put(AlimentosDto alimentos);
         void delete(AlimentosDto alimentos);
         IEnumerable<AlimentosDto> getAll();
+        IEnumerable<AlimentosDto> getDisp();
         AlimentosDto get(int Num_Id);
     }
 }

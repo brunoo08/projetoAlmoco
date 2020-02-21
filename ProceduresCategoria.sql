@@ -11,19 +11,13 @@ CREATE PROCEDURE [dbo].[InsCategoria]
 		Documentação
 		Arquivo Fonte: Categoria
 		Objetivo: Cadastrar categoria
-		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Autor: Bruno Silveira
 		Data: 03/02/2020
-		Retornos: 0 - Cadastro Realizado
-				  1 - Erro no Cadastro
-		Ex: EXEC 
+		Ex: EXEC 'Massa'
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Categoria WHERE Nom_Nome = @Nom_Nome) > 0)
-			BEGIN PRINT 'Categoria já existe'
-			RETURN 1 END
-		ELSE
-			INSERT INTO Categoria (Nom_Nome)
-					VALUES (@Nom_Nome)
+		INSERT INTO Categoria (Nom_Nome)
+			VALUES (@Nom_Nome)
 	END
 GO
 
@@ -39,18 +33,12 @@ CREATE PROCEDURE [dbo].[UpdCategoria]
 		Documentação
 		Arquivo Fonte: Categoria
 		Objetivo: Editar categoria
-		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Autor: Bruno Silveira
 		Data: 03/02/2020
-		Retornos: 0 - Edição Realizada
-				  1 - Erro
-		Ex: EXEC 
+		Ex: EXEC UpdCategoria 1, 'Arroz'
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Categoria WHERE Num_IdCategoria = @Num_Id) < 1)
-			BEGIN PRINT 'Categoria não existe'
-			RETURN 1 END
-		ELSE
-			UPDATE Categoria
+		UPDATE Categoria
 			SET Nom_Nome = @Nom_Nome
 			WHERE Num_IdCategoria = @Num_Id 
 	END
@@ -67,20 +55,12 @@ CREATE PROCEDURE [dbo].[DelCategoria]
 		Documentação
 		Arquivo Fonte: Categoria
 		Objetivo: Deletar categoria
-		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Autor: Bruno Silveira
 		Data: 03/02/2020
-		Retornos: 0 - OK
-				  1 - Erro 
-		Ex: EXEC 
+		Ex: EXEC DelCategoria 2
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Categoria WITH(NOLOCK) WHERE Num_IdCategoria = @Num_Id) < 0)
-			BEGIN PRINT 'Categoria não existe'
-			RETURN 1 END
-		ELSE
-			DELETE
-			FROM Categoria
-			WHERE Num_IdCategoria = @Num_Id
+		DELETE FROM Categoria WHERE Num_IdCategoria = @Num_Id
 	END
 GO
 
@@ -94,19 +74,13 @@ CREATE PROCEDURE [dbo].[SelCategoria]
 		Documentação
 		Arquivo Fonte: Categoria
 		Objetivo: Mostrar categorias
-		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Autor: Bruno Silveira
 		Data: 03/02/2020
-		Retornos: 0 - OK
-				  1 - Erro 
-		Ex: EXEC 
+		Ex: EXEC SelCategoria
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Categoria) < 1)
-			BEGIN PRINT 'Não existem categorias cadastradas'
-			RETURN 1 END
-		ELSE
-			SELECT  Nom_Nome,
-					Num_IdCategoria
+		SELECT  Nom_Nome,
+				Num_IdCategoria
 			FROM Categoria
 	END
 GO
@@ -121,20 +95,14 @@ CREATE PROCEDURE [dbo].[SelCategoriaId]
 	/*
 		Documentação
 		Arquivo Fonte: Clientes
-		Objetivo: Mostrar clientes por nome
-		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
+		Objetivo: Mostrar categoria por Id
+		Autor: Bruno Silveira
 		Data: 03/02/2020
-		Retornos: 0 - OK
-				  1 - Erro
-		Ex: EXEC SelCliente
+		Ex: EXEC SelCliente 17
 	*/
 	BEGIN
-		IF((SELECT COUNT(*) FROM Categoria WITH(NOLOCK) WHERE Num_IdCategoria = @Num_Id) < 1)
-			BEGIN PRINT 'Sem categorias cadastradas'
-			RETURN 1 END
-		ELSE
-			SELECT	Nom_Nome,
-					Num_IdCategoria
+		SELECT	Nom_Nome,
+				Num_IdCategoria
 			FROM Categoria WITH(NOLOCK)
 			WHERE Num_IdCategoria = @Num_Id
 	END
