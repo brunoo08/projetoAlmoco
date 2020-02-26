@@ -11,7 +11,7 @@
     <h4>UsuarioModel</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        <dt id="teste">
             @Html.DisplayNameFor(model => model.Num_Id)
         </dt>
 
@@ -57,7 +57,7 @@
         @Html.AntiForgeryToken()
 
     <div class="form-actions no-color">
-        <button onclick="RotasPrincipais.Usuario_Delete()" title="Cancelar" class="btn btn-info">
+        <button onclick="RotasPrincipais.Usuario_Delete(@Html.DisplayFor(model => model.Num_Id))" title="Cancelar" class="btn btn-info">
             <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
             Deletar
         </button> |

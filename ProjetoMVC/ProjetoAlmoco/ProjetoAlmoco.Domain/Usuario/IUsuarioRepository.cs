@@ -6,7 +6,7 @@ namespace ProjetoAlmoco.Domain.Usuario
     {
         IEnumerable<UsuarioDto> getAll();
         UsuarioDto get(int Num_Id);
-        void delete(UsuarioDto usuario);
+        void delete(int Num_Id);
         void put(UsuarioDto usuario);
         void post(UsuarioDto usuario);
     }

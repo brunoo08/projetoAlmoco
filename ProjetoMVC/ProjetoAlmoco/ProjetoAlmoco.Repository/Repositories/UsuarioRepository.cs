@@ -43,11 +43,11 @@ namespace ProjetoAlmoco.Repository.Repositories
             return null;
         }
 
-        public void delete(UsuarioDto usuario)
+        public void delete(int Num_Id)
         {
             
             ExecuteProcedure("DelCliente");
-            AddParameter("@Num_Id", usuario.Num_Id);
+            AddParameter("@Num_Id",Num_Id);
             ExecuteNonQuery();
 
         }

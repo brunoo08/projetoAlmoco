@@ -41,11 +41,11 @@ namespace ProjetoAlmoco.Api.Controllers
             }
         }
 
-        public IHttpActionResult Delete(UsuarioDto usuario)
+        public IHttpActionResult Delete(int Num_Id)
         {
             try
             {
-                _usuarioRepository.delete(usuario);
+                _usuarioRepository.delete(Num_Id);
                 return Ok();
             }
             catch (Exception ex)

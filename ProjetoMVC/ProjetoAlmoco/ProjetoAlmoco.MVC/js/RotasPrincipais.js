@@ -27,14 +27,12 @@
     }
 
     var Usuario_CarregaPost = function () {
-        console.log("teste");
         $.post(config.urls.Usuario_CarregaPost).done(function (data) {
             $("body").html(data);
         });
     }
 
     var Usuario_Post = function () {
-        console.log($("#Nom_Login").val());
         $.post(config.urls.Post, { Nom_Login: $("#Nom_Login").val(), Nom_Nome: $("#Nom_Nome").val(), Nom_Sobrenome: $("#Nom_Sobrenome").val(), Num_Id: $("#Num_Id").val(), Nom_Senha: $("#Nom_Senha").val()}).done(function () {
             Usuario_GetAllUsuario();
         });
@@ -52,14 +50,15 @@
         });
     }
 
-    var Usuario_CarregaDelete = function (Nom_Login, Nom_Nome, Nom_Sobrenome, Num_Id, Nom_Senha) {
-        $.post(config.urls.Usuario_CarregaDelete, { Nom_Login, Nom_Nome, Nom_Sobrenome, Num_Id, Nom_Senha  }).done(function (data) {
+    var Usuario_CarregaDelete = function ( Num_Id, Nom_Nome, Nom_Sobrenome,Nom_Login, Nom_Senha) {
+        $.post(config.urls.Usuario_CarregaDelete, { Num_Id, Nom_Nome, Nom_Sobrenome, Nom_Login, Nom_Senha }).done(function (data) {
             $("body").html(data);
         });
     }
 
-    var Usuario_Delete = function () {
-        $.post(config.urls.Delete, { Nom_Login: $("#Nom_Login").val(), Nom_Nome: $("#Nom_Nome").val(), Nom_Sobrenome: $("#Nom_Sobrenome").val(), Num_Id: $("#Num_Id").val(), Nom_Senha: $("#Nom_Senha").val() }).done(function () {
+    var Usuario_Delete = function (Num_Id) {
+        console.log(Num_Id);
+        $.post(config.urls.Delete, { Num_Id: Num_Id}).done(function () {
             Usuario_GetAllUsuario();
         });
     }

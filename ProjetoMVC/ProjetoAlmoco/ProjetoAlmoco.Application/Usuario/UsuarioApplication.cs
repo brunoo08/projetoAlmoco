@@ -72,9 +72,9 @@ namespace ProjetoAlmoco.Application.Usuario
             return response;
         }
 
-        public HttpResponseMessage Delete(UsuarioModel usuarioModel)
+        public HttpResponseMessage Delete(int Num_Id)
         {
-            string URL = "http://localhost:58473/api/usuario/Delete";
+            string URL = "http://localhost:58473/api/usuario/Delete" + "?Num_Id=" + Num_Id.ToString();
             //client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));

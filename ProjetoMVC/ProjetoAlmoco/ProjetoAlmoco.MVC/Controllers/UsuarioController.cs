@@ -62,9 +62,9 @@ namespace ProjetoAlmoco.MVC.Controllers
             return View("Post", new UsuarioModel());
         }
 
-        public ActionResult Delete(UsuarioModel usuarioModel)
+        public ActionResult Delete(int Num_Id)
         {
-            HttpResponseMessage response = _usuarioApplication.Delete(usuarioModel);
+            HttpResponseMessage response = _usuarioApplication.Delete(Num_Id);
 
             if (!response.IsSuccessStatusCode)
                 return new HttpStatusCodeResult(200); //view de erro
