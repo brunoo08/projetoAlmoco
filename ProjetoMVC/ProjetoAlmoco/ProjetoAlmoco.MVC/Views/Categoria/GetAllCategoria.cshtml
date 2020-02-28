@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ProjetoAlmoco.Application.Categoria.Model.CategoriaModel>
+
+@{
+    ViewBag.Title = "GetAllCategoria";
+}
+
+<h2>GetAllCategoria</h2>
+
+<button onclick="RotasCategoria.CarregaPost()" title="Cancelar" class="btn btn-info">
+    Criar Nova Categoria
+</button>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Num_IdCategoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom_Nome)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Num_IdCategoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nom_Nome)
+        </td>
+        <td>
+            <button onclick="RotasCategoria.GetCategoria(@item.Num_IdCategoria)" title="Cancelar" class="btn btn-info">
+                 Detalhar
+            </button>
+            <button onclick="RotasCategoria.CarregaDelete('@item.Num_IdCategoria', '@item.Nom_Nome')" title="Cancelar" class="btn btn-info">
+                 Delete
+            </button>
+        </td>
+    </tr>
+}
+
+</table>
