@@ -5,16 +5,19 @@
 
 <h2>Usuarios</h2>
 
-@*<p>
-        @Html.ActionLink("Mostrar Usuários", "_getAll")
-    </p>*@
 
-<button onclick="RotasPrincipais.Usuario_GetAllUsuario()" title="Cancelar" class="btn btn-info">
+<button onclick="RotasPrincipais.GetAllUsuario()" title="Cancelar" class="btn btn-info">
     <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
     Mostrar usuários
 </button>
 
+<button onclick="RotasCategoria.GetAllCategoria()" title="Cancelar" class="btn btn-info">
+    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+    Mostrar categorias
+</button>
+
 <script src="~/js/RotasPrincipais.js?d=@DateTime.Now.Ticks"></script>
+<script src="~/js/RotasCategoria.js?d=@DateTime.Now.Ticks"></script>
 
 <script>
 
@@ -25,9 +28,22 @@
             Post: '@Url.Action("Post","Usuario")',
             Put: '@Url.Action("Put","Usuario")',
             Delete: '@Url.Action("Delete","Usuario")',
-            Usuario_CarregaPost: '@Url.Action("CarregaPost","Usuario")',
-            Usuario_CarregaPut: '@Url.Action("CarregaPut","Usuario")',
-            Usuario_CarregaDelete: '@Url.Action("CarregaDelete","Usuario")'
+            CarregaPost: '@Url.Action("CarregaPost","Usuario")',
+            CarregaPut: '@Url.Action("CarregaPut","Usuario")',
+            CarregaDelete: '@Url.Action("CarregaDelete","Usuario")'
+        }
+    });
+
+    RotasCategoria.init({
+        urls: {
+            GetAllCategoria: '@Url.Action("GetAllCategoria", "Categoria")',
+            GetCategoria: '@Url.Action("GetCategoria", "Categoria")', 
+            Post: '@Url.Action("Post", "Categoria")',
+            Put: '@Url.Action("Put", "Categoria")',
+            Delete: '@Url.Action("Delete", "Categoria")',
+            CarregaPost: '@Url.Action("CarregaPost", "Categoria")',
+            CarregaPut: '@Url.Action("CarregaPut", "Categoria")',
+            CarregaDelete: '@Url.Action("CarregaDelete", "Categoria")'
         }
     });
 

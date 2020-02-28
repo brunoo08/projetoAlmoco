@@ -40,11 +40,11 @@ namespace ProjetoAlmoco.Api.Controllers
             }
         }
 
-        public IHttpActionResult Delete(CategoriaDto categoria)
+        public IHttpActionResult Delete(int Num_Id)
         {
             try
             {
-                _categoriaRepository.delete(categoria);
+                _categoriaRepository.delete(Num_Id);
                 return Ok();
             }
             catch (Exception ex)

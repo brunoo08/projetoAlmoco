@@ -7,7 +7,7 @@
 <h2>GetAllUsuario</h2>
 
 <p>
-    <button onclick="RotasPrincipais.Usuario_CarregaPost()" title="Cancelar" class="btn btn-info">
+    <button onclick="RotasPrincipais.CarregaPost()" title="Cancelar" class="btn btn-info">
         <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
         Cadastrar Novo Usuario
     </button>
@@ -51,7 +51,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            <button onclick="RotasPrincipais.Usuario_GetUsuario(@item.Num_Id)" title="Cancelar" class="btn btn-info">
+            <button onclick="RotasPrincipais.GetUsuario(@item.Num_Id)" title="Cancelar" class="btn btn-info">
                 <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                 Detalhar
             </button>

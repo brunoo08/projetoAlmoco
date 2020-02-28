@@ -2,64 +2,64 @@
 
     var config = {
         urls: {
-            Usuario_GetAllUsuario: '',
-            Usuario_GetUsuario: '',
-            Usuario_Post: '',
-            Usuario_Put: '',
-            Usuario_Delete: '',
-            Usuario_CarregaPost: '',
-            Usuario_CarregaPut: '',
-            Usuario_CarregaDelete: ''
+            GetAllUsuario: '',
+            GetUsuario: '',
+            Post: '',
+            Put: '',
+            Delete: '',
+            CarregaPost: '',
+            CarregaPut: '',
+            CarregaDelete: ''
         }
     };
 
 
-    var Usuario_GetAllUsuario = function () {
+    var GetAllUsuario = function () {
         $.get(config.urls.GetAllUsuario).done(function (data) {
             $("body").html(data);
         });
     }
 
-    var Usuario_GetUsuario = function (Num_Id) {
+    var GetUsuario = function (Num_Id) {
         $.post(config.urls.GetUsuario, { Num_Id: Num_Id }).done(function (data) {
             $("body").html(data);
         });
     }
 
-    var Usuario_CarregaPost = function () {
-        $.post(config.urls.Usuario_CarregaPost).done(function (data) {
+    var CarregaPost = function () {
+        $.post(config.urls.CarregaPost).done(function (data) {
             $("body").html(data);
         });
     }
 
-    var Usuario_Post = function () {
+    var Post = function () {
         $.post(config.urls.Post, { Nom_Login: $("#Nom_Login").val(), Nom_Nome: $("#Nom_Nome").val(), Nom_Sobrenome: $("#Nom_Sobrenome").val(), Num_Id: $("#Num_Id").val(), Nom_Senha: $("#Nom_Senha").val()}).done(function () {
-            Usuario_GetAllUsuario();
+            GetAllUsuario();
         });
     }
 
-    var Usuario_CarregaPut = function (Nom_Login, Nom_Nome, Nom_Sobrenome, Num_Id, Nom_Senha) {
-        $.post(config.urls.Usuario_CarregaPut, { Nom_Login, Nom_Nome, Nom_Sobrenome, Num_Id, Nom_Senha }).done(function (data) {
+    var CarregaPut = function (Nom_Login, Nom_Nome, Nom_Sobrenome, Num_Id, Nom_Senha) {
+        $.post(config.urls.CarregaPut, { Nom_Login, Nom_Nome, Nom_Sobrenome, Num_Id, Nom_Senha }).done(function (data) {
             $("body").html(data);
         });
     }
 
-    var Usuario_Put = function () {
+    var Put = function () {
         $.post(config.urls.Put, { Nom_Login: $("#Nom_Login").val(), Nom_Nome: $("#Nom_Nome").val(), Nom_Sobrenome: $("#Nom_Sobrenome").val(), Num_Id: $("#Num_Id").val(), Nom_Senha: $("#Nom_Senha").val()}).done(function () {
-            Usuario_GetAllUsuario();
+            GetAllUsuario();
         });
     }
 
-    var Usuario_CarregaDelete = function ( Num_Id, Nom_Nome, Nom_Sobrenome,Nom_Login, Nom_Senha) {
-        $.post(config.urls.Usuario_CarregaDelete, { Num_Id, Nom_Nome, Nom_Sobrenome, Nom_Login, Nom_Senha }).done(function (data) {
+    var CarregaDelete = function ( Num_Id, Nom_Nome, Nom_Sobrenome,Nom_Login, Nom_Senha) {
+        $.post(config.urls.CarregaDelete, { Num_Id, Nom_Nome, Nom_Sobrenome, Nom_Login, Nom_Senha }).done(function (data) {
             $("body").html(data);
         });
     }
 
-    var Usuario_Delete = function (Num_Id) {
+    var Delete = function (Num_Id) {
         console.log(Num_Id);
         $.post(config.urls.Delete, { Num_Id: Num_Id}).done(function () {
-            Usuario_GetAllUsuario();
+            GetAllUsuario();
         });
     }
 
@@ -71,13 +71,13 @@
 
     return {
         init: init,
-        Usuario_GetAllUsuario: Usuario_GetAllUsuario,
-        Usuario_GetUsuario: Usuario_GetUsuario,
-        Usuario_Post: Usuario_Post,
-        Usuario_Put: Usuario_Put,
-        Usuario_Delete: Usuario_Delete,
-        Usuario_CarregaPost: Usuario_CarregaPost,
-        Usuario_CarregaPut: Usuario_CarregaPut,
-        Usuario_CarregaDelete: Usuario_CarregaDelete
+        GetAllUsuario: GetAllUsuario,
+        GetUsuario: GetUsuario,
+        Post: Post,
+        Put: Put,
+        Delete: Delete,
+        CarregaPost: CarregaPost,
+        CarregaPut: CarregaPut,
+        CarregaDelete: CarregaDelete
     }
 })();
