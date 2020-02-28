@@ -136,6 +136,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -152,6 +153,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="js\RotasCategoria.js" />
     <Content Include="js\RotasPrincipais.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -186,6 +188,11 @@
     <Content Include="Views\Usuario\Put.cshtml" />
     <Content Include="Views\Usuario\Post.cshtml" />
     <Content Include="Views\Usuario\Delete.cshtml" />
+    <Content Include="Views\Categoria\CarregaDelete.cshtml" />
+    <Content Include="Views\Categoria\CarregaPost.cshtml" />
+    <Content Include="Views\Categoria\CarregaPut.cshtml" />
+    <Content Include="Views\Categoria\GetAllCategoria.cshtml" />
+    <Content Include="Views\Categoria\GetCategoria.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

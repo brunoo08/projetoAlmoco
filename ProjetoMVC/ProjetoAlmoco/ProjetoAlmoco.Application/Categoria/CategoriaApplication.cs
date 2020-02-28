@@ -77,9 +77,9 @@ namespace ProjetoAlmoco.Application.Categoria
             return response;
         }
 
-        public HttpResponseMessage Delete(CategoriaModel categoriaModel)
+        public HttpResponseMessage Delete(int Num_Id)
         {
-            string URL = "http://localhost:58473/api/categoria/Delete";
+            string URL = "http://localhost:58473/api/categoria/Delete" + "?Num_Id=" + Num_Id.ToString(); 
             //client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
