@@ -1,0 +1,130 @@
+/*MODAL*/
+.modal-2 {
+    display: none;
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    width: 100%; 
+    height: 100%;
+}
+
+.modal-content-2 {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255,255,255);
+    margin: auto;
+    padding: 20px;
+    border: 0.5px solid #b8b8b8;
+    border-radius: 25px;
+    box-shadow: 6px 6px 16px rgba(0,0,0,0.32), -6px -6px 16px rgba(0,0,0,0.2);
+    
+
+    width: 470px;
+    height: 540px;
+
+    /*para centralizar*/
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 38.5%;
+    left: 70%;
+}
+
+.titulo-modal{
+    color: rgb(255, 73, 49);
+    font-size: 28pt !important;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.topo-modal-2 {
+    height: 10%;
+    text-align: center;
+    padding: 15px;
+    width: 95%;
+}
+
+.bottom-modal-2{
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    width: 95%;
+}
+
+.modal-main{
+    box-sizing: border-box;
+    padding: 15px;
+    height: 80%;
+    width: 100%;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin-top: 20px;
+    height:77%;
+    width: 100%;
+}
+
+.escolha-usuario{
+    display: flex;
+    margin-bottom: 6%;
+}
+
+.modal-2 span {
+    text-align: center;
+    margin-right: 15px;
+    font-size: 14pt;
+}
+
+.categorias { 
+    width: 100%;
+    height: 90%;
+}
+
+.input {
+    width: 95%;
+}
+
+
+.close-button {
+    position: absolute;
+
+    height: 40px;
+    width: 40px;
+    padding: 0.8px 10px;
+    right: -12px;
+    top: -12px;
+
+    color: white;
+    font-size: 14pt;
+
+    background-color: rgb(255, 73, 49);
+    border: none;
+    border-radius: 50%; 
+}
+
+.close-button:hover {
+    transform: rotate(180deg);
+    transition: 0.7s;
+}

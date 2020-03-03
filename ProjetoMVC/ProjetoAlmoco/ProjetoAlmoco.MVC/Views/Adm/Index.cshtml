@@ -1,0 +1,61 @@
+﻿<!-- Login / Cadastro -->
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<div id="main">
+
+    <div class="bt-login splits">
+        <p>Já tem uma conta?</p>
+        <button class="active">Entre</button>
+    </div>
+
+    <div class="bt-cadastro splits">
+        <p>Ainda não tem uma conta?</p>
+        <button>Cadastre-se</button>
+    </div>
+
+    <div class="box">
+
+        <div class="formulario" id="login" tabindex="500">
+            <h1>Login</h1>
+            <input type="text" placeholder="Nome do usuário" class="input" id="nome" required><br>
+            <input type="password" placeholder="Senha" class="input" id="senha" required><br>
+            <button class="botao">Entrar</button>
+        </div>
+
+        <div class="formulario" id="cadastro" tabindex="502">
+            <h1>Cadastro</h1>
+            <input type="text" placeholder="Nome" class="input" id="Nom_Nome" autofocus><br>
+            <input type="text" placeholder="Sobrenome" class="input" id="Nom_Sobrenome"><br>
+            <input type="text" placeholder="Login" class="input" id="Nom_Login"><br>
+            <input type="password" placeholder="Senha" class="input" id="Nom_Senha"><br>
+            <button class="botao" onclick="RotasPrincipais.Usuario_Post()">Cadastrar</button>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="~/js/RotasPrincipais.js?d=@DateTime.Now.Ticks"></script>
+
+<script>
+
+    RotasPrincipais.init({
+        urls: {
+            GetAllUsuario: '@Url.Action("GetAllUsuario", "Usuario")',
+            GetUsuario: '@Url.Action("GetUsuario","Usuario")',
+            Post: '@Url.Action("Post","Usuario")',
+            Put: '@Url.Action("Put","Usuario")',
+            Delete: '@Url.Action("Delete","Usuario")',
+            Usuario_CarregaPost: '@Url.Action("CarregaPost","Usuario")',
+            Usuario_CarregaPut: '@Url.Action("CarregaPut","Usuario")',
+            Usuario_CarregaDelete: '@Url.Action("CarregaDelete","Usuario")'
+        }
+    });
+
+</script>
+
+
+

@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Administrador";
+}
+
+<h2>Usuarios</h2>
+
+@*<p>
+        @Html.ActionLink("Mostrar Usuários", "_getAll")
+    </p>*@
+
+<button onclick="RotasPrincipais.Usuario_GetAllUsuario()" title="Cancelar" class="btn btn-info">
+    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+    Mostrar usuários
+</button>
+
+
+
+<script src="~/js/RotasPrincipais.js?d=@DateTime.Now.Ticks"></script>
+
+<script>
+
+    RotasPrincipais.init({
+        urls: {
+            GetAllUsuario: '@Url.Action("GetAllUsuario", "Usuario")',
+            GetUsuario: '@Url.Action("GetUsuario","Usuario")', 
+            Post: '@Url.Action("Post","Usuario")',
+            Put: '@Url.Action("Put","Usuario")',
+            Delete: '@Url.Action("Delete","Usuario")',
+            Usuario_CarregaPost: '@Url.Action("CarregaPost","Usuario")',
+            Usuario_CarregaPut: '@Url.Action("CarregaPut","Usuario")',
+            Usuario_CarregaDelete: '@Url.Action("CarregaDelete","Usuario")'
+        }
+    });
+
+</script>
+

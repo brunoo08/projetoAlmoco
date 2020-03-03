@@ -1,0 +1,200 @@
+﻿<!-- HOME USER -->
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<main>
+
+    <div class="esquerda">
+
+        <div class="usuario">
+            <i class="zmdi zmdi-account-circle"></i>
+            <div>
+                <span class="nome">Nome</span> <br>
+                <span>usuário</span>
+            </div>
+            <div class="sair">
+                <i class="material-icons" onclick="pagLogin()">exit_to_app</i>
+            </div>
+        </div>
+
+        <div class="cardapio">
+            <div class="notebook">
+                <p>Cardápio do dia</p>
+                <div class="texto-cardapio">
+                    <span>texto cardapio do dia</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="direita">
+
+        <!-- modal fazer pedido -->
+        <div id="modal-fazer-pedido" class="modal-2">
+            <div class="modal-content-2">
+
+                <div class="topo-modal-2">
+                    <span class="titulo-modal">Fazer Pedido</span> <br>
+                </div>
+
+                <div class="modal-main">
+                    <div class="conteudo">
+
+                        <span>Selecione as opções: </span><br>
+                        <div class="categorias scroll scroll4">
+
+                            <div class="formulario">
+
+                                <div class="dropdown">
+                                    <input type="text" placeholder="Arroz" class="input">
+
+                                    <div class="dropdown-content">
+                                        <div>
+                                            <input type="checkbox">
+                                            <label for="subscribeNews"> branco </label>
+                                        </div>
+
+                                        <div>
+                                            <input type="checkbox">
+                                            <label for="subscribeNews"> verde </label>
+                                        </div>
+
+                                        <div>
+                                            <input type="checkbox">
+                                            <label for="subscribeNews"> integral </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bottom-modal-2">
+                    <input class="botao" id="btn-add-modal" type="submit" value="Salvar" onclick="seuPedido()">
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- modal seu pedido -->
+        <div id="modal-seu-pedido" class="modal-2">
+            <div class="modal-content-2">
+
+                <div class="topo-modal-2">
+                    <span class="titulo-modal">Seu Pedido</span> <br>
+                </div>
+
+                <div class="modal-main">
+                    <div class="conteudo">
+
+                        <div class="categorias scroll scroll4">
+
+                            <div class="formulario">
+
+                                <div>
+                                    lista dos itens selecionados pelo usuario
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bottom-modal-2">
+                    <input class="botao" id="btn-editar-modal" type="submit" value="Editar Pedido" onclick="editarPedido()">
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- modal editar pedido -->
+        <div id="modal-editar-pedido" class="modal-2">
+            <div class="modal-content-2">
+
+                <div class="topo-modal-2">
+                    <span class="titulo-modal">Editar Pedido</span> <br>
+                    <button class="close-button" id="close-editar" onclick="fecharEditar()">X</button>
+                </div>
+
+                <div class="modal-main">
+                    <div class="conteudo">
+
+                        <span>Selecione as opções: </span><br>
+                        <div class="categorias scroll scroll4">
+
+                            <div class="formulario">
+
+                                <div class=" dropdown">
+                                    <input type="text" placeholder="Arroz" class="input">
+
+                                    <div class="dropdown-content">
+                                        <div>
+                                            <input type="checkbox">
+                                            <label for="subscribeNews"> branco </label>
+                                        </div>
+
+                                        <div>
+                                            <input type="checkbox">
+                                            <label for="subscribeNews"> verde </label>
+                                        </div>
+
+                                        <div>
+                                            <input type="checkbox">
+                                            <label for="subscribeNews"> integral </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bottom-modal-2">
+                    <input class="botao" id="btn-editar-modal" type="submit" value="Salvar" onclick="fecharEditar()">
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+<!-- modal erro editar categoria-->
+<div id="modal-erro-editar-categoria" class="modal">
+    <div class="modal-content">
+
+        <div class="topo">
+            <span class="titulo-modal">Atenção!</span> <br>
+        </div>
+
+        <div class="confirmacao">
+            <span>Não é possível alterar o pedido.</span>
+        </div>
+
+
+        <div class="bottom">
+            <input class="botao" id="btn-ok-modal" type="submit" value="OK" onclick="fechaErro()">
+        </div>
+
+    </div>
+</div>
+
+

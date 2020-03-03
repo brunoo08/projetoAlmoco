@@ -1,0 +1,23 @@
+/*BARRA DE ROLAGEM*/
+.scroll {
+    width: 95%;
+    height: 95%;
+    overflow: auto;
+    float: right;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .scroll4::-webkit-scrollbar {
+    width: 10px;
+  }
+   
+  .scroll4::-webkit-scrollbar-thumb {
+    background: rgb(255, 73, 49);
+    border-radius: 20px;
+  }
+  
+  .scroll4::-webkit-scrollbar-track {
+    background: #ddd;
+    border-radius: 20px;
+  }

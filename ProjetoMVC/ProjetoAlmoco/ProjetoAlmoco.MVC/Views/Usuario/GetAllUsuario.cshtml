@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProjetoAlmoco.Application.Usuario.Model.UsuarioModel>
+
+@{
+    ViewBag.Title = "GetAllUsuario";
+}
+
+<h2>GetAllUsuario</h2>
+
+<p>
+    <button onclick="RotasPrincipais.Usuario_CarregaPost()" title="Cancelar" class="btn btn-info">
+        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+        Cadastrar Novo Usuario
+    </button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Num_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom_Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom_Sobrenome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom_Login)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom_Senha)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Num_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nom_Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nom_Sobrenome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nom_Login)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nom_Senha)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            <button onclick="RotasPrincipais.Usuario_GetUsuario(@item.Num_Id)" title="Cancelar" class="btn btn-info">
+                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                Detalhar
+            </button>
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

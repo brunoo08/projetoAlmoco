@@ -1,0 +1,215 @@
+﻿<!-- ATUALIZA CARDAPIO -->
+
+@{
+    ViewBag.Title = "Atuaizar Cardápio";
+}
+
+<main id="direcao-flex">
+
+    <!-- icone usuario e cardapio -->
+    <div class="main-topo">
+
+        <div class="usuario">
+            <i class="zmdi zmdi-account-circle"></i>
+            <div>
+                <span class="nome">Nome</span> <br>
+                <span>usuário</span>
+            </div>
+            <div class="sair">
+                <i class="material-icons" onclick="pagLogin()">exit_to_app</i>
+            </div>
+        </div>
+
+        <div class="titulo-pagina">
+            <span>Atualizar Cardápio</span>
+        </div>
+
+    </div>
+
+    <!-- categorias -->
+    <div class="main-content">
+
+        <div class="content-topo">
+            <p>Selecione as opções do dia</p>
+            <span id=add-categoria onclick="abreModal('modal-adicionar-categoria')"> <i class="material-icons">add_circle_outline</i>adicionar categoria </span>
+
+        </div>
+
+        <div class="content-content">
+
+            <div class="categorias scroll scroll4">
+                <div class="categoria">
+                    <i class="material-icons" onclick="abreModal('modal-excluir-categoria')">delete</i>
+                    <i class="material-icons" onclick="abreModal('modal-editar-categoria')">edit</i>
+                    <span class="nome-categoria">Arroz</span> <br>
+
+                    <div class="formulario">
+                        <span>Definir quantidade de escolha:</span>
+                        <div class="value-button" id="decrease" onclick="decreaseValue('teste1')" value="Decrease Value">-</div>
+                        <input type="number" class="number" id="teste1" value="1" />
+                        <div class="value-button" id="increase" onclick="increaseValue('teste1')" value="Increase Value">+</div>
+                    </div>
+
+                    <input class="opcao-categoria" type="checkbox" name="opcao">
+                    <input class="opcao-categoria" type="checkbox" name="opcao"><br>
+                    <input class="opcao-categoria" type="checkbox" name="opcao">
+                    <input class="opcao-categoria" type="checkbox" name="opcao">
+                </div>
+
+
+                <div class="categoria">
+                    <i class="material-icons" onclick="abreModal('modal-excluir-categoria')">delete</i>
+                    <i class="material-icons" onclick="abreModal('modal-editar-categoria')">edit</i>
+                    <span class="nome-categoria">Arroz</span> <br>
+
+                    <div class="formulario">
+                        <span>Definir quantidade de escolha:</span>
+                        <div class="value-button" id="decrease" onclick="decreaseValue('teste2')" value="Decrease Value">-</div>
+                        <input type="number" class="number" id="teste2" value="1" />
+                        <div class="value-button" id="increase" onclick="increaseValue('teste2')" value="Increase Value">+</div>
+                    </div>
+
+                    <input class="opcao-categoria" type="checkbox" name="opcao">
+                    <input class="opcao-categoria" type="checkbox" name="opcao"><br>
+                    <input class="opcao-categoria" type="checkbox" name="opcao">
+                    <input class="opcao-categoria" type="checkbox" name="opcao">
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="content-bottom">
+            <input class="botao" type="submit" value="Voltar" onclick="pagHomeAdm()"><br>
+            <input class="botao" type="submit" value="Atualizar" onclick="atualizarCardapio()"><br>
+        </div>
+
+    </div>
+
+
+</main>
+
+
+<!-- modal add categoria-->
+<div id="modal-adicionar-categoria" class="modal">
+    <div class="modal-content">
+
+        <div class="topo">
+            <span class="titulo-modal">Nova Categoria</span> <br>
+            <button class="close-button" id="close-modalCat" onclick="fechaModal('modal-adicionar-categoria')">X</button>
+        </div>
+
+        <div class="formulario">
+            <div class="nome-categoria">
+                <span>Nome da categoria:</span>
+                <input type="text" class="input">
+            </div>
+
+            <div class="opcoes">
+                <span>Opções:</span>
+
+                <div class="opcao">
+                    <input type="text" class="input">
+                    <i class="material-icons" style="font-size:24px">remove</i>
+                </div>
+
+
+                <div class="add-opcao">
+                    <input type="text" class="input">
+                    <i class="material-icons" style="font-size:24px">add</i>
+                </div>
+            </div>
+
+            <div class="bottom">
+                <button class="botao" onclick="fechaModal('modal-adicionar-categoria')">Adicionar</button>
+            </div>
+
+        </div>
+
+        
+
+    </div>
+</div>
+
+
+<!-- modal editar categoria-->
+<div id="modal-editar-categoria" class="modal">
+    <div class="modal-content">
+
+        <div class="topo">
+            <span class="titulo-modal">Editar Categoria</span> <br>
+            <button class="close-button" onclick="fechaModal('modal-editar-categoria')">X</button>
+        </div>
+
+        <div class="formulario">
+
+            <div class="nome-categoria">
+                <span>Nome da categoria:</span>
+                <input type="text" class="input">
+            </div>
+
+            <div class="opcoes">
+                <span>Opções:</span>
+
+                <div class="opcao">
+                    <input type="text" class="input">
+                    <i class="material-icons" style="font-size:24px">remove</i>
+                </div>
+
+
+                <div class="add-opcao">
+                    <input type="text" class="input">
+                    <i class="material-icons" style="font-size:24px">add</i>
+                </div>
+            </div>
+
+            <div class="bottom">
+                <button class="botao" onclick="fechaModal('modal-editar-categoria')">Salvar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- modal excluir categoria-->
+<div id="modal-excluir-categoria" class="modal">
+    <div class="modal-content">
+
+        <div class="topo">
+            <span class="titulo-modal">Atenção!</span> <br>
+            <button class="close-button" onclick="fechaModal('modal-excluir-categoria')">X</button>
+        </div>
+
+        <div class="confirmacao">
+            <span>Deseja excluir esta categoria?</span>
+        </div>
+
+
+        <div class="bottom">
+            <button class="botao" onclick="fechaModal('modal-excluir-categoria')">Excluir</button>
+        </div>
+
+    </div>
+</div>
+
+
+
+<script src="~/js/RotasPrincipais.js?d=@DateTime.Now.Ticks"></script>
+
+<script>
+
+    RotasPrincipais.init({
+        urls: {
+            GetAllUsuario: '@Url.Action("GetAllUsuario", "Usuario")',
+            GetUsuario: '@Url.Action("GetUsuario","Usuario")', 
+            Post: '@Url.Action("Post","Usuario")',
+            Put: '@Url.Action("Put","Usuario")',
+            Delete: '@Url.Action("Delete","Usuario")',
+            Usuario_CarregaPost: '@Url.Action("CarregaPost","Usuario")',
+            Usuario_CarregaPut: '@Url.Action("CarregaPut","Usuario")',
+            Usuario_CarregaDelete: '@Url.Action("CarregaDelete","Usuario")'
+        }
+    });
+
+</script>

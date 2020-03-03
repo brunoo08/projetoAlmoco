@@ -1,0 +1,157 @@
+/*MODAL*/
+.modal {
+    display: none;
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+
+/* Modal Content */
+.modal-content {
+    
+    display: flex;
+    flex-direction: column;
+
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 25%;
+    /* height: 40%; */
+    height: auto;
+    border-radius: 25px;
+
+    /*para centralizar*/
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50vh;
+    left: 50%;
+
+}
+
+.titulo-modal{
+    color: rgb(255, 73, 49);
+    font-size: 40px;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.topo{
+    height: 20%;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.bottom{
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+.pedidos-texto{
+    box-sizing: border-box;
+    padding: 15px;
+    height: 70%;
+    width: 85%;
+}
+
+
+.nova-categoria{
+    color: rgba(255, 73, 49, 0.6);
+    font-size: 42px;
+}
+
+.nome-categoria{
+    display: flex;
+    flex-direction: column;
+}
+
+.nome-categoria input{
+    margin: 15px;
+}
+
+.confirmacao{
+    display: flex;
+    justify-content: center;
+    font-size: 16pt;
+}
+
+.opcoes{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.botao-atualiza{
+    margin: auto;
+}
+
+.input{
+    width: 60%;
+    margin: 0;
+}
+
+.opcao, .add-opcao {
+    display: flex;
+    align-items: center;
+    margin: 15px;
+}
+
+
+.opcao i, .add-opcao i{
+    margin-left: 5px;
+}
+
+.opcao span, .add-opcao span{
+    margin-left: 5px;
+}
+
+
+.close-button {
+    position: absolute;
+
+    height: 40px;
+    width: 40px;
+    padding: 0.8px 10px;
+    right: -12px;
+    top: -12px;
+
+    color: white;
+    font-size: 14pt;
+
+    background-color: rgb(255, 73, 49);
+    border: none;
+    border-radius: 50%; 
+}
+
+.close-button:hover {
+    transform: rotate(180deg);
+    transition: 0.7s;
+}
