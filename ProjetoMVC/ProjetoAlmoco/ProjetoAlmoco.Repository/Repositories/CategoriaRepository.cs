@@ -22,17 +22,11 @@ namespace ProjetoAlmoco.Repository.Repositories
             ExecuteNonQuery();
         }
 
-<<<<<<< HEAD
-        public void delete(CategoriaDto categoria)
-        {
-            ExecuteProcedure("DelCategoria");
-            AddParameter("@Num_Id", categoria.Num_IdCategoria);
-=======
+
         public void delete(int Num_Id)
         {
             ExecuteProcedure("DelCategoria");
             AddParameter("@Num_Id", Num_Id);
->>>>>>> 2299ab25f14e87c57933939fa57168f5b8d5602c
             ExecuteNonQuery();
         }
 

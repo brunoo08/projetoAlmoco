@@ -16,11 +16,8 @@ namespace ProjetoAlmoco.MVC
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-<<<<<<< HEAD
                 defaults: new { controller = "LoginCadastro", action = "Index", id = UrlParameter.Optional }
-=======
-                defaults: new { controller = "Home", action = "IndexAdmin", id = UrlParameter.Optional }
->>>>>>> 2299ab25f14e87c57933939fa57168f5b8d5602c
+
             );
         }
     }

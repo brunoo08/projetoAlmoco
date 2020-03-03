@@ -23,7 +23,6 @@ namespace ProjetoAlmoco.MVC
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-<<<<<<< HEAD
                       "~/Content/css/atualizar-cardapio.css",
                       "~/Content/css/cardapio.css",
                       "~/Content/css/dropdown.css",
@@ -33,11 +32,8 @@ namespace ProjetoAlmoco.MVC
                       "~/Content/css/modal-2.css",
                       "~/Content/css/modal.css",
                       "~/Content/css/scroll-bar.css",
-                      "~/Content/css/usuario.css"));
-=======
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
->>>>>>> 2299ab25f14e87c57933939fa57168f5b8d5602c
+                      "~/Content/css/usuario.css"
+      ));
         }
     }
 }
