@@ -1,0 +1,40 @@
+﻿@model ProjetoAlmoco.Application.Categoria.Model.CategoriaModel
+
+@{
+    ViewBag.Title = "GetCategoria";
+}
+
+<h2>GetCategoria</h2>
+
+<div>
+    <h4>CategoriaModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Num_IdCategoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Num_IdCategoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom_Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom_Nome)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <button onclick="RotasCategoria.CarregaPut('@Model.Num_IdCategoria', '@Model.Nom_Nome')" title="Cancelar" class="btn btn-info">
+        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+        Alterar
+    </button>
+    @*<button onclick="RotasPrincipais.CarregaDelete('@Model.Num_Id', '@Model.Nom_Nome', '@Model.Nom_Sobrenome','@Model.Nom_Login', '@Model.Nom_Senha')" title="Cancelar" class="btn btn-info">
+        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+        Deletar
+    </button>*@
+</p>

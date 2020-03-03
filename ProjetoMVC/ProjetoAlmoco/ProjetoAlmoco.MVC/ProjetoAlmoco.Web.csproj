@@ -140,32 +140,38 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginCadastroController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Controllers\UsuarioController.cs" />
+
+    <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\atualizar-cardapio.css" />
-    <Content Include="Content\css\cardapio.css" />
-    <Content Include="Content\css\dropdown.css" />
-    <Content Include="Content\css\home-adm.css" />
-    <Content Include="Content\css\home-user.css" />
-    <Content Include="Content\css\login-cadastro.css" />
-    <Content Include="Content\css\modal-2.css" />
-    <Content Include="Content\css\modal.css" />
-    <Content Include="Content\css\scroll-bar.css" />
-    <Content Include="Content\css\usuario.css" />
+
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="js\increase-button.js" />
-    <Content Include="js\login-cadastro.js" />
-    <Content Include="js\modal-adm.js" />
-    <Content Include="js\modal-user.js" />
+    <Content Include="Content\Site.css" />
+    <Content Include="js\RotasCategoria.js" />
     <Content Include="js\RotasPrincipais.js" />
-    <Content Include="js\script.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -186,22 +192,32 @@
     <Content Include="Views\Usuario\Put.cshtml" />
     <Content Include="Views\Usuario\Post.cshtml" />
     <Content Include="Views\Usuario\Delete.cshtml" />
-    <Content Include="Views\LoginCadastro\Index.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\Adm\Index.cshtml" />
+
+    <Content Include="Views\Categoria\CarregaDelete.cshtml" />
+    <Content Include="Views\Categoria\CarregaPost.cshtml" />
+    <Content Include="Views\Categoria\CarregaPut.cshtml" />
+    <Content Include="Views\Categoria\GetAllCategoria.cshtml" />
+    <Content Include="Views\Categoria\GetCategoria.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\" />
+
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <None Include="packages.config" />
     <Content Include="Views\Usuario\atualiza-cardapio.cshtml" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProjetoAlmoco.Application\ProjetoAlmoco.Application.csproj">

@@ -14,13 +14,21 @@
         <h4>UsuarioModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<<<<<<< HEAD
         <div class="form-group">
+=======
+        @*<div class="form-group">
+>>>>>>> 2299ab25f14e87c57933939fa57168f5b8d5602c
             @Html.LabelFor(model => model.Num_Id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Num_Id, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Num_Id, "", new { @class = "text-danger" })
             </div>
+<<<<<<< HEAD
         </div>
+=======
+        </div>*@
+>>>>>>> 2299ab25f14e87c57933939fa57168f5b8d5602c
 
         <div class="form-group">
             @Html.LabelFor(model => model.Nom_Nome, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -56,7 +64,11 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
+<<<<<<< HEAD
                 <button onclick="RotasPrincipais.Usuario_Put()" title="Cancelar" class="btn btn-info">
+=======
+                <button onclick="RotasPrincipais.Put()" title="Cancelar" class="btn btn-info">
+>>>>>>> 2299ab25f14e87c57933939fa57168f5b8d5602c
                     <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                     Alterar
                 </button>
