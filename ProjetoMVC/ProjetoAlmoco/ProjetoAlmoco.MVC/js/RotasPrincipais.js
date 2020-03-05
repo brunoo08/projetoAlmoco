@@ -70,7 +70,7 @@
         $.post(config.urls.Usuario_CarregaPut, { Nom_Login, Nom_Nome, Nom_Sobrenome, Num_Id, Nom_Senha }).done(function (data) {
 =======
     var Post = function () {
-        $.post(config.urls.Post, { Nom_Login: $("#Nom_Login").val(), Nom_Nome: $("#Nom_Nome").val(), Nom_Sobrenome: $("#Nom_Sobrenome").val(), Num_Id: $("#Num_Id").val(), Nom_Senha: $("#Nom_Senha").val()}).done(function () {
+        $.post(config.urls.Post, { Nom_Login: $("#Nom_Login").val(), Nom_Nome: $("#Nom_Nome").val(), Nom_Sobrenome: $("#Nom_Sobrenome").val(),  Nom_Senha: $("#Nom_Senha").val()}).done(function () {
             GetAllUsuario();
         });
     }
@@ -93,12 +93,12 @@
         $.post(config.urls.Usuario_CarregaDelete, { Num_Id, Nom_Nome, Nom_Sobrenome, Nom_Login, Nom_Senha }).done(function (data) {
 =======
     var Put = function () {
-        $.post(config.urls.Put, { Nom_Login: $("#Nom_Login").val(), Nom_Nome: $("#Nom_Nome").val(), Nom_Sobrenome: $("#Nom_Sobrenome").val(), Num_Id: $("#Num_Id").val(), Nom_Senha: $("#Nom_Senha").val()}).done(function () {
+        $.post(config.urls.Put, { Num_Id: $("#Num_Id").val(), Nom_Login: $("#Nom_Login").val(), Nom_Nome: $("#Nom_Nome").val(), Nom_Sobrenome: $("#Nom_Sobrenome").val(), Nom_Senha: $("#Nom_Senha").val()}).done(function () {
             GetAllUsuario();
         });
     }
 
-    var CarregaDelete = function ( Num_Id, Nom_Nome, Nom_Sobrenome,Nom_Login, Nom_Senha) {
+    var CarregaDelete = function ( Num_Id, Nom_Nome, Nom_Sobrenome,Nom_Login, Nom_Senha){
         $.post(config.urls.CarregaDelete, { Num_Id, Nom_Nome, Nom_Sobrenome, Nom_Login, Nom_Senha }).done(function (data) {
 >>>>>>> 2299ab25f14e87c57933939fa57168f5b8d5602c
             $("body").html(data);

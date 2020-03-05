@@ -27,7 +27,7 @@ GO
 
 CREATE PROCEDURE [dbo].[UpdCategoria]
 	@Num_Id			int,
-	@Nom_Nome	VARCHAR(50)
+	@Nom_Nome		VARCHAR(50)
 	AS
 	/*
 		Documentação
@@ -90,7 +90,7 @@ IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[SelCategor
 GO
 
 CREATE PROCEDURE [dbo].[SelCategoriaId] 
-	@Num_Id	int
+	@Num_Id		int
 	AS
 	/*
 		Documentação

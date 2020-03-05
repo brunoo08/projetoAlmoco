@@ -20,20 +20,19 @@
     }
 
     var GetCategoria = function (Num_Id) {
-        console.log(Num_Id)
         $.post(config.urls.GetCategoria, { Num_Id: Num_Id }).done(function (data) {
             $("body").html(data);
         });
     }
 
     var CarregaPut = function (Num_IdCategoria, Nom_Nome) {
-        $.post(config.urls.CarregaPut, { Num_IdCategoria, Nom_Nome }).done(function (data) {
+        $.post(config.urls.CarregaPut, { Num_IdCategoria, Nom_Nome }).done(function (data){
             $("body").html(data);
         });
     }
 
     var Put = function () {
-        $.post(config.urls.Put, { Num_IdCategoria: $("#Num_IdCategoria").val(), Nom_Nome: $("#Nom_Nome").val() }).done(function () {
+        $.post(config.urls.Put, {Num_IdCategoria: $("#Num_IdCategoria").val(), Nom_Nome: $("#Nom_Nome").val()}).done(function (){
             GetAllCategoria();
         });
     }
@@ -66,8 +65,7 @@
         config = $config;
     };
 
-
-
+    
     return {
         init: init,
         GetAllCategoria: GetAllCategoria,

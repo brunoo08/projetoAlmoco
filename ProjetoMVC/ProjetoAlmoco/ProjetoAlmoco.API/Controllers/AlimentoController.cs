@@ -56,11 +56,11 @@ namespace ProjetoAlmoco.Api.Controllers
             }
         }
 
-        public IHttpActionResult Delete(AlimentosDto alimentos)
+        public IHttpActionResult Delete(int Num_Id)
         {
             try
             {
-                _alimentoRepository.delete(alimentos);
+                _alimentoRepository.delete(Num_Id);
                 return Ok();
             }
             catch (Exception ex)

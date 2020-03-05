@@ -29,9 +29,14 @@
     Mostrar categorias
 </button>
 
+<button onclick="RotasAlimento.GetAllAlimento()" title="Cancelar" class="btn btn-info">
+    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+    Mostrar alimentos
+</button>
+
 <script src="~/js/RotasPrincipais.js?d=@DateTime.Now.Ticks"></script>
 <script src="~/js/RotasCategoria.js?d=@DateTime.Now.Ticks"></script>
->>>>>>> 2299ab25f14e87c57933939fa57168f5b8d5602c
+<script src="~/js/RotasAlimento.js?d=@DateTime.Now.Ticks"></script>
 
 <script>
 
@@ -42,11 +47,6 @@
             Post: '@Url.Action("Post","Usuario")',
             Put: '@Url.Action("Put","Usuario")',
             Delete: '@Url.Action("Delete","Usuario")',
-<<<<<<< HEAD
-            Usuario_CarregaPost: '@Url.Action("CarregaPost","Usuario")',
-            Usuario_CarregaPut: '@Url.Action("CarregaPut","Usuario")',
-            Usuario_CarregaDelete: '@Url.Action("CarregaDelete","Usuario")'
-=======
             CarregaPost: '@Url.Action("CarregaPost","Usuario")',
             CarregaPut: '@Url.Action("CarregaPut","Usuario")',
             CarregaDelete: '@Url.Action("CarregaDelete","Usuario")'
@@ -63,9 +63,21 @@
             CarregaPost: '@Url.Action("CarregaPost", "Categoria")',
             CarregaPut: '@Url.Action("CarregaPut", "Categoria")',
             CarregaDelete: '@Url.Action("CarregaDelete", "Categoria")'
->>>>>>> 2299ab25f14e87c57933939fa57168f5b8d5602c
         }
     });
+
+    RotasAlimento.init({
+        urls: {
+            GetAllAlimento: '@Url.Action("GetAllAlimento", "Alimento")',
+            GetAlimento: '@Url.Action("GetAlimento", "Alimento")',
+            CarregaPut: '@Url.Action("CarregaPut","Alimento")',
+            Put: '@Url.Action("Put","Alimento")',
+            CarregaPost: '@Url.Action("CarregaPost", "Alimento")',
+            Post: '@Url.Action("Post","Alimento")',
+            CarregaDelete: '@Url.Action("CarregaDelete", "Alimento")',
+            Delete: '@Url.Action("Delete", "Alimento")',
+        }
+    })
 
 </script>
 

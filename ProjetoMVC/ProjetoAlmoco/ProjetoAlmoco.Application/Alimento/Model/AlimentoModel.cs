@@ -10,7 +10,7 @@ namespace ProjetoAlmoco.Application.Alimento.Model
     {
         public int Num_IdAlimentos { get; set; }
         public string Nom_NomeAlimento { get; set; }
-        public char Ind_Disponivel { get; set; }
+        public bool Ind_Disponivel { get; set; }
         public int Num_IdCategoria { get; set; }
     }
 }

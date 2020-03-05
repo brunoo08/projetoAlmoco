@@ -6,7 +6,7 @@ GO
 
 CREATE PROCEDURE [dbo].[InsAlimento]
 	@Nom_Nome			VARCHAR(50),
-	@Ind_Disponivel		char(1),
+	@Ind_Disponivel		bit,
 	@Num_IdCategoria	int
 	AS
 	/*
@@ -30,7 +30,7 @@ GO
 CREATE PROCEDURE [dbo].[UpdAlimento]
 	@Num_Id				int,
 	@Nom_Nome			VARCHAR(50),
-	@Ind_Disponivel		char(1)
+	@Ind_Disponivel		bit
 	AS
 	/*
 		Documentação

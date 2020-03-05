@@ -6,7 +6,7 @@ namespace ProjetoAlmoco.Domain.Alimento
     {
         void post(AlimentosDto alimentos);
         void put(AlimentosDto alimentos);
-        void delete(AlimentosDto alimentos);
+        void delete(int Num_Id);
         IEnumerable<AlimentosDto> getAll();
         IEnumerable<AlimentosDto> getDisp();
         AlimentosDto get(int Num_Id);

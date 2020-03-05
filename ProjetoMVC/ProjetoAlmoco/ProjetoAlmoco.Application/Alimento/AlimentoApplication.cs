@@ -35,7 +35,7 @@ namespace ProjetoAlmoco.Application.Alimento
 
         public HttpResponseMessage Put(AlimentoModel alimentoModel)
         {
-            string URL = "http://localhost:58473/api/categoria/Put";
+            string URL = "http://localhost:58473/api/alimento/Put";
             //client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
             HttpResponseMessage response = client.PutAsync(URL, alimentoModel, new JsonMediaTypeFormatter
@@ -57,7 +57,7 @@ namespace ProjetoAlmoco.Application.Alimento
 
         public HttpResponseMessage Post(AlimentoModel alimentoModel)
         {
-            string URL = "http://localhost:58473/api/categoria/Post";
+            string URL = "http://localhost:58473/api/alimento/Post";
             //client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
             HttpResponseMessage response = client.PostAsync(URL, alimentoModel, new JsonMediaTypeFormatter
@@ -77,9 +77,9 @@ namespace ProjetoAlmoco.Application.Alimento
             return response;
         }
 
-        public HttpResponseMessage Delete(AlimentoModel alimentoModel)
+        public HttpResponseMessage Delete(int Num_Id)
         {
-            string URL = "http://localhost:58473/api/categoria/Delete";
+            string URL = "http://localhost:58473/api/alimento/Delete" + "?Num_Id=" + Num_Id.ToString();
             //client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
