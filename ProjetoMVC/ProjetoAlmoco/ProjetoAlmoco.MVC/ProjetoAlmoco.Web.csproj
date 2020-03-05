@@ -136,6 +136,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AlimentoController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -153,6 +154,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="js\RotasAlimento.js" />
     <Content Include="js\RotasCategoria.js" />
     <Content Include="js\RotasPrincipais.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -185,7 +187,6 @@
     <Content Include="Views\Home\IndexAdmin.cshtml" />
     <Content Include="Views\Usuario\GetAllUsuario.cshtml" />
     <Content Include="Views\Usuario\GetUsuario.cshtml" />
-    <Content Include="Views\Usuario\Put.cshtml" />
     <Content Include="Views\Usuario\Post.cshtml" />
     <Content Include="Views\Usuario\Delete.cshtml" />
     <Content Include="Views\Categoria\CarregaDelete.cshtml" />
@@ -193,6 +194,12 @@
     <Content Include="Views\Categoria\CarregaPut.cshtml" />
     <Content Include="Views\Categoria\GetAllCategoria.cshtml" />
     <Content Include="Views\Categoria\GetCategoria.cshtml" />
+    <Content Include="Views\Alimento\GetAllAlimento.cshtml" />
+    <Content Include="Views\Alimento\GetAlimento.cshtml" />
+    <Content Include="Views\Alimento\CarregaPost.cshtml" />
+    <Content Include="Views\Alimento\CarregaDelete.cshtml" />
+    <Content Include="Views\Usuario\Put.cshtml" />
+    <Content Include="Views\Alimento\CarregaPut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

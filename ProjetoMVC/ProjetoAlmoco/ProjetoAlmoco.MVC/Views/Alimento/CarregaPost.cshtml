@@ -1,0 +1,49 @@
+﻿@model ProjetoAlmoco.Application.Alimento.Model.AlimentoModel
+
+@{
+    ViewBag.Title = "CarregaPost";
+}
+
+<h2>CarregaPost</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>AlimentoModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nom_NomeAlimento, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nom_NomeAlimento, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nom_NomeAlimento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ind_Disponivel, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input id="check" class="check-box" type="checkbox">
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Num_IdCategoria, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Num_IdCategoria, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Num_IdCategoria, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+}
+
+
+    <button onclick="RotasAlimento.Post('@Model.Nom_NomeAlimento', '@Model.Num_IdCategoria')" title="Cancelar" class="btn btn-info">
+        Editar
+    </button>
+
+

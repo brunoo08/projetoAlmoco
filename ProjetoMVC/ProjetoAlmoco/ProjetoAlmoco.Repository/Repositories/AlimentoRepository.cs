@@ -16,7 +16,7 @@ namespace ProjetoAlmoco.Repository.Repositories
                     {
                         Num_IdAlimentos = Convert.ToInt16(reader["Num_IdAlimentos"].ToString()),
                         Nom_NomeAlimento = reader["Nom_NomeAlimento"].ToString(),
-                        Ind_Disponivel = Convert.ToChar(reader["Ind_Disponivel"].ToString()),
+                        Ind_Disponivel = Convert.ToBoolean(reader["Ind_Disponivel"].ToString()),
                         Num_IdCategoria = Convert.ToInt16(reader["Num_IdCategoria"].ToString())
                     });
 
@@ -34,7 +34,7 @@ namespace ProjetoAlmoco.Repository.Repositories
                     {
                         Num_IdAlimentos = Convert.ToInt16(reader["Num_IdAlimentos"].ToString()),
                         Nom_NomeAlimento = reader["Nom_NomeAlimento"].ToString(),
-                        Ind_Disponivel = Convert.ToChar(reader["Ind_Disponivel"].ToString()),
+                        Ind_Disponivel = Convert.ToBoolean(reader["Ind_Disponivel"].ToString()),
                         Num_IdCategoria = Convert.ToInt16(reader["Num_IdCategoria"].ToString())
                     });
 
@@ -52,18 +52,18 @@ namespace ProjetoAlmoco.Repository.Repositories
                     {
                         Num_IdAlimentos = Convert.ToInt16(reader["Num_IdAlimentos"].ToString()),
                         Nom_NomeAlimento = reader["Nom_NomeAlimento"].ToString(),
-                        Ind_Disponivel = Convert.ToChar(reader["Ind_Disponivel"].ToString()),
+                        Ind_Disponivel = Convert.ToBoolean(reader["Ind_Disponivel"].ToString()),
                         Num_IdCategoria = Convert.ToInt16(reader["Num_IdCategoria"].ToString())
                     };
 
             return null;
         }
 
-        public void delete(AlimentosDto alimentos)
+        public void delete(int Num_Id)
         {
 
             ExecuteProcedure("DelAlimento");
-            AddParameter("@Num_Id", alimentos.Num_IdAlimentos);
+            AddParameter("@Num_Id", Num_Id);
             ExecuteNonQuery();
 
         }

@@ -1,0 +1,58 @@
+﻿@model ProjetoAlmoco.Application.Alimento.Model.AlimentoModel
+
+@{
+    ViewBag.Title = "GetAlimento";
+}
+
+<h2>GetAlimento</h2>
+
+<div>
+    <h4>AlimentoModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Num_IdAlimentos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Num_IdAlimentos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom_NomeAlimento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom_NomeAlimento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ind_Disponivel)
+        </dt>
+
+        <dd>
+            @Html.CheckBoxFor(model => model.Ind_Disponivel, new { id = "check" })
+            @*@Html.DisplayFor(model => model.Ind_Disponivel)*@
+            @*<input id="check" class="check-box" type="checkbox">*@
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Num_IdCategoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Num_IdCategoria)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <button onclick="RotasAlimento.CarregaPut('@Model.Num_IdAlimentos', '@Model.Nom_NomeAlimento')" title="Cancelar" class="btn btn-info">
+        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+        Editar
+    </button>
+    <button onclick="RotasAlimento.CarregaDelete('@Model.Num_IdAlimentos','@Model.Nom_NomeAlimento','@Model.Ind_Disponivel','@Model.Num_IdCategoria')" title="Cancelar" class="btn btn-info">
+        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+        Delete
+    </button>
+</p>

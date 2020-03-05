@@ -33,7 +33,7 @@
     }
 
     var Post = function () {
-        $.post(config.urls.Post, { Nom_Login: $("#Nom_Login").val(), Nom_Nome: $("#Nom_Nome").val(), Nom_Sobrenome: $("#Nom_Sobrenome").val(), Num_Id: $("#Num_Id").val(), Nom_Senha: $("#Nom_Senha").val()}).done(function () {
+        $.post(config.urls.Post, { Nom_Login: $("#Nom_Login").val(), Nom_Nome: $("#Nom_Nome").val(), Nom_Sobrenome: $("#Nom_Sobrenome").val(),  Nom_Senha: $("#Nom_Senha").val()}).done(function () {
             GetAllUsuario();
         });
     }
@@ -45,12 +45,12 @@
     }
 
     var Put = function () {
-        $.post(config.urls.Put, { Nom_Login: $("#Nom_Login").val(), Nom_Nome: $("#Nom_Nome").val(), Nom_Sobrenome: $("#Nom_Sobrenome").val(), Num_Id: $("#Num_Id").val(), Nom_Senha: $("#Nom_Senha").val()}).done(function () {
+        $.post(config.urls.Put, { Num_Id: $("#Num_Id").val(), Nom_Login: $("#Nom_Login").val(), Nom_Nome: $("#Nom_Nome").val(), Nom_Sobrenome: $("#Nom_Sobrenome").val(), Nom_Senha: $("#Nom_Senha").val()}).done(function () {
             GetAllUsuario();
         });
     }
 
-    var CarregaDelete = function ( Num_Id, Nom_Nome, Nom_Sobrenome,Nom_Login, Nom_Senha) {
+    var CarregaDelete = function ( Num_Id, Nom_Nome, Nom_Sobrenome,Nom_Login, Nom_Senha){
         $.post(config.urls.CarregaDelete, { Num_Id, Nom_Nome, Nom_Sobrenome, Nom_Login, Nom_Senha }).done(function (data) {
             $("body").html(data);
         });
