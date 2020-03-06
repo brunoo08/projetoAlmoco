@@ -216,6 +216,7 @@
     <Content Include="Views\Adm\Index.cshtml" />
     <Content Include="Views\LoginCadastro\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Alimento\GetDispAlimento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

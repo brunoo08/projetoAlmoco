@@ -5,25 +5,15 @@
 
 <h2>Usuarios</h2>
 
-<<<<<<< HEAD
 @*<p>
         @Html.ActionLink("Mostrar Usuários", "_getAll")
     </p>*@
 
-<button onclick="RotasPrincipais.Usuario_GetAllUsuario()" title="Cancelar" class="btn btn-info">
-=======
-
 <button onclick="RotasPrincipais.GetAllUsuario()" title="Cancelar" class="btn btn-info">
->>>>>>> 2299ab25f14e87c57933939fa57168f5b8d5602c
     <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
     Mostrar usuários
 </button>
 
-<<<<<<< HEAD
-
-
-<script src="~/js/RotasPrincipais.js?d=@DateTime.Now.Ticks"></script>
-=======
 <button onclick="RotasCategoria.GetAllCategoria()" title="Cancelar" class="btn btn-info">
     <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
     Mostrar categorias
@@ -76,6 +66,7 @@
             Post: '@Url.Action("Post","Alimento")',
             CarregaDelete: '@Url.Action("CarregaDelete", "Alimento")',
             Delete: '@Url.Action("Delete", "Alimento")',
+            GetDispAlimento: '@Url.Action("GetDispAlimento","Alimento")'
         }
     })
 

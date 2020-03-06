@@ -9,13 +9,20 @@
             Put: '',
             CarregaPut: '',
             Delete: '',
-            CarregaDelete: ''
+            CarregaDelete: '',
+            GetDispAlimento: ''
         }
     };
 
 
     var GetAllAlimento = function () {
         $.get(config.urls.GetAllAlimento).done(function (data) {
+            $("body").html(data);
+        });
+    }
+
+    var GetDispAlimento = function () {
+        $.get(config.urls.GetDispAlimento).done(function (data) {
             $("body").html(data);
         });
     }
@@ -78,6 +85,7 @@
         CarregaPost: CarregaPost,
         Post: Post,
         CarregaDelete: CarregaDelete,
-        Delete: Delete
+        Delete: Delete,
+        GetDispAlimento: GetDispAlimento
     }
 })();
