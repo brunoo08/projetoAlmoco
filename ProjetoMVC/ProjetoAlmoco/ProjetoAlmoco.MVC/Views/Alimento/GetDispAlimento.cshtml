@@ -1,19 +1,14 @@
 ﻿@model IEnumerable<ProjetoAlmoco.Application.Alimento.Model.AlimentoModel>
 
 @{
-    ViewBag.Title = "GetAllAlimento";
+    ViewBag.Title = "GetDispAlimento";
 }
 
-<h2>GetAllAlimento</h2>
+<h2>GetDispAlimento</h2>
 
-<button onclick="RotasAlimento.CarregaPost()" title="Cancelar" class="btn btn-info">
-    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-    Criar Novo Alimento
-</button>
-<button onclick="RotasAlimento.GetDispAlimento()" title="Cancelar" class="btn btn-info">
-    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-    Ver apenas disponiveis
-</button>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
     <tr>
         <th>
@@ -46,10 +41,9 @@
             @Html.DisplayFor(modelItem => item.Num_IdCategoria)
         </td>
         <td>
-            <button onclick="RotasAlimento.GetAlimento(@item.Num_IdAlimentos)" title="Cancelar" class="btn btn-info">
-                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-                Mostrar alimento
-            </button>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }

@@ -33,6 +33,15 @@ namespace ProjetoAlmoco.Application.Alimento
             return response;
         }
 
+        public HttpResponseMessage GetDispAlimento()
+        {
+            string URL = "http://localhost:58473/api/alimento/getDisp";
+            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage response = client.GetAsync(URL).Result;
+
+            return response;
+        }
+
         public HttpResponseMessage Put(AlimentoModel alimentoModel)
         {
             string URL = "http://localhost:58473/api/alimento/Put";

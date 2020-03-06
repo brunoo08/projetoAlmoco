@@ -200,6 +200,7 @@
     <Content Include="Views\Alimento\CarregaDelete.cshtml" />
     <Content Include="Views\Usuario\Put.cshtml" />
     <Content Include="Views\Alimento\CarregaPut.cshtml" />
+    <Content Include="Views\Alimento\GetDispAlimento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
