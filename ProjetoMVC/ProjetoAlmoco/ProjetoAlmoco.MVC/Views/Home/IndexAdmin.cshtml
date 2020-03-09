@@ -5,53 +5,37 @@
 
 <h2>Usuarios</h2>
 
-<<<<<<< HEAD
-@*<p>
-        @Html.ActionLink("Mostrar Usuários", "_getAll")
-    </p>*@
 
-<button onclick="RotasPrincipais.Usuario_GetAllUsuario()" title="Cancelar" class="btn btn-info">
-=======
 
 <button onclick="RotasPrincipais.GetAllUsuario()" title="Cancelar" class="btn btn-info">
->>>>>>> 2299ab25f14e87c57933939fa57168f5b8d5602c
+
     <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
     Mostrar usuários
 </button>
 
-<<<<<<< HEAD
 
-
-<script src="~/js/RotasPrincipais.js?d=@DateTime.Now.Ticks"></script>
-=======
 <button onclick="RotasCategoria.GetAllCategoria()" title="Cancelar" class="btn btn-info">
     <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
     Mostrar categorias
 </button>
 
-<script src="~/js/RotasPrincipais.js?d=@DateTime.Now.Ticks"></script>
+@*<script src="~/js/RotasPrincipais.js?d=@DateTime.Now.Ticks"></script>*@
 <script src="~/js/RotasCategoria.js?d=@DateTime.Now.Ticks"></script>
->>>>>>> 2299ab25f14e87c57933939fa57168f5b8d5602c
 
 <script>
 
-    RotasPrincipais.init({
+    @*RotasPrincipais.init({
         urls: {
             GetAllUsuario: '@Url.Action("GetAllUsuario", "Usuario")',
             GetUsuario: '@Url.Action("GetUsuario","Usuario")', 
             Post: '@Url.Action("Post","Usuario")',
             Put: '@Url.Action("Put","Usuario")',
             Delete: '@Url.Action("Delete","Usuario")',
-<<<<<<< HEAD
-            Usuario_CarregaPost: '@Url.Action("CarregaPost","Usuario")',
-            Usuario_CarregaPut: '@Url.Action("CarregaPut","Usuario")',
-            Usuario_CarregaDelete: '@Url.Action("CarregaDelete","Usuario")'
-=======
             CarregaPost: '@Url.Action("CarregaPost","Usuario")',
             CarregaPut: '@Url.Action("CarregaPut","Usuario")',
             CarregaDelete: '@Url.Action("CarregaDelete","Usuario")'
         }
-    });
+    });*@
 
     RotasCategoria.init({
         urls: {
@@ -63,7 +47,6 @@
             CarregaPost: '@Url.Action("CarregaPost", "Categoria")',
             CarregaPut: '@Url.Action("CarregaPut", "Categoria")',
             CarregaDelete: '@Url.Action("CarregaDelete", "Categoria")'
->>>>>>> 2299ab25f14e87c57933939fa57168f5b8d5602c
         }
     });
 

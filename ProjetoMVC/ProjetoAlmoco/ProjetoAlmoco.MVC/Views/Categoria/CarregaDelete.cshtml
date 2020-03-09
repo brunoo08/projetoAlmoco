@@ -4,36 +4,27 @@
     ViewBag.Title = "CarregaDelete";
 }
 
-<h2>CarregaDelete</h2>
+<!-- modal excluir categoria-->
+<div id="modal-excluir-categoria" class="modal">
+    <script>
+        var ElementID;
+        function GetID(id) {
+            ElementID = id;
+        }
+    </script>
+    <div class="modal-content">
+        <div class="topo">
+            <span class="titulo-modal">Atenção!</span> <br>
+            <button class="close-button" onclick="fechaModal('modal-excluir-categoria')">X</button>
+        </div>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>CategoriaModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Num_IdCategoria)
-        </dt>
+        <div class="confirmacao">
+            <span>Deseja excluir esta categoria?</span>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Num_IdCategoria)
-        </dd>
+        <div class="bottom">
+            <button class="botao" onclick="RotasCategoria.Delete(@Model.Num_IdCategoria)">Excluir</button>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nom_Nome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nom_Nome)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-    <button onclick="RotasCategoria.Delete(@Html.DisplayFor(model => model.Num_IdCategoria))" title="Cancelar" class="btn btn-info">
-        Deletar
-    </button>
-    }
+    </div>
 </div>
