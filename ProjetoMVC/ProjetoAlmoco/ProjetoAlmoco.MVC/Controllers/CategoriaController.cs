@@ -18,7 +18,8 @@ namespace ProjetoAlmoco.MVC.Controllers
         public ActionResult GetAllCategoria()
         {
             HttpResponseMessage response = _categoriaApplication.GetAllCategoria();
-            return View(response.Content.ReadAsAsync<List<CategoriaModel>>().Result);
+            ViewBag.GetAllCategorys = response.Content.ReadAsAsync<List<CategoriaModel>>().Result;
+            return View();
         }
 
         public ActionResult GetCategoria(int Num_Id)
@@ -55,7 +56,6 @@ namespace ProjetoAlmoco.MVC.Controllers
 
             return View("CarregaPost", new CategoriaModel());
         }
-
         public ActionResult Delete(int Num_IdCategoria)
         {
             HttpResponseMessage response = _categoriaApplication.Delete(Num_IdCategoria);

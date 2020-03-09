@@ -168,8 +168,13 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="js\RotasAlimento.js" />
+    <Content Include="js\increase-button.js" />
+    <Content Include="js\login-cadastro.js" />
+    <Content Include="js\modal-adm.js" />
+    <Content Include="js\modal-user.js" />
     <Content Include="js\RotasCategoria.js" />
     <Content Include="js\RotasPrincipais.js" />
+    <Content Include="js\script.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -217,10 +222,14 @@
     <Content Include="Views\LoginCadastro\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Alimento\GetDispAlimento.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="bin\" />
     <Folder Include="Models\" />
+
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -2,6 +2,10 @@
 
     var config = {
         urls: {
+<<<<<<< HEAD
+=======
+
+>>>>>>> FRT003
             GetAllUsuario: '',
             GetUsuario: '',
             Post: '',
@@ -13,17 +17,27 @@
         }
     };
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> FRT003
     var GetAllUsuario = function () {
         $.get(config.urls.GetAllUsuario).done(function (data) {
             $("body").html(data);
         });
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> FRT003
     var GetUsuario = function (Num_Id) {
         $.post(config.urls.GetUsuario, { Num_Id: Num_Id }).done(function (data) {
             $("body").html(data);
         });
     }
+
 
     var CarregaPost = function () {
         $.post(config.urls.CarregaPost).done(function (data) {
@@ -34,7 +48,6 @@
     var Post = function () {
         if ($("#Nom_Login").val() && $("#Nom_Nome").val() && $("#Nom_Sobrenome").val() && $("#Nom_Senha").val()) {
             $.post(config.urls.Post, { Nom_Login: $("#Nom_Login").val(), Nom_Nome: $("#Nom_Nome").val(), Nom_Sobrenome: $("#Nom_Sobrenome").val(), Nom_Senha: $("#Nom_Senha").val() }).done(function () {
-                GetAllUsuario();
             });
         }
     }
@@ -44,6 +57,7 @@
             $("body").html(data);
         });
     }
+
 
     var Put = function () {
         $.post(config.urls.Put, { Num_Id: $("#Num_Id").val(), Nom_Login: $("#Nom_Login").val(), Nom_Nome: $("#Nom_Nome").val(), Nom_Sobrenome: $("#Nom_Sobrenome").val(), Nom_Senha: $("#Nom_Senha").val()}).done(function () {
@@ -56,7 +70,8 @@
             $("body").html(data);
         });
     }
-    
+
+
     var Delete = function (Num_Id) {
         console.log(Num_Id);
         $.post(config.urls.Delete, { Num_Id: Num_Id}).done(function () {
