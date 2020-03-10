@@ -25,14 +25,14 @@
         });
     }
 
+    var Num_IdCategoria;
     var CarregaPut = function (Num_IdCategoria, Nom_Nome) {
-        $.post(config.urls.CarregaPut, { Num_IdCategoria, Nom_Nome }).done(function (data){
-            $("body").html(data);
-        });
+        this.Num_IdCategoria = Num_IdCategoria;
     }
 
     var Put = function () {
-        $.post(config.urls.Put, {Num_IdCategoria: $("#Num_IdCategoria").val(), Nom_Nome: $("#Nom_Nome").val()}).done(function (){
+        console.log($("#Nom_Nome").val());
+        $.post(config.urls.Put, { Num_IdCategoria: this.Num_IdCategoria, Nom_Nome: $("#Nom_Nome_Put").val() }).done(function () {
             GetAllCategoria();
         });
     }
@@ -44,20 +44,24 @@
     }
 
     var Post = function () {
-        $.post(config.urls.Post, { Nom_Nome: $("#Nom_Nome").val() }).done(function () {
+        $.post(config.urls.Post, {Nom_Nome: $("#Nom_Nome").val()}).done(function () {
             GetAllCategoria();
         });
     }
 
     var CarregaDelete = function (Num_IdCategoria, Nom_Nome) {
-        $.post(config.urls.CarregaDelete, { Num_IdCategoria, Nom_Nome }).done(function (data) {
-            $("body").html(data);
+        $.post(config.urls.CarregaDelete, { Num_IdCategoria: Num_IdCategoria, Nom_Nome: Nom_Nome }).done(function (data) {
+            console.log(data);
+            $("#CarregaDelete").html(data);
+
+            var modal = document.getElementById("modal-excluir-categoria");
+            modal.style.display = "block";
         });
     }
 
     var Delete = function (Num_IdCategoria) {
         $.post(config.urls.Delete, { Num_IdCategoria: Num_IdCategoria }).done(function () {
-            GetAllCategoria();
+            location.reload(true);
         });
     }
 

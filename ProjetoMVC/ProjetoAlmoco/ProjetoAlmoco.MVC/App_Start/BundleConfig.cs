@@ -23,8 +23,17 @@ namespace ProjetoAlmoco.MVC
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/css/atualizar-cardapio.css",
+                      "~/Content/css/cardapio.css",
+                      "~/Content/css/dropdown.css",
+                      "~/Content/css/home-adm.css",
+                      "~/Content/css/home-user.css",
+                      "~/Content/css/login-cadastro.css",
+                      "~/Content/css/modal-2.css",
+                      "~/Content/css/modal.css",
+                      "~/Content/css/scroll-bar.css",
+                      "~/Content/css/usuario.css"
+      ));
         }
     }
 }

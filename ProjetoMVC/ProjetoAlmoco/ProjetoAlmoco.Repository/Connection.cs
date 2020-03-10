@@ -10,7 +10,8 @@ namespace ProjetoAlmoco.Repository
 {
     public class Connection 
     {
-        private string _connectionString = "data source = ESTAGIO15; Integrated Security = SSPI; Initial Catalog = ProjetoAlmoco";
+        private string _connectionString = "data source = ESTAGIO04; Integrated Security = SSPI; Initial Catalog = ProjetoAlmoco";
+
         private readonly SqlConnection _connection;
         private SqlCommand Command { get; set; }
         public Connection()

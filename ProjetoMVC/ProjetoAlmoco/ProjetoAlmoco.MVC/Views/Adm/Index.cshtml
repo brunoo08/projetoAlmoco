@@ -1,0 +1,191 @@
+﻿<!-- ATUALIZA CARDAPIO -->
+
+@{
+    ViewBag.Title = "Atualizar Cardápio";
+}
+
+<main id="direcao-flex">
+
+    <!-- icone usuario e cardapio -->
+    <div class="main-topo">
+
+        <div class="usuario">
+            <i class="zmdi zmdi-account-circle"></i>
+            <div>
+                <span class="nome">Nome</span> <br>
+                <span>usuário</span>
+            </div>
+            <div class="sair">
+                <i class="material-icons" onclick="pagLogin()">exit_to_app</i>
+            </div>
+        </div>
+
+        <div class="titulo-pagina">
+            <span>Atualizar Cardápio</span>
+        </div>
+
+    </div>
+
+    <!-- categorias -->
+    <div class="main-content">
+        <div class="content-topo">
+            <p>Selecione as opções do dia</p>
+            <span id=add-categoria onclick="abreModal('modal-adicionar-categoria')"> <i class="material-icons">add_circle_outline</i>adicionar categoria </span>
+        </div>
+
+        <div class="content-content">
+
+            <div class="categorias scroll scroll4">
+
+                @foreach (var item in ViewBag.GetAllCategorys)
+                {
+                <div class="categoria">
+                    <i class="material-icons" onclick="RotasCategoria.CarregaDelete(@item.Num_IdCategoria, '@item.Nom_Nome')">delete</i>
+                    <i class="material-icons" onclick="abreModal('modal-editar-categoria'), RotasCategoria.CarregaPut(@item.Num_IdCategoria)">edit</i>
+                    <!--, EscolherCategoria($(this).parent().children('span').text())
+                    , GetID($(this).parent().children('span').attr('data-id'))-->
+                    <span class="nome-categoria" data-id="@item.Num_IdCategoria">@item.Nom_Nome</span> <br>
+
+
+
+                    <div id="form">
+                        <span>Definir quantidade de escolha:</span>
+                        
+                        
+                        <div class="value-button" id="decrease" onclick="decreaseValue('daiv-@item.Num_IdCategoria')" value="Decrease Value">-</div>
+                        <input type="number" class="number" id='daiv-@item.Num_IdCategoria' value="1" />
+                        <div class="value-button" id="increase" onclick="increaseValue('daiv-@item.Num_IdCategoria')" value="Increase Value">+</div>
+                        
+                        <br>
+
+                        <input class="opcao-categoria" type="checkbox" name="opcao">
+                        <input class="opcao-categoria" type="checkbox" name="opcao"><br/>
+                        <input class="opcao-categoria" type="checkbox" name="opcao">
+                        <input class="opcao-categoria" type="checkbox" name="opcao">
+                    </div>
+                </div>
+                }
+
+            </div>
+
+            <div class="content-bottom">
+                <input class="botao" type="submit" value="Voltar" onclick="pagHomeAdm()"><br>
+                <input class="botao" type="submit" value="Atualizar" onclick="atualizarCardapio()"><br>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</main>
+
+
+    <!-- modal add categoria-->
+    <div id="modal-adicionar-categoria" class="modal">
+        <div class="modal-content">
+
+            <div class="topo">
+                <span class="titulo-modal">Nova Categoria</span> <br>
+                <button class="close-button" id="close-modalCat" onclick="fechaModal('modal-adicionar-categoria')">X</button>
+            </div>
+
+            <div class="formulario">
+                <div class="nome-categoria">
+                    <span>Nome da categoria:</span>
+                    <input type="text" class="input" id="Nom_Nome">
+                </div>
+
+                <div class="opcoes">
+                    <span>Opções:</span>
+
+                    <div class="opcao">
+                        <input type="text" class="input">
+                        <i class="material-icons" style="font-size:24px">remove</i>
+                    </div>
+
+                    <div class="add-opcao">
+                        <input type="text" class="input">
+                        <i class="material-icons" style="font-size:24px">add</i>
+                    </div>
+                </div>
+
+                <div class="bottom">
+                    <button class="botao" onclick="RotasCategoria.Post(); fechaModal('modal-adicionar-categoria'); ">Adicionar</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- modal editar categoria-->
+    <div id="modal-editar-categoria" class="modal">
+        <script>
+            function EscolherCategoria(catEscolhida) {
+                $('#Nom_Nome').attr('value', catEscolhida);
+            }
+        </script>
+        <div class="modal-content">
+
+            <div class="topo">
+                <span class="titulo-modal">Editar Categoria</span> <br>
+                <button class="close-button" onclick="fechaModal('modal-editar-categoria')">X</button>
+            </div>
+
+            <div class="formulario">
+
+                <div class="nome-categoria">
+                    <span>Nome da categoria:</span>
+                    <input type="text" class="input" id="Nom_Nome_Put" value="">
+                </div>
+
+                <div class="opcoes">
+                    <span>Opções:</span>
+
+                    <div class="opcao">
+                        <input type="text" class="input">
+                        <i class="material-icons" style="font-size:24px">remove</i>
+                    </div>
+
+
+                    <div class="add-opcao">
+                        <input type="text" class="input">
+                        <i class="material-icons" style="font-size:24px">add</i>
+                    </div>
+                </div>
+
+                <div class="bottom">
+                    <button class="botao" onclick="RotasCategoria.Put(); fechaModal('modal-editar-categoria')">Salvar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+   <div id="CarregaDelete"></div>
+
+
+    <script src="~/js/RotasCategoria.js?d=@DateTime.Now.Ticks"></script>
+
+    <script>
+
+    RotasCategoria.init({
+        urls: {
+            GetAllCategoria: '@Url.Action("Index", "Adm")',
+            GetCategoria: '@Url.Action("GetCategoria", "Categoria")',
+            Post: '@Url.Action("Post", "Categoria")',
+            Put: '@Url.Action("Put", "Categoria")',
+            Delete: '@Url.Action("Delete", "Categoria")',
+            CarregaPost: '@Url.Action("CarregaPost", "Categoria")',
+            CarregaPut: '@Url.Action("CarregaPut", "Categoria")',
+            CarregaDelete: '@Url.Action("CarregaDelete", "Categoria")'
+        }
+    });
+
+    </script>
+
+
+
+

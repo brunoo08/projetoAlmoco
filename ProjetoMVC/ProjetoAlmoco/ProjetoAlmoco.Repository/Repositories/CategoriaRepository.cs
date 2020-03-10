@@ -22,6 +22,7 @@ namespace ProjetoAlmoco.Repository.Repositories
             ExecuteNonQuery();
         }
 
+
         public void delete(int Num_Id)
         {
             ExecuteProcedure("DelCategoria");

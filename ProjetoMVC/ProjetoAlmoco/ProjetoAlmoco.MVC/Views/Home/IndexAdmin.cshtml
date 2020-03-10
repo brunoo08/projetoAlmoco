@@ -6,15 +6,22 @@
 <h2>Usuarios</h2>
 
 
+@*<p>
+        @Html.ActionLink("Mostrar Usuários", "_getAll")
+    </p>*@
+
 <button onclick="RotasPrincipais.GetAllUsuario()" title="Cancelar" class="btn btn-info">
+
     <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
     Mostrar usuários
 </button>
+
 
 <button onclick="RotasCategoria.GetAllCategoria()" title="Cancelar" class="btn btn-info">
     <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
     Mostrar categorias
 </button>
+
 
 <button onclick="RotasAlimento.GetAllAlimento()" title="Cancelar" class="btn btn-info">
     <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
@@ -25,9 +32,13 @@
 <script src="~/js/RotasCategoria.js?d=@DateTime.Now.Ticks"></script>
 <script src="~/js/RotasAlimento.js?d=@DateTime.Now.Ticks"></script>
 
+@*<script src="~/js/RotasPrincipais.js?d=@DateTime.Now.Ticks"></script>*@
+<script src="~/js/RotasCategoria.js?d=@DateTime.Now.Ticks"></script>
+
+
 <script>
 
-    RotasPrincipais.init({
+    @*RotasPrincipais.init({
         urls: {
             GetAllUsuario: '@Url.Action("GetAllUsuario", "Usuario")',
             GetUsuario: '@Url.Action("GetUsuario","Usuario")', 
@@ -38,7 +49,7 @@
             CarregaPut: '@Url.Action("CarregaPut","Usuario")',
             CarregaDelete: '@Url.Action("CarregaDelete","Usuario")'
         }
-    });
+    });*@
 
     RotasCategoria.init({
         urls: {
@@ -64,6 +75,7 @@
             Post: '@Url.Action("Post","Alimento")',
             CarregaDelete: '@Url.Action("CarregaDelete", "Alimento")',
             Delete: '@Url.Action("Delete", "Alimento")',
+            GetDispAlimento: '@Url.Action("GetDispAlimento","Alimento")'
         }
     })
 
