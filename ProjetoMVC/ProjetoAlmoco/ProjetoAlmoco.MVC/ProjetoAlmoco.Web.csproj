@@ -140,6 +140,7 @@
     <Compile Include="Controllers\AdmController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginCadastroController.cs" />
+    <Compile Include="Controllers\PedidosController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -169,6 +170,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="js\RotasAlimento.js" />
     <Content Include="js\RotasCategoria.js" />
+    <Content Include="js\RotasPedidos.js" />
     <Content Include="js\RotasPrincipais.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -217,6 +219,11 @@
     <Content Include="Views\LoginCadastro\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Alimento\GetDispAlimento.cshtml" />
+    <Content Include="Views\Pedidos\GetAllPedidos.cshtml" />
+    <Content Include="Views\Pedidos\GetPedidos.cshtml" />
+    <Content Include="Views\Pedidos\CarregaPut.cshtml" />
+    <Content Include="Views\Pedidos\CarregaPost.cshtml" />
+    <Content Include="Views\Pedidos\CarregaDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -5,8 +5,9 @@ IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[InsPedido]
 GO
 
 CREATE PROCEDURE [dbo].[InsPedido] 
-	@Num_Id				int,
-	@Num_IdAlimento		int
+	@Nom_Nome			varchar(25),
+	@Nom_Sobrenome		varchar(25),
+	@Nom_NomeAlimento	varchar(50)
 
 	AS
 	/*
@@ -15,14 +16,21 @@ CREATE PROCEDURE [dbo].[InsPedido]
 		Objetivo: Cadastrar pedidos
 		Autor: Bruno Silveira, Jefferson Russi, Laura Ratis
 		Data: 03/02/2020
-		Ex: EXEC InsPedido 17, 5
+		Ex: EXEC InsPedido 'Bruno','Silveira','Lasanha'
 	*/
 	BEGIN
 			DECLARE
-				@Dat_Date		date
+				@Dat_Date		datetime,
+				@Num_Id			int,
+				@Num_IdAlimento int
 
 			SELECT @Dat_Date = GETDATE() 
+			SELECT @Num_Id = Num_Id FROM Usuario WHERE Nom_Nome = @Nom_Nome AND Nom_Sobrenome = @Nom_Sobrenome
+			SELECT @Num_IdAlimento = Num_IdAlimentos FROM Alimentos WHERE Nom_NomeAlimento = @Nom_NomeAlimento
 
+			PRINT (@Dat_Date)
+			PRINT (@Num_Id)
+			PRINT (@Num_IdAlimento)
 			INSERT INTO Pedidos(Num_IdUsuario, Dat_Date, Num_IdAlimento)
 				VALUES	(@Num_Id, @Dat_Date,	@Num_IdAlimento)
 	END
@@ -33,9 +41,10 @@ IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[UpdPedido]
 GO	
 
 CREATE PROCEDURE [dbo].[UpdPedido]
-	@Num_IdPedido				int,
-	@Num_IdUsuario				int,
-	@Num_IdAlimento				int
+	@Num_IdPedido			int,
+	@Nom_Nome				varchar(25),
+	@Nom_Sobrenome			varchar(25),
+	@Nom_NomeAlimento		varchar(50)
 
 	AS
 	/*
@@ -44,19 +53,22 @@ CREATE PROCEDURE [dbo].[UpdPedido]
 		Objetivo: Cadastrar pedidos
 		Autor: Bruno Silveira
 		Data: 03/02/2020
-		Ex: EXEC UpdPedido 6,17,5
+		Ex: EXEC UpdPedido 3, 'bruno', 'silveira', 'lasanha'
 	*/
 	BEGIN
 		DECLARE
-		@Dat_Date				date
+		@Dat_Date				datetime,
+		@Num_IdUsuario			int, 
+		@Num_IdAlimento			int
 
 		SELECT @Dat_Date = GETDATE() 
-	
+		SELECT @Num_IdUsuario = Num_Id FROM Usuario WHERE Nom_Nome = @Nom_Nome AND Nom_Sobrenome = @Nom_Sobrenome
+		SELECT @Num_IdAlimento = Num_IdAlimentos FROM Alimentos WHERE Nom_NomeAlimento = @Nom_NomeAlimento
 		UPDATE Pedidos
 			SET	Num_IdUsuario = @Num_IdUsuario,
 				Dat_Date = @Dat_Date,
 				Num_IdAlimento = @Num_IdAlimento
-			WHERE 	Num_IdPedidos = @Num_IdPedido
+			WHERE Num_IdPedidos = @Num_IdPedido
 	END
 GO
 
@@ -80,25 +92,6 @@ CREATE PROCEDURE [dbo].[DelPedido]
 	END
 GO
 
-IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[DelPedidoAll]') AND objectproperty(id, N'IsPROCEDURE')=1)
-	DROP PROCEDURE [dbo].[DelPedidoAll] 
-GO
-
-CREATE PROCEDURE [dbo].[DelPedidoAll]
-	AS
-	/*
-		Documentação
-		Arquivo Fonte: Pedidos
-		Objetivo: Exclui pedidos
-		Autor: Bruno Silveira
-		Data: 03/02/2020
-		Ex: EXEC DelPedido 8
-	*/
-	BEGIN
-			DELETE FROM Pedidos
-	END
-GO
-
 IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[SelPedido]') AND objectproperty(id, N'IsPROCEDURE')=1)
 	DROP PROCEDURE [dbo].[SelPedido] 
 GO
@@ -115,10 +108,13 @@ CREATE PROCEDURE [dbo].[SelPedido]
 	*/
 	BEGIN
 		SELECT	Num_IdPedidos,
-				Num_IdUsuario,
+				Nom_Nome,
+				Nom_Sobrenome,
 				Dat_Date,
-				Num_IdAlimento
-			FROM Pedidos WITH(NOLOCK)
+				Nom_NomeAlimento
+			FROM Pedidos 
+			INNER JOIN Alimentos ON Pedidos.Num_IdAlimento = Alimentos.Num_IdAlimentos 
+			INNER JOIN Usuario ON Pedidos.Num_IdUsuario = Usuario.Num_Id;
 	END
 GO
 
@@ -139,10 +135,13 @@ CREATE PROCEDURE [dbo].[SelPedidoId]
 	*/
 	BEGIN
 		SELECT	Num_IdPedidos,
-				Num_IdUsuario,
+				Nom_Nome,
+				Nom_Sobrenome,
 				Dat_Date,
-				Num_IdAlimento
-			FROM Pedidos WITH(NOLOCK)
+				Nom_NomeAlimento
+			FROM Pedidos 
+			INNER JOIN Alimentos ON Pedidos.Num_IdAlimento = Alimentos.Num_IdAlimentos 
+			INNER JOIN Usuario ON Pedidos.Num_IdUsuario = Usuario.Num_Id
 			WHERE Num_IdPedidos = @Num_Id
 	END
 GO
@@ -160,7 +159,7 @@ CREATE PROCEDURE [dbo].[SelPedidoAlimento]
 		Objetivo: Mostra os alimentos dos pedidos
 		Autor: Bruno Silveira
 		Data: 03/02/2020
-		Ex: EXEC SelPedidoAlimento	17
+		Ex: EXEC SelPedidoAlimento	3
 	*/
 	BEGIN
 		SELECT Nom_NomeAlimento

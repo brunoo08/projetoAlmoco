@@ -1,0 +1,64 @@
+﻿@model ProjetoAlmoco.Application.Pedidos.Model.MostraPedidosModel
+
+@{
+    ViewBag.Title = "CarregaDelete";
+}
+
+<h2>CarregaDelete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>MostraPedidosModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Num_IdPedidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Num_IdPedidos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom_Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom_Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom_Sobrenome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom_Sobrenome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dat_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dat_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom_NomeAlimento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom_NomeAlimento)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <button onclick="RotasPedidos.Delete('@Model.Num_IdPedidos')" title="Cancelar" class="btn btn-info">
+        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+        Delete
+    </button>
+    }
+</div>

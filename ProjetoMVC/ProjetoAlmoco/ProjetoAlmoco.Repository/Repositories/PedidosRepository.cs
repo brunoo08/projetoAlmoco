@@ -9,73 +9,69 @@ namespace ProjetoAlmoco.Repository.Repositories
 {
     public class PedidosRepository : Connection , IPedidosRepository
     {
-        public IEnumerable<PedidosDto> getAll()
+        public IEnumerable<MostraPedidosDto> getAll()
         {
             ExecuteProcedure("SelPedido");
 
-            var allUsersData = new List<PedidosDto>();
+            var allUsersData = new List<MostraPedidosDto>();
             using (var reader = ExecuteReader())
                 while (reader.Read())
-                    allUsersData.Add(new PedidosDto
+                    allUsersData.Add(new MostraPedidosDto
                     {
                         Num_IdPedidos = Convert.ToInt16(reader["Num_IdPedidos"].ToString()),
-                        Num_IdUsuario = Convert.ToInt16(reader["Num_IdUsuario"].ToString()),
-                        Dat_Date = Convert.ToDateTime(reader["Dat_Date"].ToString()),
-                        Num_IdAlimento = Convert.ToInt16(reader["Num_IdAlimento"].ToString()),
+                        Nom_Nome = reader["Nom_Nome"].ToString(),
+                        Nom_Sobrenome = reader["Nom_Sobrenome"].ToString(),
+                        //Dat_Date = Convert.ToDateTime(reader["Dat_Date"].ToString()),
+                        Nom_NomeAlimento = reader["Nom_NomeAlimento"].ToString()
                     });
 
             return allUsersData;
         }
 
-        public PedidosDto get(int Num_Id)
+        public MostraPedidosDto get(int Num_Id)
         {
             ExecuteProcedure("SelPedidoId");
             AddParameter("@Num_Id", Num_Id);
 
             using (var reader = ExecuteReader())
                 if (reader.Read())
-                    return new PedidosDto
+                    return new MostraPedidosDto
                     {
                         Num_IdPedidos = Convert.ToInt16(reader["Num_IdPedidos"].ToString()),
-                        Num_IdUsuario = Convert.ToInt16(reader["Num_IdUsuario"].ToString()),
-                        Dat_Date = Convert.ToDateTime(reader["Dat_Date"].ToString()),
-                        Num_IdAlimento = Convert.ToInt16(reader["Num_IdAlimento"].ToString()),
+                        Nom_Nome = reader["Nom_Nome"].ToString(),
+                        Nom_Sobrenome = reader["Nom_Sobrenome"].ToString(),
+                        //Dat_Date = Convert.ToDateTime(reader["Dat_Date"].ToString()),
+                        Nom_NomeAlimento = reader["Nom_NomeAlimento"].ToString()
                     };
 
             return null;
         }
 
-        public void delete(PedidosDto pedidos)
+        public void delete(int Num_Id)
         {
 
             ExecuteProcedure("DelPedido");
-            AddParameter("@Num_Id", pedidos.Num_IdPedidos);
+            AddParameter("@Num_Id",Num_Id);
             ExecuteNonQuery();
 
         }
 
-        public void deleteAll(PedidosDto pedidos)
-        {
-
-            ExecuteProcedure("DelPedidoAll");
-            ExecuteNonQuery();
-
-        }
-
-        public void put(PedidosDto pedidos)
+        public void put(MostraPedidosDto pedidos)
         {
             ExecuteProcedure("UpdPedido");
             AddParameter("@Num_IdPedido", pedidos.Num_IdPedidos);
-            AddParameter("@Num_IdUsuario", pedidos.Num_IdUsuario);
-            AddParameter("@Num_IdAlimento", pedidos.Num_IdAlimento);
+            AddParameter("@Nom_Nome", pedidos.Nom_Nome);
+            AddParameter("@Nom_Sobrenome", pedidos.Nom_Sobrenome);
+            AddParameter("@Nom_NomeAlimento", pedidos.Nom_NomeAlimento);
             ExecuteNonQuery();
         }
 
-        public void post(PedidosDto pedidos)
+        public void post(MostraPedidosDto pedidos)
         {
             ExecuteProcedure("InsPedido");
-            AddParameter("@Num_Id", pedidos.Num_IdUsuario);
-            AddParameter("@Num_IdAlimento", pedidos.Num_IdAlimento);
+            AddParameter("@Nom_Nome", pedidos.Nom_Nome);
+            AddParameter("@Nom_Sobrenome", pedidos.Nom_Sobrenome);
+            AddParameter("@Nom_NomeAlimento", pedidos.Nom_NomeAlimento);
             ExecuteNonQuery();
         }
 

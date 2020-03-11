@@ -17,7 +17,7 @@ namespace ProjetoAlmoco.Application.Pedidos
 
         public HttpResponseMessage GetAllPedidos()
         {
-            string URL = "http://localhost:58473/api/pedidos/getall";
+            string URL = "http://localhost:58473/api/pedidos/getAll";
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             HttpResponseMessage response = client.GetAsync(URL).Result;
 
@@ -33,12 +33,12 @@ namespace ProjetoAlmoco.Application.Pedidos
             return response;
         }
 
-        public HttpResponseMessage Put(PedidosModel pedidosModel)
+        public HttpResponseMessage Put(MostraPedidosModel mostrapedidosModel)
         {
             string URL = "http://localhost:58473/api/pedidos/Put";
             //client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-            HttpResponseMessage response = client.PutAsync(URL, pedidosModel, new JsonMediaTypeFormatter
+            HttpResponseMessage response = client.PutAsync(URL, mostrapedidosModel, new JsonMediaTypeFormatter
             {
                 SerializerSettings = new JsonSerializerSettings
                 {
@@ -55,7 +55,7 @@ namespace ProjetoAlmoco.Application.Pedidos
             return response;
         }
 
-        public HttpResponseMessage Post(PedidosModel pedidosModel)
+        public HttpResponseMessage Post(MostraPedidosModel pedidosModel)
         {
             string URL = "http://localhost:58473/api/pedidos/Post";
             //client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -77,21 +77,9 @@ namespace ProjetoAlmoco.Application.Pedidos
             return response;
         }
 
-        public HttpResponseMessage Delete(PedidosModel pedidosModel)
+        public HttpResponseMessage Delete(int Num_Id)
         {
-            string URL = "http://localhost:58473/api/pedidos/Delete";
-            //client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-
-            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = client.DeleteAsync(URL).Result;
-
-
-            return response;
-        }
-
-        public HttpResponseMessage DeleteAll(PedidosModel pedidosModel)
-        {
-            string URL = "http://localhost:58473/api/pedidos/DeleteAll";
+            string URL = "http://localhost:58473/api/pedidos/Delete" + "?Num_Id=" + Num_Id.ToString();
             //client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));

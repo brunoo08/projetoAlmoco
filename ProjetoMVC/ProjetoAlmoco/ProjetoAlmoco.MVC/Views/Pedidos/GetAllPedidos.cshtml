@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ProjetoAlmoco.Application.Pedidos.Model.MostraPedidosModel>
+
+@{
+    ViewBag.Title = "GetAllPedidos";
+}
+
+<h2>GetAllPedidos</h2>
+
+<button onclick="RotasPedidos.CarregaPost()" title="Cancelar" class="btn btn-info">
+    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+    Fazer pedido
+</button>
+<button onclick="RotasPedidos.DeleteAll()" title="Cancelar" class="btn btn-info">
+    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+    Apagar Todos
+</button>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Num_IdPedidos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom_Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom_Sobrenome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dat_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom_NomeAlimento)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Num_IdPedidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nom_Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nom_Sobrenome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dat_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nom_NomeAlimento)
+        </td>
+        <td>
+            <button onclick="RotasPedidos.GetPedidos(@item.Num_IdPedidos)" title="Cancelar" class="btn btn-info">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                Detalhes
+            </button>
+            <button onclick="RotasPedidos.CarregaDelete('@item.Num_IdPedidos','@item.Nom_Nome','@item.Nom_Sobrenome','@item.Nom_NomeAlimento')" title="Cancelar" class="btn btn-info">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                Deletar
+            </button>
+        </td>
+    </tr>
+}
+
+</table>

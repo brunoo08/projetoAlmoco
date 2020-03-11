@@ -1,12 +1,8 @@
-<<<<<<< HEAD
+
 CREATE DATABASE ProjetoAlmoco
 
 USE [ProjetoAlmoco]
 
-=======
-USE [ProjetoAlmoco]
-
->>>>>>> 2299ab25f14e87c57933939fa57168f5b8d5602c
 CREATE TABLE Usuario(
 	Num_Id				int				identity,
 	Nom_Nome		varchar(50),
@@ -40,7 +36,7 @@ CREATE TABLE Pedidos(
 	Num_IdPedidos				int				identity,
 	Num_IdUsuario				int,
 	Num_IdAlimento				int,
-	Dat_Date					date,
+	Dat_Date					datetime,
 	
 
 	CONSTRAINT PK_Pedidos			PRIMARY KEY (Num_IdPedidos),
