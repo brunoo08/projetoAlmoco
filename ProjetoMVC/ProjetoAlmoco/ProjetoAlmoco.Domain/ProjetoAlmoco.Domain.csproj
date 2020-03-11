@@ -37,6 +37,7 @@
     <Compile Include="Alimento\Dto\AlimentosDto.cs" />
     <Compile Include="Categoria\Dto\CategoriaDto.cs" />
     <Compile Include="Pedidos\Dto\PedidosDto.cs" />
+    <Compile Include="Pedidos\Dto\MostraPedidosDto.cs" />
     <Compile Include="Usuario\Dto\UsuarioDto.cs" />
     <Compile Include="Alimento\IAlimentoRepository.cs" />
     <Compile Include="Categoria\ICategoriaRepository.cs" />

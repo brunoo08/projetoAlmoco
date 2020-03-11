@@ -44,26 +44,11 @@ namespace ProjetoAlmoco.Api.Controllers
             }
         }
 
-        public IHttpActionResult Delete(PedidosDto pedidos)
+        public IHttpActionResult Delete(int Num_Id)
         {
             try
             {
-                _pedidosRepository.delete(pedidos);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
-        }
-
-        [HttpGet, Route(template: "API/Pedidos/DeleteAll")]
-        public IHttpActionResult DeleteAll(PedidosDto pedidos)
-        {
-            try
-            {
-                _pedidosRepository.deleteAll(pedidos);
+                _pedidosRepository.delete(Num_Id);
                 return Ok();
             }
             catch (Exception ex)
@@ -74,11 +59,11 @@ namespace ProjetoAlmoco.Api.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult Put(PedidosDto pedidos)
+        public IHttpActionResult Put(MostraPedidosDto mostrapedidos)
         {
             try
             {
-                _pedidosRepository.put(pedidos);
+                _pedidosRepository.put(mostrapedidos);
                 return Ok();
             }
             catch (Exception ex)
@@ -87,7 +72,7 @@ namespace ProjetoAlmoco.Api.Controllers
             }
         }
 
-        public IHttpActionResult Post(PedidosDto pedidos)
+        public IHttpActionResult Post(MostraPedidosDto pedidos)
         {
             try
             {

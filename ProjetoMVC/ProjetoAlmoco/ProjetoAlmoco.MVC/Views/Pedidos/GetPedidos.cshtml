@@ -1,0 +1,64 @@
+﻿@model ProjetoAlmoco.Application.Pedidos.Model.MostraPedidosModel
+
+@{
+    ViewBag.Title = "GetPedidos";
+}
+
+<h2>GetPedidos</h2>
+
+<div>
+    <h4>MostraPedidosModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Num_IdPedidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Num_IdPedidos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom_Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom_Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom_Sobrenome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom_Sobrenome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dat_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dat_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom_NomeAlimento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom_NomeAlimento)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <button onclick="RotasPedidos.CarregaPut('@Model.Num_IdPedidos','@Model.Nom_Nome','@Model.Nom_Sobrenome','@Model.Nom_NomeAlimento')" title="Cancelar" class="btn btn-info">
+        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+        Editar
+    </button>|
+    @*<button onclick="RotasPedidos.GetPedidos(@item.Num_IdPedidos)" title="Cancelar" class="btn btn-info">
+        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+        Detalhes
+    </button>*@
+</p>

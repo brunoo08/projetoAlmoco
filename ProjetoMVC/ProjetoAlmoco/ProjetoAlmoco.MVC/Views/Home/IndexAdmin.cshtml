@@ -5,11 +5,6 @@
 
 <h2>Usuarios</h2>
 
-
-@*<p>
-        @Html.ActionLink("Mostrar Usuários", "_getAll")
-    </p>*@
-
 <button onclick="RotasPrincipais.GetAllUsuario()" title="Cancelar" class="btn btn-info">
 
     <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
@@ -28,9 +23,15 @@
     Mostrar alimentos
 </button>
 
+<button onclick="RotasPedidos.GetAllPedidos()" title="Cancelar" class="btn btn-info">
+    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+    Mostrar Pedidos
+</button>
+
 <script src="~/js/RotasPrincipais.js?d=@DateTime.Now.Ticks"></script>
 <script src="~/js/RotasCategoria.js?d=@DateTime.Now.Ticks"></script>
 <script src="~/js/RotasAlimento.js?d=@DateTime.Now.Ticks"></script>
+<script src="~/js/RotasPedidos.js?d=@DateTime.Now.Ticks"></script>
 
 @*<script src="~/js/RotasPrincipais.js?d=@DateTime.Now.Ticks"></script>*@
 <script src="~/js/RotasCategoria.js?d=@DateTime.Now.Ticks"></script>
@@ -41,7 +42,7 @@
     @*RotasPrincipais.init({
         urls: {
             GetAllUsuario: '@Url.Action("GetAllUsuario", "Usuario")',
-            GetUsuario: '@Url.Action("GetUsuario","Usuario")', 
+            GetUsuario: '@Url.Action("GetUsuario","Usuario")',
             Post: '@Url.Action("Post","Usuario")',
             Put: '@Url.Action("Put","Usuario")',
             Delete: '@Url.Action("Delete","Usuario")',
@@ -54,7 +55,7 @@
     RotasCategoria.init({
         urls: {
             GetAllCategoria: '@Url.Action("GetAllCategoria", "Categoria")',
-            GetCategoria: '@Url.Action("GetCategoria", "Categoria")', 
+            GetCategoria: '@Url.Action("GetCategoria", "Categoria")',
             Post: '@Url.Action("Post", "Categoria")',
             Put: '@Url.Action("Put", "Categoria")',
             Delete: '@Url.Action("Delete", "Categoria")',
@@ -75,6 +76,20 @@
             CarregaDelete: '@Url.Action("CarregaDelete", "Alimento")',
             Delete: '@Url.Action("Delete", "Alimento")',
             GetDispAlimento: '@Url.Action("GetDispAlimento","Alimento")'
+        }
+    })
+
+    RotasPedidos.init({
+        urls: {
+            GetAllPedidos: '@Url.Action("GetAllPedidos", "Pedidos")',
+            GetPedidos: '@Url.Action("GetPedidos","Pedidos")',
+            CarregaPut: '@Url.Action("CarregaPut","Pedidos")',
+            Put: '@Url.Action("Put","Pedidos")',
+            CarregaPost: '@Url.Action("CarregaPost","Pedidos")',
+            Post: '@Url.Action("Post","Pedidos")',
+            CarregaDelete: '@Url.Action("CarregaDelete","Pedidos")',
+            Delete: '@Url.Action("Delete","Pedidos")',
+            DeleteAll: '@Url.Action("DeleteAll","Pedidos")'
         }
     })
 

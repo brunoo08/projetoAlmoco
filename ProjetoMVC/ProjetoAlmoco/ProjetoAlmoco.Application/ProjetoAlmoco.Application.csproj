@@ -68,6 +68,7 @@
     <Compile Include="Categoria\CategoriaApplication.cs" />
     <Compile Include="Categoria\Model\CategoriaModel.cs" />
     <Compile Include="Pedidos\Model\PedidosModel.cs" />
+    <Compile Include="Pedidos\Model\MostraPedidosModel.cs" />
     <Compile Include="Pedidos\PedidosApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Usuario\Model\UsuarioModel.cs" />

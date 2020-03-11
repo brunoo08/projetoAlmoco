@@ -6,11 +6,10 @@ namespace ProjetoAlmoco.Domain.Pedidos
 {
     public interface IPedidosRepository
     {
-        void post(PedidosDto pedidos);
-        void put(PedidosDto pedidos);
-        void delete(PedidosDto pedidos);
-        void deleteAll(PedidosDto pedidos);
-        IEnumerable<PedidosDto> getAll();
-        PedidosDto get(int Num_Id);
+        void post(MostraPedidosDto pedidos);
+        void put(MostraPedidosDto pedidos);
+        void delete(int Num_Id);
+        IEnumerable<MostraPedidosDto> getAll();
+        MostraPedidosDto get(int Num_Id);
     }
 }
