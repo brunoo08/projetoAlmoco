@@ -2,10 +2,6 @@
 
     var config = {
         urls: {
-<<<<<<< HEAD
-=======
-
->>>>>>> FRT003
             GetAllUsuario: '',
             GetUsuario: '',
             Post: '',
@@ -16,22 +12,13 @@
             CarregaDelete: ''
         }
     };
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> FRT003
+    
     var GetAllUsuario = function () {
         $.get(config.urls.GetAllUsuario).done(function (data) {
             $("body").html(data);
         });
     }
-
-<<<<<<< HEAD
-=======
-
->>>>>>> FRT003
+    
     var GetUsuario = function (Num_Id) {
         $.post(config.urls.GetUsuario, { Num_Id: Num_Id }).done(function (data) {
             $("body").html(data);
