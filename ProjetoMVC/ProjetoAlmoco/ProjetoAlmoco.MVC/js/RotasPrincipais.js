@@ -12,13 +12,12 @@
             CarregaDelete: ''
         }
     };
-    
     var GetAllUsuario = function () {
         $.get(config.urls.GetAllUsuario).done(function (data) {
             $("body").html(data);
         });
     }
-    
+
     var GetUsuario = function (Num_Id) {
         $.post(config.urls.GetUsuario, { Num_Id: Num_Id }).done(function (data) {
             $("body").html(data);

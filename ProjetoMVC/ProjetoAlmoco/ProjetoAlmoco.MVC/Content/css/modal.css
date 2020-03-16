@@ -155,3 +155,17 @@
     transform: rotate(180deg);
     transition: 0.7s;
 }
+.delete{
+    position: relative;
+    max-width: 70%;
+
+}
+
+.btn-delete{
+    position: absolute;
+    margin: 5px 0 0 10px;
+}
+
+.input-none {
+    display: none;
+}

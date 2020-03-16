@@ -128,3 +128,7 @@
     transform: rotate(180deg);
     transition: 0.7s;
 }
+
+.input-none {
+    display: none;
+}

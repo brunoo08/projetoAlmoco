@@ -1,4 +1,3 @@
-
 CREATE DATABASE ProjetoAlmoco
 
 USE [ProjetoAlmoco]

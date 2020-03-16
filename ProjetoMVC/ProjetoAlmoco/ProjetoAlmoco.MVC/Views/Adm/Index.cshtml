@@ -30,7 +30,7 @@
     <div class="main-content">
         <div class="content-topo">
             <p>Selecione as opções do dia</p>
-            <span id=add-categoria onclick="abreModal('modal-adicionar-categoria')"> <i class="material-icons">add_circle_outline</i>adicionar categoria </span>
+            <span id=add-categoria onclick="RotasCategoria.CarregaPost()"> <i class="material-icons">add_circle_outline</i>adicionar categoria </span>
         </div>
 
         <div class="content-content">
@@ -39,137 +39,71 @@
 
                 @foreach (var item in ViewBag.GetAllCategorys)
                 {
-                <div class="categoria">
-                    <i class="material-icons" onclick="RotasCategoria.CarregaDelete(@item.Num_IdCategoria, '@item.Nom_Nome')">delete</i>
-                    <i class="material-icons" onclick="abreModal('modal-editar-categoria'), RotasCategoria.CarregaPut(@item.Num_IdCategoria)">edit</i>
-                    <!--, EscolherCategoria($(this).parent().children('span').text())
-                    , GetID($(this).parent().children('span').attr('data-id'))-->
-                    <span class="nome-categoria" data-id="@item.Num_IdCategoria">@item.Nom_Nome</span> <br>
+                    <div class="categoria">
+                        <i class="material-icons" onclick="RotasCategoria.CarregaDelete(@item.Num_IdCategoria, '@item.Nom_Nome')">delete</i>
+                        <i class="material-icons" onclick="RotasCategoria.CarregaPut(@item.Num_IdCategoria, '@item.Nom_Nome')">edit</i>
+                        <span class="nome-categoria" data-id="@item.Num_IdCategoria">@item.Nom_Nome</span> <br>
 
+                        <div id="form">
+                            <span>Definir quantidade de escolha:</span>
+                            <div class="value-button" id="decrease" onclick="decreaseValue('daiv-@item.Num_IdCategoria')" value="Decrease Value">-</div>
+                            <input type="number" class="number" id='daiv-@item.Num_IdCategoria' value="1" />
+                            <div class="value-button" id="increase" onclick="increaseValue('daiv-@item.Num_IdCategoria')" value="Increase Value">+</div>
 
+                            <br><br>
 
-                    <div id="form">
-                        <span>Definir quantidade de escolha:</span>
-                        
-                        
-                        <div class="value-button" id="decrease" onclick="decreaseValue('daiv-@item.Num_IdCategoria')" value="Decrease Value">-</div>
-                        <input type="number" class="number" id='daiv-@item.Num_IdCategoria' value="1" />
-                        <div class="value-button" id="increase" onclick="increaseValue('daiv-@item.Num_IdCategoria')" value="Increase Value">+</div>
-                        
-                        <br>
+                            <div class="alimentos-da-categoria">
+                                <div onclick="RotasAlimento.CarregaPost(@item.Num_IdCategoria)">
+                                    <i class="material-icons">add_circle_outline</i>
+                                </div>
 
-                        <input class="opcao-categoria" type="checkbox" name="opcao">
-                        <input class="opcao-categoria" type="checkbox" name="opcao"><br/>
-                        <input class="opcao-categoria" type="checkbox" name="opcao">
-                        <input class="opcao-categoria" type="checkbox" name="opcao">
+                                @foreach (var item2 in ViewBag.GetAllAliment)
+                                {
+                                    if (item2.Num_IdCategoria == item.Num_IdCategoria)
+                                    {
+                                        <div class="delete">
+                                            <input class="opcao-categoria" type="checkbox" name="opcao">
+                                            <label for="scales">@item2.Nom_NomeAlimento</label>
+                                            <i class="btn-delete" class="material-icons" onclick="RotasAlimento.Delete(@item2.Num_IdAlimentos)">highlight_off</i> 
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
                     </div>
-                </div>
                 }
-
             </div>
+        </div>
 
-            <div class="content-bottom">
-                <input class="botao" type="submit" value="Voltar" onclick="pagHomeAdm()"><br>
-                <input class="botao" type="submit" value="Atualizar" onclick="atualizarCardapio()"><br>
-            </div>
-
+        <div class="content-bottom">
+            <input class="botao" type="submit" value="Voltar" onclick="pagHomeAdm()"><br>
+            <input class="botao" type="submit" value="Atualizar" onclick="atualizarCardapio()"><br>
         </div>
 
     </div>
-
 
 </main>
 
 
-    <!-- modal add categoria-->
-    <div id="modal-adicionar-categoria" class="modal">
-        <div class="modal-content">
+<!-- Modal Add Categoria-->
+<div id="CarregaPost"></div>
 
-            <div class="topo">
-                <span class="titulo-modal">Nova Categoria</span> <br>
-                <button class="close-button" id="close-modalCat" onclick="fechaModal('modal-adicionar-categoria')">X</button>
-            </div>
+<!-- Modal Editar Categoria-->
+<div id="CarregaPut"></div>
 
-            <div class="formulario">
-                <div class="nome-categoria">
-                    <span>Nome da categoria:</span>
-                    <input type="text" class="input" id="Nom_Nome">
-                </div>
+<!--Modal Excluir Categoria-->
+<div id="CarregaDelete"></div>
 
-                <div class="opcoes">
-                    <span>Opções:</span>
+<!-- Modal Add Alimento-->
+<div id="CarregaPostAlimento"></div>
 
-                    <div class="opcao">
-                        <input type="text" class="input">
-                        <i class="material-icons" style="font-size:24px">remove</i>
-                    </div>
+<!-- Modal Excluir Alimento-->
+<div id="CarregaDeleteAlimento"></div>
 
-                    <div class="add-opcao">
-                        <input type="text" class="input">
-                        <i class="material-icons" style="font-size:24px">add</i>
-                    </div>
-                </div>
+<script src="~/js/RotasCategoria.js?d=@DateTime.Now.Ticks"></script>
+<script src="~/js/RotasAlimento.js?d=@DateTime.Now.Ticks"></script>
 
-                <div class="bottom">
-                    <button class="botao" onclick="RotasCategoria.Post(); fechaModal('modal-adicionar-categoria'); ">Adicionar</button>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
-    <!-- modal editar categoria-->
-    <div id="modal-editar-categoria" class="modal">
-        <script>
-            function EscolherCategoria(catEscolhida) {
-                $('#Nom_Nome').attr('value', catEscolhida);
-            }
-        </script>
-        <div class="modal-content">
-
-            <div class="topo">
-                <span class="titulo-modal">Editar Categoria</span> <br>
-                <button class="close-button" onclick="fechaModal('modal-editar-categoria')">X</button>
-            </div>
-
-            <div class="formulario">
-
-                <div class="nome-categoria">
-                    <span>Nome da categoria:</span>
-                    <input type="text" class="input" id="Nom_Nome_Put" value="">
-                </div>
-
-                <div class="opcoes">
-                    <span>Opções:</span>
-
-                    <div class="opcao">
-                        <input type="text" class="input">
-                        <i class="material-icons" style="font-size:24px">remove</i>
-                    </div>
-
-
-                    <div class="add-opcao">
-                        <input type="text" class="input">
-                        <i class="material-icons" style="font-size:24px">add</i>
-                    </div>
-                </div>
-
-                <div class="bottom">
-                    <button class="botao" onclick="RotasCategoria.Put(); fechaModal('modal-editar-categoria')">Salvar</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
-   <div id="CarregaDelete"></div>
-
-
-    <script src="~/js/RotasCategoria.js?d=@DateTime.Now.Ticks"></script>
-
-    <script>
+<script>
 
     RotasCategoria.init({
         urls: {
@@ -184,7 +118,22 @@
         }
     });
 
-    </script>
+    RotasAlimento.init({
+        urls: {
+            GetAllAlimento: '@Url.Action("Index", "Adm")',
+            GetDispAlimento: '@Url.Action("GetDispAlimento", "Alimento")',
+            GetAlimento: '@Url.Action("GetAlimento", "Alimento")',
+            CarregaPut: '@Url.Action("CarregaPut","Alimento")',
+            Put: '@Url.Action("Put","Alimento")',
+            CarregaPost: '@Url.Action("CarregaPost", "Alimento")',
+            Post: '@Url.Action("Post","Alimento")',
+            CarregaDelete: '@Url.Action("CarregaDelete", "Alimento")',
+            Delete: '@Url.Action("Delete", "Alimento")',
+            GetDispAlimento: '@Url.Action("GetDispAlimento","Alimento")'
+        }
+    })
+
+</script>
 
 
 

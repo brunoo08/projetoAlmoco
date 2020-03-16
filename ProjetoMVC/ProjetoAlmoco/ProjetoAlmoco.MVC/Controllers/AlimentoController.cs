@@ -17,8 +17,8 @@ namespace ProjetoAlmoco.MVC.Controllers
 
         public ActionResult GetAllAlimento()
         {
-            HttpResponseMessage response = _alimentoApplication.GetAllAlimento();
-            return View(response.Content.ReadAsAsync<List<AlimentoModel>>().Result);
+           
+            return View();
         }
 
         public ActionResult GetAlimento(int Num_Id)
@@ -57,9 +57,11 @@ namespace ProjetoAlmoco.MVC.Controllers
             return new HttpStatusCodeResult(200);
         }
 
-        public ActionResult CarregaPost()
+        public ActionResult CarregaPost(int Num_IdCategoria)
         {
-            return View("CarregaPost", new AlimentoModel());
+            var alimentoModel = new AlimentoModel();
+            alimentoModel.Num_IdCategoria = Num_IdCategoria;
+            return View("CarregaPost", alimentoModel);
         }
 
         public ActionResult Delete(int Num_Id)
@@ -71,8 +73,9 @@ namespace ProjetoAlmoco.MVC.Controllers
             return new HttpStatusCodeResult(200);
         }
 
-        public ActionResult CarregaDelete(AlimentoModel alimentoModel)
+        public ActionResult CarregaDelete(AlimentoModel alimentoModel, int Num_IdAlimento)
         {
+            alimentoModel.Num_IdAlimentos = Num_IdAlimento;
             return View("CarregaDelete", alimentoModel);
         }
     }

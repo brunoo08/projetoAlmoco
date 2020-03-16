@@ -1,56 +1,24 @@
 ﻿@model ProjetoAlmoco.Application.Alimento.Model.AlimentoModel
 
 @{
-    ViewBag.Title = "CarregaDelete";
+    ViewBag.Title = "Atualizar Cardápio";
 }
 
-<h2>CarregaDelete</h2>
+<!-- modal excluir alimento-->
+<div id="modal-excluir-alimento" class="modal">
+    <div class="modal-content">
+        <div class="topo">
+            <span class="titulo-modal">Atenção!</span> <br>
+            <button class="close-button" onclick="fechaModal('modal-excluir-alimento')">X</button>
+        </div>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>AlimentoModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Num_IdAlimentos)
-        </dt>
+        <div class="confirmacao">
+            <span>Deseja excluir este alimento?</span>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Num_IdAlimentos)
-        </dd>
+        <div class="bottom">
+            <button class="botao" onclick="RotasAlimento.Delete(@Model.Num_IdAlimentos)">Excluir</button>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nom_NomeAlimento)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nom_NomeAlimento)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Ind_Disponivel)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Ind_Disponivel)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Num_IdCategoria)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Num_IdCategoria)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-    <button onclick="RotasAlimento.Delete(@Html.DisplayFor(model => model.Num_IdAlimentos))" title="Cancelar" class="btn btn-info">
-        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-        Delete
-    </button>
-    }
+    </div>
 </div>

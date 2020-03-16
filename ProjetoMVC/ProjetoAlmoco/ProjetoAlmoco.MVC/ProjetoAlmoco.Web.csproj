@@ -234,7 +234,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="bin\" />
     <Folder Include="Models\" />
-
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
