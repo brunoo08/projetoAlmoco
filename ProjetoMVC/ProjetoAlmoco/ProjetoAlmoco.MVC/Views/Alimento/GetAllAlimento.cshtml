@@ -31,27 +31,32 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Num_IdAlimentos)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nom_NomeAlimento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ind_Disponivel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Num_IdCategoria)
-        </td>
-        <td>
-            <button onclick="RotasAlimento.GetAlimento(@item.Num_IdAlimentos)" title="Cancelar" class="btn btn-info">
-                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-                Mostrar alimento
-            </button>
-        </td>
-    </tr>
-}
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Num_IdAlimentos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom_NomeAlimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ind_Disponivel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Num_IdCategoria)
+            </td>
+            <td>
+                <button onclick="RotasAlimento.GetAlimento(@item.Num_IdAlimentos)" title="Cancelar" class="btn btn-info">
+                    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                    Mostrar alimento
+                </button>
+            </td>
+        </tr>
+        }
+    }
 
 </table>

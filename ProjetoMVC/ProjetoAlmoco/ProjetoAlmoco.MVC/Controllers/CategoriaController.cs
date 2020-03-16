@@ -1,4 +1,6 @@
-﻿using ProjetoAlmoco.Application.Categoria;
+﻿using ProjetoAlmoco.Application.Alimento;
+using ProjetoAlmoco.Application.Alimento.Model;
+using ProjetoAlmoco.Application.Categoria;
 using ProjetoAlmoco.Application.Categoria.Model;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -9,16 +11,16 @@ namespace ProjetoAlmoco.MVC.Controllers
     public class CategoriaController : Controller
     {
         private readonly CategoriaApplication _categoriaApplication;
+        private readonly AlimentoApplication _alimentoApplication;
 
         public CategoriaController()
         {
             _categoriaApplication = new CategoriaApplication();
+            _alimentoApplication = new AlimentoApplication();
         }
 
         public ActionResult GetAllCategoria()
         {
-            HttpResponseMessage response = _categoriaApplication.GetAllCategoria();
-            ViewBag.GetAllCategorys = response.Content.ReadAsAsync<List<CategoriaModel>>().Result;
             return View();
         }
 
@@ -30,6 +32,9 @@ namespace ProjetoAlmoco.MVC.Controllers
 
         public ActionResult CarregaPut(CategoriaModel categoriaModel)
         {
+            HttpResponseMessage response2 = _alimentoApplication.GetAllAlimento();
+            ViewBag.GetAllAliment = response2.Content.ReadAsAsync<List<AlimentoModel>>().Result;
+
             return View("CarregaPut", categoriaModel);
         }
 
@@ -53,7 +58,6 @@ namespace ProjetoAlmoco.MVC.Controllers
 
         public ActionResult CarregaPost()
         {
-
             return View("CarregaPost", new CategoriaModel());
         }
         public ActionResult Delete(int Num_IdCategoria)

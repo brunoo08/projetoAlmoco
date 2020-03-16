@@ -160,9 +160,10 @@ main {
   height: 70%;
 }
 
-#add-categoria {
-  cursor: pointer;
+#add-categoria, #add-alimento {
+    cursor: pointer;
 }
+
 
 .scroll {
     height: 95%;
@@ -292,4 +293,13 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
+.alimentos-da-categoria {
+    border: 1px solid #ddd;
+    background-color: rgb(255, 245, 217);
+    border-radius: 10px;
+    padding: 10px;
+    width: 95%;
+    margin: 5px;
+    min-height: 20px;
+}
 

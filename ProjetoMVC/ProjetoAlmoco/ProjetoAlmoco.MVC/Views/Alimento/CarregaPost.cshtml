@@ -1,49 +1,33 @@
 ﻿@model ProjetoAlmoco.Application.Alimento.Model.AlimentoModel
 
 @{
-    ViewBag.Title = "CarregaPost";
+    ViewBag.Title = "Atualizar Cardápio";
 }
 
-<h2>CarregaPost</h2>
+<!-- modal add alimento-->
+    <div id="modal-adicionar-alimento" class="modal">
+        <div class="modal-content">
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>AlimentoModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nom_NomeAlimento, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nom_NomeAlimento, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nom_NomeAlimento, "", new { @class = "text-danger" })
+            <div class="topo">
+                <span class="titulo-modal">Novo Alimento</span> <br>
+                <button class="close-button" id="close-modalCat" onclick="fechaModal('modal-adicionar-alimento')">X</button>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Ind_Disponivel, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input id="check" class="check-box" type="checkbox">
-            </div>
-        </div>
+            <div class="formulario">
+                <div class="nome-categoria">
+                    <span>Nome:</span>
+                    <input type="text" class="input" id="Nom_NomeAlimento">
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Num_IdCategoria, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Num_IdCategoria, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Num_IdCategoria, "", new { @class = "text-danger" })
+                <input type="text" class="input-none" id="Num_IdCategoria" value=@Model.Num_IdCategoria>
+
+                <div class="bottom">
+                    <button class="botao" onclick="RotasAlimento.Post()">Adicionar</button>
+                </div>
+
             </div>
+
         </div>
     </div>
-
-}
-
-
-    <button onclick="RotasAlimento.Post('@Model.Nom_NomeAlimento', '@Model.Num_IdCategoria')" title="Cancelar" class="btn btn-info">
-        Editar
-    </button>
 
 

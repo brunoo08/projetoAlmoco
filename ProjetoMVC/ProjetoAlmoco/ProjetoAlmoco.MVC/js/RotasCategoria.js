@@ -25,9 +25,17 @@
         });
     }
 
-    var Num_IdCategoria;
+    
     var CarregaPut = function (Num_IdCategoria, Nom_Nome) {
         this.Num_IdCategoria = Num_IdCategoria;
+
+        $.post(config.urls.CarregaPut, { Num_IdCategoria: Num_IdCategoria, Nom_Nome: Nom_Nome }).done(function (data) {
+            console.log(data);
+            $("#CarregaPut").html(data);
+
+            var modal = document.getElementById("modal-editar-categoria");
+            modal.style.display = "block";
+        });
     }
 
     var Put = function () {
@@ -39,7 +47,9 @@
 
     var CarregaPost = function () {
         $.post(config.urls.CarregaPost).done(function (data) {
-            $("body").html(data);
+            $("#CarregaPost").html(data);
+            var modal = document.getElementById("modal-adicionar-categoria");
+            modal.style.display = "block";
         });
     }
 
@@ -53,7 +63,6 @@
         $.post(config.urls.CarregaDelete, { Num_IdCategoria: Num_IdCategoria, Nom_Nome: Nom_Nome }).done(function (data) {
             console.log(data);
             $("#CarregaDelete").html(data);
-
             var modal = document.getElementById("modal-excluir-categoria");
             modal.style.display = "block";
         });

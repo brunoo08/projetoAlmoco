@@ -33,9 +33,12 @@
         });
     }
 
-    var CarregaPost = function () {
-        $.post(config.urls.CarregaPost).done(function (data) {
-            $("body").html(data);
+    var CarregaPost = function (Num_IdCategoria) {
+        console.log(Num_IdCategoria);
+        $.post(config.urls.CarregaPost, { Num_IdCategoria: Num_IdCategoria}).done(function (data) {
+            $("#CarregaPostAlimento").html(data);
+            var modal = document.getElementById("modal-adicionar-alimento");
+            modal.style.display = "block";
         });
     }
 
@@ -58,13 +61,17 @@
         });
     }
 
-    var CarregaDelete = function (Num_IdAlimentos, Nom_NomeAlimento, Ind_Disponivel, Num_IdCategoria) {
-        $.post(config.urls.CarregaDelete, { Num_IdAlimentos, Nom_NomeAlimento, Ind_Disponivel, Num_IdCategoria }).done(function (data) {
-            $("body").html(data);
+    var CarregaDelete = function (Num_IdAlimentos) {
+        console.log(Num_IdAlimentos);
+        $.post(config.urls.CarregaDelete, { Num_IdAlimentos: Num_IdAlimentos }).done(function (data) {
+            $("#CarregaDeleteAlimento").html(data);
+            var modal = document.getElementById("modal-excluir-alimento");
+            modal.style.display = "block";
         });
     }
 
     var Delete = function (Num_Id) {
+        console.log(Num_Id);
         $.post(config.urls.Delete, { Num_Id: Num_Id }).done(function () {
             GetAllAlimento();
         });
