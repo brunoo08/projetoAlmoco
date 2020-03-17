@@ -97,5 +97,28 @@ namespace ProjetoAlmoco.Application.Alimento
 
             return response;
         }
+
+        public HttpResponseMessage Transforma(int Num_Id)
+        {
+            string URL = "http://localhost:58473/api/alimento/TransformaDisp" + "?Num_Id=" + Num_Id.ToString();
+            //client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+            HttpResponseMessage response = client.PutAsync(URL, Num_Id, new JsonMediaTypeFormatter
+            {
+                SerializerSettings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Include,
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                    ContractResolver = new DefaultContractResolver
+                    {
+                        IgnoreSerializableAttribute = true
+                    }
+                }
+            }).Result;
+
+
+            return response;
+        }
+
     }
 }

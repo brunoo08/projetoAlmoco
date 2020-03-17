@@ -83,5 +83,28 @@ namespace ProjetoAlmoco.Application.Usuario
 
             return response;
         }
+
+        public HttpResponseMessage Login(UsuarioModel usuarioModel)
+        {
+            string URL = "http://localhost:58473/api/usuario/Login";
+            //client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+            HttpResponseMessage response = client.PostAsync(URL, usuarioModel, new JsonMediaTypeFormatter
+            {
+                SerializerSettings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Include,
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                    ContractResolver = new DefaultContractResolver
+                    {
+                        IgnoreSerializableAttribute = true
+                    }
+                }
+            }).Result;
+
+            return response;
+        }
     }
 }

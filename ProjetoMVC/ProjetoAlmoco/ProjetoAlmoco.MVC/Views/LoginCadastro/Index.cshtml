@@ -20,9 +20,9 @@
 
         <div class="formulario" id="login" tabindex="500">
             <h1>Login</h1>
-            <input type="text" placeholder="Nome do usuário" class="input" id="nome" required><br>
-            <input type="password" placeholder="Senha" class="input" id="senha" required><br>
-            <button class="botao">Entrar</button>
+            <input type="text" placeholder="Nome do usuário" class="input" id="Nom_Login" required><br>
+            <input type="password" placeholder="Senha" class="input" id="Nom_Senha" required><br>
+            <button class="botao" onclick="RotasPrincipais.Login()">Entrar</button>
         </div>
 
         <div class="formulario" id="cadastro" tabindex="502">
@@ -51,7 +51,8 @@
             Delete: '@Url.Action("Delete","Usuario")',
             CarregaPost: '@Url.Action("CarregaPost","Usuario")',
             CarregaPut: '@Url.Action("CarregaPut","Usuario")',
-            CarregaDelete: '@Url.Action("CarregaDelete","Usuario")'
+            CarregaDelete: '@Url.Action("CarregaDelete","Usuario")',
+            Login: '@Url.Action("Login","Usuario")'
         }
     });
 

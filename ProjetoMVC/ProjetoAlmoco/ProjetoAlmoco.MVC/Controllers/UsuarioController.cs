@@ -3,6 +3,7 @@ using ProjetoAlmoco.Application.Usuario.Model;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Net.Http;
+using ProjetoAlmoco.Api.Controllers;
 
 namespace ProjetoAlmoco.MVC.Controllers
 {
@@ -43,7 +44,7 @@ namespace ProjetoAlmoco.MVC.Controllers
             HttpResponseMessage response = _usuarioApplication.Put(usuarioModel);
 
             if (!response.IsSuccessStatusCode)
-                return new HttpStatusCodeResult(200); //view de erro
+                return View("Erro1"); //view de erro 
             return new HttpStatusCodeResult(200);
         }
 
@@ -67,7 +68,7 @@ namespace ProjetoAlmoco.MVC.Controllers
             HttpResponseMessage response = _usuarioApplication.Delete(Num_Id);
 
             if (!response.IsSuccessStatusCode)
-                return new HttpStatusCodeResult(200); //view de erro
+                return View("Erro1");   //view de erro
             return new HttpStatusCodeResult(200);
         }
 
@@ -76,5 +77,24 @@ namespace ProjetoAlmoco.MVC.Controllers
             return View("Delete",usuarioModel);
         }
 
+        public ActionResult Login(UsuarioModel usuarioModel)
+        {
+            HttpResponseMessage response = _usuarioApplication.Login(usuarioModel);
+            if (response.Content.Headers.ContentLength == 1)
+            {
+                return RedirectToAction("Index", "Adm");
+            }
+            if (response.Content.Headers.ContentLength == 2)
+            {
+                return RedirectToAction("Index", "User");
+            }
+            else
+            {
+                return View("Erro");
+            }
+            
+        }
+
     }
+
 }

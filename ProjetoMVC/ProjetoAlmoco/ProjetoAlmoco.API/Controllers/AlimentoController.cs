@@ -3,6 +3,7 @@ using System;
 using System.Web.Http;
 using System.Web.Mvc;
 using HttpGetAttribute = System.Web.Http.HttpGetAttribute;
+using HttpPostAttribute = System.Web.Http.HttpPostAttribute;
 using HttpPutAttribute = System.Web.Http.HttpPutAttribute;
 using RouteAttribute = System.Web.Http.RouteAttribute;
 
@@ -96,5 +97,20 @@ namespace ProjetoAlmoco.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPut, Route(template: "API/Alimento/TransformaDisp")]
+        public IHttpActionResult Transforma(int Num_Id)
+        {
+            try
+            {
+                _alimentoRepository.transforma(Num_Id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }

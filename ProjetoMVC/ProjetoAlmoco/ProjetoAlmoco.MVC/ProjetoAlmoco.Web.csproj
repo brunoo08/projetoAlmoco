@@ -229,12 +229,16 @@
     <Content Include="Views\Pedidos\CarregaPut.cshtml" />
     <Content Include="Views\Pedidos\CarregaPost.cshtml" />
     <Content Include="Views\Pedidos\CarregaDelete.cshtml" />
+    <Content Include="Views\Usuario\Erro.cshtml" />
+    <Content Include="Views\Usuario\Erro1.cshtml" />
+    <Content Include="Views\Pedidos\Erro1.cshtml" />
+    <Content Include="Views\Categoria\Erro1.cshtml" />
+    <Content Include="Views\Alimento\Erro1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="bin\" />
     <Folder Include="Models\" />
-
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
@@ -252,6 +256,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ProjetoAlmoco.Api\ProjetoAlmoco.Api.csproj">
+      <Project>{216239E2-D42F-4EDB-869D-51C4327BE8C6}</Project>
+      <Name>ProjetoAlmoco.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProjetoAlmoco.Application\ProjetoAlmoco.Application.csproj">
       <Project>{A2A5413A-B084-44F8-9455-6142EEF884E0}</Project>
       <Name>ProjetoAlmoco.Application</Name>

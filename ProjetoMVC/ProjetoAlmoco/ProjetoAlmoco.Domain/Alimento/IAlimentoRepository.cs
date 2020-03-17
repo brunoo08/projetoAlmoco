@@ -10,5 +10,6 @@ namespace ProjetoAlmoco.Domain.Alimento
         IEnumerable<AlimentosDto> getAll();
         IEnumerable<AlimentosDto> getDisp();
         AlimentosDto get(int Num_Id);
+        void transforma(int Num_Id);
     }
 }

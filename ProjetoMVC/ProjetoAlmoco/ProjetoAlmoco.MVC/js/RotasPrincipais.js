@@ -2,10 +2,6 @@
 
     var config = {
         urls: {
-<<<<<<< HEAD
-=======
-
->>>>>>> FRT003
             GetAllUsuario: '',
             GetUsuario: '',
             Post: '',
@@ -13,25 +9,16 @@
             Delete: '',
             CarregaPost: '',
             CarregaPut: '',
-            CarregaDelete: ''
+            CarregaDelete: '',
+            Login: ''
         }
     };
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> FRT003
     var GetAllUsuario = function () {
         $.get(config.urls.GetAllUsuario).done(function (data) {
             $("body").html(data);
         });
     }
-
-<<<<<<< HEAD
-=======
-
->>>>>>> FRT003
+    
     var GetUsuario = function (Num_Id) {
         $.post(config.urls.GetUsuario, { Num_Id: Num_Id }).done(function (data) {
             $("body").html(data);
@@ -73,9 +60,17 @@
 
 
     var Delete = function (Num_Id) {
-        console.log(Num_Id);
         $.post(config.urls.Delete, { Num_Id: Num_Id}).done(function () {
             GetAllUsuario();
+        });
+    }
+
+    var Login = function () {
+        console.log($("#Nom_Login").val())
+        console.log($("#Nom_Senha").val())
+        $.post(config.urls.Login, { Nom_Login: $("#Nom_Login").val(), Nom_Senha: $("#Nom_Senha").val() }).done(function (data) {
+            $("body").html(data);
+
         });
     }
 
@@ -92,6 +87,7 @@
         Delete: Delete,
         CarregaPost: CarregaPost,
         CarregaPut: CarregaPut,
-        CarregaDelete: CarregaDelete
+        CarregaDelete: CarregaDelete,
+        Login: Login
     }
 })();

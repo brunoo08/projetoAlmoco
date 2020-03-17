@@ -7,5 +7,6 @@
         public string Nom_Sobrenome { get; set; }
         public string Nom_Login { get; set; }
         public string Nom_Senha { get; set; }
+        public bool Num_Admin { get; set; }
     }
 }

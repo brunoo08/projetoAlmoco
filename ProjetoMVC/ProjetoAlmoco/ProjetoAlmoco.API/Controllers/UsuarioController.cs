@@ -80,5 +80,40 @@ namespace ProjetoAlmoco.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost, Route(template: "API/Usuario/Login")]
+        public IHttpActionResult Login(UsuarioDto usuario)
+        {
+            try
+            {
+                //Teste teste = new Teste();
+                var retorno = _usuarioRepository.login(usuario);
+                if (retorno == 0)
+                {
+                    //teste.adm = 0;
+                    //return Ok(teste.adm);
+                    return Ok(retorno);
+                }
+                if (retorno == 10)
+                {
+                    //teste.adm = 1;
+                    return Ok(retorno);
+                }
+                else
+                {
+                    return BadRequest("Usuario não encontrado");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
+    //public class Teste
+    //{
+    //    public int adm { get; set; }
+
+    //}
 }

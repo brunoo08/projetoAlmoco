@@ -86,6 +86,13 @@ namespace ProjetoAlmoco.Repository.Repositories
             ExecuteNonQuery();
         }
 
+        public void transforma(int Num_Id)
+        {
+            ExecuteProcedure("TransformaDisp");
+            AddParameter("@Num_Id", Num_Id);
+            ExecuteNonQuery();
+        }
+
         public void Dispose()
         {
             throw new NotImplementedException();

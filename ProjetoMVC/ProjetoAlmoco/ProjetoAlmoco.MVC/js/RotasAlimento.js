@@ -10,7 +10,8 @@
             CarregaPut: '',
             Delete: '',
             CarregaDelete: '',
-            GetDispAlimento: ''
+            GetDispAlimento: '',
+            Transforma: ''
         }
     };
 
@@ -58,6 +59,12 @@
         });
     }
 
+    var Transforma = function () {
+        $.post(config.urls.Transforma, { Num_IdAlimentos: $("#Num_IdAlimentos").val(), Nom_NomeAlimento: $("#Nom_NomeAlimento").val(), Ind_Disponivel: $("#Ind_Disponivel").is(':checked') }).done(function () {
+            GetAllAlimento();
+        });
+    }
+
     var CarregaDelete = function (Num_IdAlimentos, Nom_NomeAlimento, Ind_Disponivel, Num_IdCategoria) {
         $.post(config.urls.CarregaDelete, { Num_IdAlimentos, Nom_NomeAlimento, Ind_Disponivel, Num_IdCategoria }).done(function (data) {
             $("body").html(data);
@@ -86,6 +93,7 @@
         Post: Post,
         CarregaDelete: CarregaDelete,
         Delete: Delete,
-        GetDispAlimento: GetDispAlimento
+        GetDispAlimento: GetDispAlimento,
+        Transforma: Transforma
     }
 })();

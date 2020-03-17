@@ -37,7 +37,7 @@ namespace ProjetoAlmoco.MVC.Controllers
             HttpResponseMessage response = _pedidosApplication.Put(mostrapedidosModel);
 
             if (!response.IsSuccessStatusCode)
-                return new HttpStatusCodeResult(200); //view de erro
+                return View("Erro1"); //view de erro
             return new HttpStatusCodeResult(200);
         }
 
@@ -46,7 +46,7 @@ namespace ProjetoAlmoco.MVC.Controllers
             HttpResponseMessage response = _pedidosApplication.Post(pedidosModel);
 
             if (!response.IsSuccessStatusCode)
-                return new HttpStatusCodeResult(200); //view de erro
+                return View("Erro1"); //view de erro
             return new HttpStatusCodeResult(200);
         }
 
@@ -60,7 +60,7 @@ namespace ProjetoAlmoco.MVC.Controllers
             HttpResponseMessage response = _pedidosApplication.Delete(Num_Id);
 
             if (!response.IsSuccessStatusCode)
-                return new HttpStatusCodeResult(200); //view de erro
+                return View("Erro1"); //view de erro
             return new HttpStatusCodeResult(200);
         }
 

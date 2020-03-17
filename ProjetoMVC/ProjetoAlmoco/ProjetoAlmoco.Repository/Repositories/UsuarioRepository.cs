@@ -73,6 +73,15 @@ namespace ProjetoAlmoco.Repository.Repositories
             ExecuteNonQuery();
         }
 
+        public int login(UsuarioDto usuario)
+        {
+            ExecuteProcedure("VerificaLogin");
+            AddParameter("@login", usuario.Nom_Login);
+            AddParameter("@senha", usuario.Nom_Senha);
+            return ExecuteNoQueryWithReturn();
+           
+        }
+
         public void Dispose()
         {
             throw new NotImplementedException();

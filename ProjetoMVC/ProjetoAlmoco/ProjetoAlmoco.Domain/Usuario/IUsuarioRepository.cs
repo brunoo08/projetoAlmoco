@@ -9,5 +9,6 @@ namespace ProjetoAlmoco.Domain.Usuario
         void delete(int Num_Id);
         void put(UsuarioDto usuario);
         void post(UsuarioDto usuario);
+        int login(UsuarioDto usuario);
     }
 }
